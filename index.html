@@ -279,23 +279,276 @@
             backdrop-filter: blur(8px);
         }
 
-        .learning-navigation a {
+        .learning-navigation .chapter13-tab-button {
             padding: 7px 11px;
             border-radius: 8px;
             color: var(--primary);
+            border: 0;
+            background: transparent;
+            font: inherit;
             font-size: 0.82rem;
             font-weight: 700;
-            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
         }
 
-        .learning-navigation a:hover,
-        .learning-navigation a:focus-visible {
+        .learning-navigation .chapter13-tab-button:hover,
+        .learning-navigation .chapter13-tab-button:focus-visible {
             background: var(--primary-light);
-            outline: 2px solid transparent;
         }
 
-        .learning-navigation a:focus-visible {
+        .learning-navigation .chapter13-tab-button:focus-visible {
             outline: 3px solid #c99d4e;
+            outline-offset: 2px;
+        }
+
+        .learning-navigation .chapter13-tab-button[aria-selected="true"] {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(24, 50, 75, 0.15);
+        }
+
+        .chapter13-tab-panel[hidden] {
+            display: none;
+        }
+
+        .chapter13-panel-card {
+            padding: clamp(18px, 3vw, 30px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chapter13-panel-heading {
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chapter13-panel-heading h3 {
+            margin-top: 4px;
+            color: var(--primary);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.35rem, 3vw, 1.8rem);
+            font-weight: 650;
+        }
+
+        .chapter13-panel-heading p {
+            margin-top: 5px;
+            color: var(--neutral-muted);
+            font-size: 0.9rem;
+        }
+
+        .chapter13-prerequisite-box {
+            margin-top: 16px;
+        }
+
+        .chapter13-guide-callout {
+            margin-top: 14px;
+        }
+
+        .chapter13-calculator-notes {
+            margin-top: 14px;
+        }
+
+        .chapter13-tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .chapter13-tool {
+            min-width: 0;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #f8fafc;
+        }
+
+        .chapter13-tool h4 {
+            color: var(--primary);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.05rem;
+        }
+
+        .chapter13-tool > p {
+            margin: 6px 0 14px;
+            color: var(--neutral-muted);
+            font-size: 0.83rem;
+        }
+
+        .chapter13-tool-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .chapter13-tool-form label {
+            display: grid;
+            gap: 5px;
+            color: var(--neutral-dark);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .chapter13-tool-form input,
+        .chapter13-tool-form select {
+            width: 100%;
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid #cbd5dc;
+            border-radius: 8px;
+            background: white;
+            color: var(--neutral-dark);
+            font: inherit;
+        }
+
+        .chapter13-tool-form input:focus-visible,
+        .chapter13-tool-form select:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: 2px;
+        }
+
+        .chapter13-tool-action {
+            min-height: 42px;
+            padding: 9px 14px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font: inherit;
+            font-size: 0.84rem;
+            font-weight: 750;
+            cursor: pointer;
+        }
+
+        .chapter13-tool-action:hover {
+            background: var(--primary-hover);
+        }
+
+        .chapter13-tool-result {
+            min-height: 42px;
+            margin-top: 12px;
+            padding: 10px 12px;
+            border: 1px solid #cbd9e5;
+            border-radius: 8px;
+            background: white;
+            color: var(--neutral-dark);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .chapter13-tool-result[hidden] {
+            display: none;
+        }
+
+        .chapter13-tool-result.error {
+            border-color: #fecaca;
+            background: #fff0ef;
+            color: #991b1b;
+        }
+
+        .triangle-lab-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 18px;
+            align-items: center;
+        }
+
+        .triangle-lab-controls {
+            display: grid;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--neutral-light);
+        }
+
+        .triangle-lab-controls label {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--neutral-dark);
+            font-size: 0.83rem;
+            font-weight: 700;
+        }
+
+        .triangle-lab-controls input[type="range"] {
+            width: 100%;
+            margin-top: 8px;
+            accent-color: var(--secondary);
+        }
+
+        .triangle-lab-readout {
+            display: grid;
+            gap: 8px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: white;
+            font-size: 0.82rem;
+        }
+
+        .triangle-lab-readout div {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .triangle-lab-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 280px;
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--primary);
+        }
+
+        .triangle-lab-visual svg {
+            width: min(100%, 390px);
+            height: auto;
+        }
+
+        .calculator-tip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .calculator-tip-grid .calculator-pitfall {
+            font-size: 0.88rem;
+        }
+
+        .chapter13-quiz-card {
+            padding: clamp(20px, 4vw, 34px);
+            border: 1px solid #304658;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #10283e, #18324b);
+            color: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chapter13-quiz-card h3 {
+            margin: 6px 0 8px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+        }
+
+        .chapter13-quiz-card p {
+            color: #e0e9ed;
+            font-size: 0.92rem;
+        }
+
+        .chapter13-quiz-card .btn {
+            margin-top: 18px;
+            background: #d9b66f;
+            color: #203344;
+        }
+
+        .chapter13-quiz-card .btn:hover {
+            background: #e5c987;
         }
 
         .chapter13-learning-guide {
@@ -1233,7 +1486,7 @@
                 padding: 7px;
             }
 
-            .learning-navigation a {
+            .learning-navigation .chapter13-tab-button {
                 padding: 7px 8px;
                 font-size: 0.76rem;
             }
@@ -1275,6 +1528,12 @@
             .special-ratio-table th,
             .special-ratio-table td {
                 padding: 7px 4px;
+            }
+
+            .chapter13-tool-grid,
+            .triangle-lab-layout,
+            .calculator-tip-grid {
+                grid-template-columns: 1fr;
             }
 
             .triangle-side-key {
@@ -2084,30 +2343,140 @@
                 </ul>
             </details>
         </nav>
-        <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 contents" hidden>
-            <a href="#chapter13-learning-guide">Guide</a>
-            <a href="#chapter13-prerequisites">Prerequisites</a>
-            <a href="#chapter13-anatomy">Triangle lab</a>
-            <a href="#chapter13-special-triangles">Special triangles</a>
-            <a href="#chapter13-lessons">Guided examples</a>
-            <a href="#chapter13-calculator-tips">Calculator tips</a>
-            <a href="#practice-section">Practice problems</a>
-            <a href="#start-full-test">Chapter quiz</a>
+        <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 sections" role="tablist" hidden>
+            <button class="chapter13-tab-button" id="chapter13-tab-guide" type="button" role="tab" aria-selected="true" aria-controls="chapter13-view-guide" tabindex="0" onclick="switchChapter13Tab('guide')">Guide</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-prerequisites" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-prerequisites" tabindex="-1" onclick="switchChapter13Tab('prerequisites')">Prerequisites</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-lab" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-lab" tabindex="-1" onclick="switchChapter13Tab('lab')">Triangle lab</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-special" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-special" tabindex="-1" onclick="switchChapter13Tab('special')">Special triangles</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-examples" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-examples" tabindex="-1" onclick="switchChapter13Tab('examples')">Guided examples</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-calculator" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-calculator" tabindex="-1" onclick="switchChapter13Tab('calculator')">Calculator tips</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-practice" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-practice" tabindex="-1" onclick="switchChapter13Tab('practice')">Practice problems</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-quiz" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-quiz" tabindex="-1" onclick="switchChapter13Tab('quiz')">Chapter quiz</button>
         </nav>
-        <section class="chapter13-learning-guide" id="chapter13-learning-guide" aria-labelledby="lesson-guide-title" hidden>
-            <div class="lesson-guide-heading">
-                <span class="section-eyebrow">Learn the ideas · then try them</span>
-                <h2 id="lesson-guide-title">Chapter 13 learning guide</h2>
-                <p>Review each concept, then reveal a worked example one step at a time.</p>
+        <section class="chapter13-learning-guide" id="chapter13-learning-guide" aria-label="Chapter 13 learning resources" hidden>
+            <div class="chapter13-tab-panel" id="chapter13-view-guide" role="tabpanel" aria-labelledby="chapter13-tab-guide">
+                <div class="chapter13-panel-card">
+                    <div class="chapter13-panel-heading">
+                        <span class="section-eyebrow">Concept guide</span>
+                        <h3>SOH–CAH–TOA and side identification</h3>
+                        <p>Opposite and adjacent are named relative to the chosen acute angle. The hypotenuse is always opposite the right angle.</p>
+                    </div>
+                    <div class="special-triangle-grid">
+                        <article class="special-triangle-card">
+                            <h4>SOH · Sine</h4>
+                            <div class="special-triangle-ratios">\(\sin(\theta)=\frac{\text{opposite}}{\text{hypotenuse}}\)</div>
+                        </article>
+                        <article class="special-triangle-card">
+                            <h4>CAH · Cosine</h4>
+                            <div class="special-triangle-ratios">\(\cos(\theta)=\frac{\text{adjacent}}{\text{hypotenuse}}\)</div>
+                        </article>
+                        <article class="special-triangle-card">
+                            <h4>TOA · Tangent</h4>
+                            <div class="special-triangle-ratios">\(\tan(\theta)=\frac{\text{opposite}}{\text{adjacent}}\)</div>
+                        </article>
+                    </div>
+                    <div class="calculator-pitfall chapter13-guide-callout">
+                        <strong>When the angle is unknown</strong>
+                        Use the matching inverse ratio: \(\theta=\sin^{-1}(\frac{\text{opposite}}{\text{hypotenuse}})\), \(\cos^{-1}(\frac{\text{adjacent}}{\text{hypotenuse}})\), or \(\tan^{-1}(\frac{\text{opposite}}{\text{adjacent}})\).
+                    </div>
+                </div>
             </div>
-            <details class="prerequisite-box" id="chapter13-prerequisites">
+            <div class="chapter13-tab-panel" id="chapter13-view-prerequisites" role="tabpanel" aria-labelledby="chapter13-tab-prerequisites" hidden>
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Prerequisite skills</span>
+                    <h3>Refresh the tools behind trigonometry</h3>
+                </div>
+                <div class="chapter13-tool-grid">
+                    <div class="chapter13-tool">
+                        <h4>Pythagorean calculator</h4>
+                        <p>Find a missing side in a right triangle. Enter positive lengths; the hypotenuse must be longer than either leg.</p>
+                        <form class="chapter13-tool-form" id="pythagorean-form">
+                            <label for="pythagorean-goal">Find
+                                <select id="pythagorean-goal">
+                                    <option value="hypotenuse">Hypotenuse (c)</option>
+                                    <option value="leg-a">Leg a</option>
+                                    <option value="leg-b">Leg b</option>
+                                </select>
+                            </label>
+                            <label id="pythagorean-first-label" for="pythagorean-first">Leg a
+                                <input id="pythagorean-first" type="number" min="0.001" step="any" value="9" required>
+                            </label>
+                            <label id="pythagorean-second-label" for="pythagorean-second">Leg b
+                                <input id="pythagorean-second" type="number" min="0.001" step="any" value="8" required>
+                            </label>
+                            <button class="chapter13-tool-action" type="submit">Calculate missing side</button>
+                        </form>
+                        <div class="chapter13-tool-result" id="pythagorean-result" role="status" hidden></div>
+                    </div>
+                    <div class="chapter13-tool">
+                        <h4>Radical simplifier</h4>
+                        <p>Rewrite a square root in simplest exact form and compare it with its decimal value.</p>
+                        <form class="chapter13-tool-form" id="radical-form">
+                            <label for="radical-radicand">Radicand (positive integer)
+                                <input id="radical-radicand" type="number" min="1" max="1000000" step="1" value="72" required>
+                            </label>
+                            <button class="chapter13-tool-action" type="submit">Simplify radical</button>
+                        </form>
+                        <div class="chapter13-tool-result" id="radical-result" role="status" hidden></div>
+                    </div>
+                </div>
+                <details class="prerequisite-box chapter13-prerequisite-box" id="chapter13-prerequisites">
                 <summary>Need a quick refresher? Pythagorean Theorem &amp; Radicals</summary>
                 <div class="prerequisite-content">
                     <p>In a right triangle, the hypotenuse <span class="triangle-role-hypotenuse">c</span> is opposite the right angle. If a leg is missing, isolate it before taking a square root.</p>
                     <p class="math-callout">\(a^2+b^2=c^2\), so \(a=\sqrt{c^2-b^2}\).</p>
                     <p>To simplify a radical, factor out the largest perfect square: \(\sqrt{50}=\sqrt{25\cdot2}=5\sqrt{2}\).</p>
                 </div>
-            </details>
+                </details>
+            </div>
+            <div class="chapter13-tab-panel" id="chapter13-view-lab" role="tabpanel" aria-labelledby="chapter13-tab-lab" hidden>
+              <div class="chapter13-panel-card">
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Interactive playground</span>
+                    <h3>Explore how a right triangle changes</h3>
+                    <p>Adjust either leg to see the hypotenuse, reference angle, and trigonometric ratios update.</p>
+                </div>
+                <div class="triangle-lab-layout">
+                    <div class="triangle-lab-controls">
+                        <label for="triangle-lab-adjacent">Adjacent leg \(b\)<output id="triangle-lab-adjacent-value">8.0</output></label>
+                        <input id="triangle-lab-adjacent" type="range" min="3" max="15" step="0.5" value="8" aria-label="Adjacent leg length">
+                        <label for="triangle-lab-opposite">Opposite leg \(a\)<output id="triangle-lab-opposite-value">6.0</output></label>
+                        <input id="triangle-lab-opposite" type="range" min="3" max="15" step="0.5" value="6" aria-label="Opposite leg length">
+                        <div class="triangle-lab-readout" aria-live="polite">
+                            <div><span>Hypotenuse \(c\)</span><strong id="triangle-lab-hypotenuse">10.00</strong></div>
+                            <div><span>Reference angle \(\theta\)</span><strong id="triangle-lab-angle">36.87°</strong></div>
+                            <div><span>\(\sin(\theta)=a/c\)</span><strong id="triangle-lab-sine">0.6000</strong></div>
+                            <div><span>\(\cos(\theta)=b/c\)</span><strong id="triangle-lab-cosine">0.8000</strong></div>
+                            <div><span>\(\tan(\theta)=a/b\)</span><strong id="triangle-lab-tangent">0.7500</strong></div>
+                        </div>
+                    </div>
+                    <div class="triangle-lab-visual">
+                        <svg viewBox="0 0 360 260" role="img" aria-labelledby="triangle-lab-title triangle-lab-description">
+                            <title id="triangle-lab-title">Resizable right triangle</title>
+                            <desc id="triangle-lab-description">The green vertical leg is opposite the reference angle. The orange horizontal leg is adjacent. The blue sloping side is the hypotenuse.</desc>
+                            <polygon id="triangle-lab-fill" points="55,205 295,205 295,85" fill="rgba(255,255,255,0.07)" stroke="none"/>
+                            <line id="triangle-lab-hyp-line" x1="55" y1="205" x2="295" y2="85" class="side-hypotenuse" stroke-width="5" stroke-linecap="round"/>
+                            <line id="triangle-lab-opp-line" x1="295" y1="205" x2="295" y2="85" class="side-opposite" stroke-width="5" stroke-linecap="round"/>
+                            <line id="triangle-lab-adj-line" x1="55" y1="205" x2="295" y2="205" class="side-adjacent" stroke-width="5" stroke-linecap="round"/>
+                            <path id="triangle-lab-right-angle" d="M 275 205 L 275 185 L 295 185" fill="none" stroke="white" stroke-width="2"/>
+                            <path id="triangle-lab-angle-arc" d="M 88 205 A 33 33 0 0 0 84 190" fill="none" stroke="#d9b66f" stroke-width="2"/>
+                            <text x="69" y="194" fill="#f1d38f" font-size="15" font-weight="700">θ</text>
+                            <text id="triangle-lab-a-label" x="306" y="146" class="side-label-opposite" font-size="13" font-weight="700">a = 6</text>
+                            <text id="triangle-lab-b-label" x="174" y="230" class="side-label-adjacent" font-size="13" font-weight="700">b = 8</text>
+                            <text id="triangle-lab-c-label" x="174" y="132" class="side-label-hypotenuse" font-size="13" font-weight="700">c = 10</text>
+                        </svg>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="chapter13-tab-panel" id="chapter13-view-special" role="tabpanel" aria-labelledby="chapter13-tab-special" hidden>
+              <div class="chapter13-panel-card">
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Exact trigonometric values</span>
+                    <h3>Special right triangles</h3>
+                    <p>Use side patterns to find exact ratios without a calculator.</p>
+                    <button class="chapter13-tool-action" id="special-radical-toggle" type="button" aria-pressed="false" onclick="toggleSpecialTriangleValues()">Show decimal values</button>
+                </div>
             <section class="chapter13-reference-section" id="chapter13-anatomy" aria-labelledby="chapter13-anatomy-title">
                 <h3 id="chapter13-anatomy-title">Triangle anatomy and SOH–CAH–TOA</h3>
                 <p>The hypotenuse stays the same. Opposite and adjacent depend on which acute angle you choose.</p>
@@ -2185,25 +2554,85 @@
                     </tbody>
                 </table>
             </section>
+              </div>
+            </div>
+            <div class="chapter13-tab-panel" id="chapter13-view-examples" role="tabpanel" aria-labelledby="chapter13-tab-examples" hidden>
+              <div class="chapter13-panel-card">
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Learn by doing</span>
+                    <h3>Guided examples by skill</h3>
+                    <p>Choose an objective to open its question set. Use each question’s hint and step-by-step solution controls as needed.</p>
+                </div>
             <div class="lesson-topic-list" id="chapter13-lesson-topics"></div>
+              </div>
+            </div>
+            <div class="chapter13-tab-panel" id="chapter13-view-calculator" role="tabpanel" aria-labelledby="chapter13-tab-calculator" hidden>
+              <div class="chapter13-panel-card">
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Check your work</span>
+                    <h3>Trigonometry calculator</h3>
+                    <p>Choose a ratio, enter two known values, and solve for an angle or side. Angles are in degrees.</p>
+                </div>
+                <div class="chapter13-tool-grid">
+                    <div class="chapter13-tool">
+                        <h4>Explore a right triangle</h4>
+                        <form class="chapter13-tool-form" id="trig-calculator-form">
+                            <label for="trig-calculator-ratio">Trigonometric ratio
+                                <select id="trig-calculator-ratio">
+                                    <option value="sin">Sine</option>
+                                    <option value="cos">Cosine</option>
+                                    <option value="tan">Tangent</option>
+                                </select>
+                            </label>
+                            <label for="trig-calculator-opposite">Opposite side
+                                <input id="trig-calculator-opposite" type="number" min="0.001" step="any" value="6">
+                            </label>
+                            <label for="trig-calculator-adjacent">Adjacent side
+                                <input id="trig-calculator-adjacent" type="number" min="0.001" step="any" value="8">
+                            </label>
+                            <label for="trig-calculator-hypotenuse">Hypotenuse
+                                <input id="trig-calculator-hypotenuse" type="number" min="0.001" step="any" placeholder="Leave one side blank">
+                            </label>
+                            <button class="chapter13-tool-action" type="submit">Calculate missing side and ratio</button>
+                        </form>
+                        <div class="chapter13-tool-result" id="trig-calculator-result" role="status" hidden></div>
+                    </div>
+                    <div class="chapter13-tool">
+                        <h4>Remember before calculating</h4>
+                        <p>Enter any two positive side lengths and leave the third blank. The calculator uses the Pythagorean theorem, then reports the selected ratio and the reference angle.</p>
+                        <div class="calculator-pitfalls chapter13-calculator-notes">
+                            <div class="calculator-pitfall"><strong>Check degree mode</strong>For angle problems in degrees, confirm the calculator shows DEG before using a trig or inverse-trig key.</div>
+                            <div class="calculator-pitfall"><strong>Keep the reference angle in view</strong>Opposite and adjacent change when you switch angles; the hypotenuse is always opposite the right angle.</div>
+                            <div class="calculator-pitfall"><strong>Round at the end</strong>Keep extra digits in intermediate steps, then round the final value as requested.</div>
+                            <div class="calculator-pitfall"><strong>Model the situation first</strong>Draw the horizontal reference line and label known sides before choosing a ratio.</div>
+                        </div>
+                    </div>
+                </div>
             <section class="chapter13-reference-section" id="chapter13-calculator-tips" aria-labelledby="chapter13-calculator-title">
                 <h3 id="chapter13-calculator-title">Calculator checks and common pitfalls</h3>
-                <div class="calculator-pitfalls">
-                    <div class="calculator-pitfall"><strong>Check degree mode</strong>For angle problems in degrees, confirm the calculator shows DEG before using a trig or inverse-trig key.</div>
-                    <div class="calculator-pitfall"><strong>Keep the reference angle in view</strong>Opposite and adjacent change when you switch angles; the hypotenuse is always opposite the right angle.</div>
-                    <div class="calculator-pitfall"><strong>Round at the end</strong>Keep extra digits in intermediate steps, then round the final value exactly as the question requests.</div>
-                    <div class="calculator-pitfall"><strong>Model the situation first</strong>For elevation or depression, draw the horizontal reference line and label the known sides before choosing a ratio.</div>
-                </div>
+                <p>Use exact values when possible and round only when the question asks for an approximation.</p>
             </section>
-        </section>
-        <section class="practice-section" id="practice-section" aria-labelledby="objective-heading">
-            <div class="bank-heading">
-                <span class="section-eyebrow">Focused practice</span>
-                <h2 id="objective-heading">Choose a learning objective</h2>
-                <p>Practice one skill at a time, or use the full assessment above to review the entire chapter.</p>
+              </div>
             </div>
-            <div class="objective-list" id="objective-list" aria-label="Question bank learning objectives"></div>
+            <div class="chapter13-tab-panel" id="chapter13-view-quiz" role="tabpanel" aria-labelledby="chapter13-tab-quiz" hidden>
+                <div class="chapter13-quiz-card">
+                    <span class="section-eyebrow">Chapter assessment</span>
+                    <h3>Ready to check your understanding?</h3>
+                    <p>The full Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across all learning objectives. Start a full assessment from the button below, or practice one objective at a time in the Practice Problems tab.</p>
+                    <button class="btn" type="button" onclick="startFullAssessment()">Start the Chapter 13 Assessment · <span id="chapter13-quiz-count">427</span> Questions</button>
+                </div>
+            </div>
         </section>
+        <div class="chapter13-tab-panel" id="chapter13-view-practice" role="tabpanel" aria-labelledby="chapter13-tab-practice" hidden>
+            <section class="practice-section" id="practice-section" aria-labelledby="objective-heading">
+                <div class="bank-heading">
+                    <span class="section-eyebrow">Focused practice</span>
+                    <h2 id="objective-heading">Choose a learning objective</h2>
+                    <p>Practice one skill at a time, or use the full assessment above to review the entire chapter.</p>
+                </div>
+                <div class="objective-list" id="objective-list" aria-label="Question bank learning objectives"></div>
+            </section>
+        </div>
     </main>
 
     <div id="assessment-ui" hidden>
@@ -7316,6 +7745,8 @@ let timerInterval = null;
 document.addEventListener("DOMContentLoaded", () => {
     configureChapterBank();
     renderQuestionBank();
+    initializeChapter13Navigation();
+    initializeChapter13Tools();
 });
 
 function getQuestionsForChapter(chapter) {
@@ -7372,8 +7803,20 @@ function renderQuestionBank() {
     const isChapter13 = selectedChapter === "13";
     document.getElementById('chapter13-learning-navigation').hidden = !isChapter13;
     document.getElementById('chapter13-learning-guide').hidden = !isChapter13;
-    if (isChapter13) renderChapter13Guide();
-    else document.getElementById('chapter13-lesson-topics').innerHTML = '';
+    const practicePanel = document.getElementById('chapter13-view-practice');
+    practicePanel.hidden = isChapter13;
+    document.getElementById('chapter13-quiz-question-count').textContent = chapterQuestions.length;
+    document.getElementById('chapter13-quiz-count').textContent = chapterQuestions.length;
+    if (isChapter13) {
+        practicePanel.setAttribute('role', 'tabpanel');
+        practicePanel.setAttribute('aria-labelledby', 'chapter13-tab-practice');
+        renderChapter13Guide();
+        switchChapter13Tab('guide');
+    } else {
+        practicePanel.removeAttribute('role');
+        practicePanel.removeAttribute('aria-labelledby');
+        document.getElementById('chapter13-lesson-topics').innerHTML = '';
+    }
 
     const appendObjectiveCard = (objective, parent) => {
         const questionCount = chapterQuestions.filter(question => question.objectiveId === objective.id).length;
@@ -7538,6 +7981,259 @@ function renderChapter13Guide() {
         document.getElementById('chapter13-special-triangles'),
         document.getElementById('chapter13-prerequisites')
     ]);
+}
+
+function switchChapter13Tab(tabName, focusTab = false) {
+    const tab = document.getElementById(`chapter13-tab-${tabName}`);
+    const panel = document.getElementById(`chapter13-view-${tabName}`);
+    if (!tab || !panel) throw new Error(`Unknown Chapter 13 tab: ${tabName}`);
+
+    document.querySelectorAll('#chapter13-learning-navigation [role="tab"]').forEach(button => {
+        const selected = button === tab;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+    });
+    document.querySelectorAll('#chapter13-view-guide, #chapter13-view-prerequisites, #chapter13-view-lab, #chapter13-view-special, #chapter13-view-examples, #chapter13-view-calculator, #chapter13-view-practice, #chapter13-view-quiz').forEach(view => {
+        view.hidden = view !== panel;
+    });
+    if (focusTab) tab.focus();
+    typesetMathIn([panel]);
+}
+
+function showChapter13ToolResult(element, message, isError = false) {
+    element.textContent = message;
+    element.classList.toggle('error', isError);
+    element.hidden = false;
+}
+
+function initializeChapter13Navigation() {
+    const navigation = document.getElementById('chapter13-learning-navigation');
+    const tabNames = ['guide', 'prerequisites', 'lab', 'special', 'examples', 'calculator', 'practice', 'quiz'];
+    navigation.addEventListener('keydown', event => {
+        const currentIndex = tabNames.findIndex(name =>
+            document.getElementById(`chapter13-tab-${name}`) === document.activeElement
+        );
+        if (currentIndex < 0) return;
+        let nextIndex;
+        if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabNames.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabNames.length) % tabNames.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = tabNames.length - 1;
+        else return;
+        event.preventDefault();
+        switchChapter13Tab(tabNames[nextIndex], true);
+    });
+}
+
+function initializeChapter13Tools() {
+    const pythagoreanForm = document.getElementById('pythagorean-form');
+    const pythagoreanGoal = document.getElementById('pythagorean-goal');
+    const firstLabel = document.getElementById('pythagorean-first-label');
+    const secondLabel = document.getElementById('pythagorean-second-label');
+    const firstInput = document.getElementById('pythagorean-first');
+    const secondInput = document.getElementById('pythagorean-second');
+    const pythagoreanResult = document.getElementById('pythagorean-result');
+
+    const updatePythagoreanLabels = () => {
+        const goal = pythagoreanGoal.value;
+        firstLabel.firstChild.textContent = goal === 'hypotenuse' ? 'Leg a' : 'Hypotenuse c';
+        secondLabel.firstChild.textContent = goal === 'hypotenuse' ? 'Leg b' : goal === 'leg-a' ? 'Leg b' : 'Leg a';
+        firstInput.value = goal === 'hypotenuse' ? '9' : '10';
+        secondInput.value = goal === 'hypotenuse' ? '8' : '8';
+        firstInput.setAttribute('aria-label', firstLabel.firstChild.textContent.trim());
+        secondInput.setAttribute('aria-label', secondLabel.firstChild.textContent.trim());
+    };
+    pythagoreanGoal.addEventListener('change', updatePythagoreanLabels);
+    pythagoreanForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const first = firstInput.valueAsNumber;
+        const second = secondInput.valueAsNumber;
+        if (!Number.isFinite(first) || !Number.isFinite(second) || first <= 0 || second <= 0) {
+            showChapter13ToolResult(pythagoreanResult, 'Enter two positive side lengths.', true);
+            return;
+        }
+        let radicand;
+        if (pythagoreanGoal.value === 'hypotenuse') {
+            radicand = first * first + second * second;
+        } else {
+            const hypotenuse = first;
+            const knownLeg = second;
+            if (hypotenuse <= knownLeg) {
+                showChapter13ToolResult(pythagoreanResult, 'The hypotenuse must be longer than the known leg.', true);
+                return;
+            }
+            radicand = hypotenuse * hypotenuse - knownLeg * knownLeg;
+        }
+        const result = Math.sqrt(radicand);
+        if (!Number.isFinite(result)) {
+            showChapter13ToolResult(pythagoreanResult, 'The values are too large to calculate safely. Use smaller side lengths.', true);
+            return;
+        }
+        const resultName = pythagoreanGoal.value === 'hypotenuse' ? 'c' : pythagoreanGoal.value === 'leg-a' ? 'a' : 'b';
+        showChapter13ToolResult(
+            pythagoreanResult,
+            `${resultName} = √${Number(radicand.toPrecision(8))} ≈ ${result.toFixed(4)}`
+        );
+    });
+
+    const radicalForm = document.getElementById('radical-form');
+    const radicalInput = document.getElementById('radical-radicand');
+    const radicalResult = document.getElementById('radical-result');
+    radicalForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const radicand = radicalInput.valueAsNumber;
+        if (!Number.isInteger(radicand) || radicand < 1 || radicand > 1000000) {
+            showChapter13ToolResult(radicalResult, 'Enter a whole number from 1 to 1,000,000.', true);
+            return;
+        }
+        let remaining = radicand;
+        let outside = 1;
+        let inside = 1;
+        for (let factor = 2; factor * factor <= remaining; factor += 1) {
+            let exponent = 0;
+            while (remaining % factor === 0) {
+                remaining /= factor;
+                exponent += 1;
+            }
+            outside *= factor ** Math.floor(exponent / 2);
+            if (exponent % 2) inside *= factor;
+        }
+        if (remaining > 1) inside *= remaining;
+        const exact = inside === 1 ? String(outside) : `${outside === 1 ? '' : `${outside}·`}√${inside}`;
+        showChapter13ToolResult(radicalResult, `√${radicand} = ${exact} ≈ ${Math.sqrt(radicand).toFixed(4)}`);
+    });
+
+    const triangleLabAdjacent = document.getElementById('triangle-lab-adjacent');
+    const triangleLabOpposite = document.getElementById('triangle-lab-opposite');
+    const updateTriangleLab = () => {
+        const adjacent = triangleLabAdjacent.valueAsNumber;
+        const opposite = triangleLabOpposite.valueAsNumber;
+        const scale = Math.min(240 / adjacent, 150 / opposite);
+        const width = adjacent * scale;
+        const height = opposite * scale;
+        const rightX = 295;
+        const leftX = rightX - width;
+        const baseY = 205;
+        const topY = baseY - height;
+        const hypotenuse = Math.hypot(adjacent, opposite);
+        const angle = Math.atan2(opposite, adjacent);
+        const angleDegrees = angle * 180 / Math.PI;
+        const arcRadius = 30;
+        const arcEndX = leftX + arcRadius * Math.cos(angle);
+        const arcEndY = baseY - arcRadius * Math.sin(angle);
+
+        document.getElementById('triangle-lab-fill').setAttribute('points', `${leftX},${baseY} ${rightX},${baseY} ${rightX},${topY}`);
+        const hypLine = document.getElementById('triangle-lab-hyp-line');
+        hypLine.setAttribute('x1', leftX);
+        hypLine.setAttribute('y1', baseY);
+        hypLine.setAttribute('x2', rightX);
+        hypLine.setAttribute('y2', topY);
+        const oppositeLine = document.getElementById('triangle-lab-opp-line');
+        oppositeLine.setAttribute('x1', rightX);
+        oppositeLine.setAttribute('y1', baseY);
+        oppositeLine.setAttribute('x2', rightX);
+        oppositeLine.setAttribute('y2', topY);
+        const adjacentLine = document.getElementById('triangle-lab-adj-line');
+        adjacentLine.setAttribute('x1', leftX);
+        adjacentLine.setAttribute('y1', baseY);
+        adjacentLine.setAttribute('x2', rightX);
+        adjacentLine.setAttribute('y2', baseY);
+        document.getElementById('triangle-lab-right-angle').setAttribute('d', `M ${rightX - 20} ${baseY} L ${rightX - 20} ${baseY - 20} L ${rightX} ${baseY - 20}`);
+        document.getElementById('triangle-lab-angle-arc').setAttribute('d', `M ${leftX + arcRadius} ${baseY} A ${arcRadius} ${arcRadius} 0 0 0 ${arcEndX} ${arcEndY}`);
+        document.getElementById('triangle-lab-a-label').setAttribute('y', (baseY + topY) / 2);
+        document.getElementById('triangle-lab-a-label').textContent = `a = ${opposite.toFixed(1)}`;
+        document.getElementById('triangle-lab-b-label').setAttribute('x', (leftX + rightX) / 2);
+        document.getElementById('triangle-lab-b-label').textContent = `b = ${adjacent.toFixed(1)}`;
+        document.getElementById('triangle-lab-c-label').setAttribute('x', (leftX + rightX) / 2);
+        document.getElementById('triangle-lab-c-label').setAttribute('y', (baseY + topY) / 2 - 8);
+        document.getElementById('triangle-lab-c-label').textContent = `c = ${hypotenuse.toFixed(2)}`;
+        document.getElementById('triangle-lab-adjacent-value').textContent = adjacent.toFixed(1);
+        document.getElementById('triangle-lab-opposite-value').textContent = opposite.toFixed(1);
+        document.getElementById('triangle-lab-hypotenuse').textContent = hypotenuse.toFixed(2);
+        document.getElementById('triangle-lab-angle').textContent = `${angleDegrees.toFixed(2)}°`;
+        document.getElementById('triangle-lab-sine').textContent = (opposite / hypotenuse).toFixed(4);
+        document.getElementById('triangle-lab-cosine').textContent = (adjacent / hypotenuse).toFixed(4);
+        document.getElementById('triangle-lab-tangent').textContent = (opposite / adjacent).toFixed(4);
+    };
+    triangleLabAdjacent.addEventListener('input', updateTriangleLab);
+    triangleLabOpposite.addEventListener('input', updateTriangleLab);
+    updateTriangleLab();
+
+    const trigForm = document.getElementById('trig-calculator-form');
+    const trigResult = document.getElementById('trig-calculator-result');
+    trigForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const inputs = [
+            ['opposite', document.getElementById('trig-calculator-opposite')],
+            ['adjacent', document.getElementById('trig-calculator-adjacent')],
+            ['hypotenuse', document.getElementById('trig-calculator-hypotenuse')]
+        ];
+        const entered = inputs.filter(([, input]) => input.value.trim() !== '');
+        if (entered.length !== 2) {
+            showChapter13ToolResult(trigResult, 'Enter exactly two positive side lengths and leave the third blank.', true);
+            return;
+        }
+        const sides = Object.fromEntries(entered.map(([name, input]) => [name, input.valueAsNumber]));
+        if (Object.values(sides).some(value => !Number.isFinite(value) || value <= 0)) {
+            showChapter13ToolResult(trigResult, 'Side lengths must be positive finite numbers.', true);
+            return;
+        }
+        const missing = inputs.find(([name]) => !(name in sides))[0];
+        if (missing === 'hypotenuse') {
+            sides.hypotenuse = Math.hypot(sides.opposite, sides.adjacent);
+        } else if (sides.hypotenuse <= sides[missing === 'opposite' ? 'adjacent' : 'opposite']) {
+            showChapter13ToolResult(trigResult, 'The hypotenuse must be longer than either leg.', true);
+            return;
+        } else {
+            const radicand = sides.hypotenuse ** 2 - sides[missing === 'opposite' ? 'adjacent' : 'opposite'] ** 2;
+            if (!Number.isFinite(radicand) || radicand <= 0) {
+                showChapter13ToolResult(trigResult, 'These side lengths do not form a right triangle.', true);
+                return;
+            }
+            sides[missing] = Math.sqrt(radicand);
+        }
+        if (Object.values(sides).some(value => !Number.isFinite(value))) {
+            showChapter13ToolResult(trigResult, 'The values are too large to calculate safely. Use smaller side lengths.', true);
+            return;
+        }
+        const ratioName = document.getElementById('trig-calculator-ratio').value;
+        const ratios = {
+            sin: sides.opposite / sides.hypotenuse,
+            cos: sides.adjacent / sides.hypotenuse,
+            tan: sides.opposite / sides.adjacent
+        };
+        const angle = Math.atan2(sides.opposite, sides.adjacent) * 180 / Math.PI;
+        showChapter13ToolResult(
+            trigResult,
+            `Missing ${missing} side = ${sides[missing].toFixed(4)} · ${ratioName}(θ) = ${ratios[ratioName].toFixed(4)} · θ = ${angle.toFixed(2)}°`
+        );
+    });
+
+    const specialTable = document.querySelector('#chapter13-special-triangles .special-ratio-table');
+    const specialValues = [
+        ['\\(\\frac{1}{2}\\)', '\\(\\frac{\\sqrt{2}}{2}\\)', '\\(\\frac{\\sqrt{3}}{2}\\)'],
+        ['\\(\\frac{\\sqrt{3}}{2}\\)', '\\(\\frac{\\sqrt{2}}{2}\\)', '\\(\\frac{1}{2}\\)'],
+        ['\\(\\frac{\\sqrt{3}}{3}\\)', '\\(1\\)', '\\(\\sqrt{3}\\)']
+    ];
+    const decimalValues = [
+        ['0.5000', '0.7071', '0.8660'],
+        ['0.8660', '0.7071', '0.5000'],
+        ['0.5774', '1.0000', '1.7321']
+    ];
+    window.toggleSpecialTriangleValues = () => {
+        const button = document.getElementById('special-radical-toggle');
+        const showDecimal = button.getAttribute('aria-pressed') !== 'true';
+        const cells = Array.from(specialTable.querySelectorAll('tbody tr')).map(row =>
+            Array.from(row.querySelectorAll('td'))
+        );
+        clearMathTypesetting([specialTable]);
+        cells.forEach((row, rowIndex) => row.forEach((cell, cellIndex) => {
+            cell.innerHTML = showDecimal ? decimalValues[rowIndex][cellIndex] : specialValues[rowIndex][cellIndex];
+        }));
+        button.setAttribute('aria-pressed', String(showDecimal));
+        button.textContent = showDecimal ? 'Show exact values' : 'Show decimal values';
+        typesetMathIn([specialTable]);
+    };
 }
 
 function setReferenceAngle(angle) {
