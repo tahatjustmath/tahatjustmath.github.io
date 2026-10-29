@@ -446,6 +446,50 @@
             gap: 14px;
         }
 
+        .topic-accordion {
+            grid-column: 1 / -1;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: white;
+        }
+
+        .topic-accordion summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 16px 18px;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 750;
+            list-style-position: inside;
+        }
+
+        .topic-accordion summary:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: -3px;
+        }
+
+        .topic-accordion[open] > summary {
+            border-bottom: 1px solid var(--border-color);
+            background: #f5faf9;
+        }
+
+        .topic-accordion-count {
+            flex-shrink: 0;
+            color: var(--neutral-muted);
+            font-size: 0.78rem;
+            font-weight: 650;
+        }
+
+        .topic-objective-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            padding: 14px;
+        }
+
         .objective-card {
             display: flex;
             flex-direction: column;
@@ -579,7 +623,8 @@
                 min-height: 170px;
             }
 
-            .objective-list {
+            .objective-list,
+            .topic-objective-list {
                 grid-template-columns: 1fr;
             }
 
@@ -1049,6 +1094,47 @@
             outline-offset: 3px;
         }
 
+        .question-hint-area {
+            margin-top: 14px;
+        }
+
+        .hint-toggle {
+            padding: 8px 12px;
+            border: 1px solid #9ab8bd;
+            border-radius: 8px;
+            background: #f2f8f7;
+            color: var(--primary);
+            font: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .hint-toggle:hover {
+            background: #e5f1ef;
+        }
+
+        .hint-toggle:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: 3px;
+        }
+
+        .hint-panel {
+            max-width: 760px;
+            margin-top: 10px;
+            padding: 12px 14px;
+            border-left: 3px solid var(--secondary);
+            border-radius: 0 8px 8px 0;
+            background: #f2f8f7;
+            color: var(--neutral-dark);
+            font-size: 0.9rem;
+        }
+
+        .question-hint-area[hidden],
+        .hint-panel[hidden] {
+            display: none;
+        }
+
         .solution-panel {
             margin-top: 12px;
             padding: 16px;
@@ -1336,6 +1422,12 @@
                 <div class="question-title" id="question-stem">Loading question...</div>
             </div>
             <div class="tag-badge" id="target-badge">Section 1</div>
+        </div>
+        <div class="question-hint-area" id="question-hint-area" hidden>
+            <button class="hint-toggle" id="hint-toggle" type="button" aria-expanded="false" aria-controls="hint-panel" onclick="toggleQuestionHint()">
+                Show hint
+            </button>
+            <div class="hint-panel" id="hint-panel" hidden></div>
         </div>
         <div class="math-render-warning" id="math-render-warning" role="status" hidden>
             Math notation could not be rendered. The original notation is still available in the question text.
@@ -6122,6 +6214,46 @@ function clearMathTypesetting(elements) {
     if (window.MathJax?.typesetClear) window.MathJax.typesetClear(elements);
 }
 
+function formatChapter13Latex(expression) {
+    return expression
+        .replace(/√\(([^()]*)\)/g, "\\sqrt{$1}")
+        .replace(/√([A-Za-z0-9.]+)/g, "\\sqrt{$1}")
+        .replace(/([A-Za-z0-9)])²/g, "$1^{2}")
+        .replace(/([A-Za-z0-9)])³/g, "$1^{3}")
+        .replace(/\b(sin|cos|tan)(?=\s|\(|⁻¹)/g, "\\$1")
+        .replace(/⁻¹/g, "^{-1}")
+        .replace(/∠\s*([A-Z])/g, "\\angle $1")
+        .replace(/θ/g, "\\theta")
+        .replace(/°/g, "^{\\circ}")
+        .replace(/[×*]/g, "\\times ")
+        .replace(/≈/g, "\\approx ")
+        .replace(/→/g, "\\to ")
+        .replace(/\b(opposite|adjacent|hypotenuse)\s*(?:÷|\/)\s*(opposite|adjacent|hypotenuse)\b/gi, "\\frac{$1}{$2}")
+        .replace(/(\d+(?:,\d{3})*(?:\.\d+)?|(?<![A-Za-z])[A-Za-z](?![A-Za-z])|\\theta|\([^()]+\))\s*(?:÷|\/)\s*(\d+(?:,\d{3})*(?:\.\d+)?|(?<![A-Za-z])[A-Za-z](?![A-Za-z])|\\theta|\([^()]+\))/g, "\\frac{$1}{$2}")
+        .replace(/÷/g, "\\div ")
+        .replace(/\b(opposite|adjacent|hypotenuse)\b/gi, "\\text{$1}")
+        .replace(/\s+\b(cm|km|mi|ft|in|m)\b/g, "\\,\\text{$1}")
+        .trim();
+}
+
+function wrapChapter13Math(text, mathExpressions) {
+    const storeMath = expression => {
+        const token = `__QUESTION_MATH_${mathExpressions.length}__`;
+        mathExpressions.push(`\\(${formatChapter13Latex(expression)}\\)`);
+        return token;
+    };
+    const equationPattern = /(?:\b(?:sin|cos|tan)(?:⁻¹)?(?:\s*\([^)]*\)|\s+(?:[A-Z]|θ|\d+(?:\.\d+)?°))|(?<![A-Za-z])∠\s*[A-Z]|(?<![A-Za-z])θ|(?<![A-Za-z])[A-Za-z](?:[²³])?)\s*(?:=|≈)\s*.*?(?=,\s+so\b|[.!?](?=\s|$)|;|$)/gi;
+
+    return text
+        .replace(equationPattern, storeMath)
+        .replace(/\b(?:sin|cos|tan)(?:⁻¹)?(?:\s*\([^)]*\)|\s+(?:[A-Z]|θ|\d+(?:\.\d+)?°))/gi, storeMath)
+        .replace(/\b(opposite|adjacent|hypotenuse)\s*(?:÷|\/)\s*(opposite|adjacent|hypotenuse)\b/gi, ratio => storeMath(ratio.replace(/÷/g, "/")))
+        .replace(/∠\s*[A-Z](?:\s*=\s*\d+(?:\.\d+)?°)?/g, storeMath)
+        .replace(/θ/g, storeMath)
+        .replace(/\b\d+\s*\/\s*\d+\b/g, storeMath)
+        .replace(/\b\d+(?:\.\d+)?°/g, storeMath);
+}
+
 function typesetMathIn(elements) {
     const roots = elements.filter(element =>
         element && /\\\(|\\\[/.test(element.textContent || '')
@@ -6139,7 +6271,7 @@ function typesetMathIn(elements) {
         });
 }
 
-function formatQuestionMath(text) {
+function formatQuestionMath(text, renderChapter13Math = false) {
     const tables = [];
     const mathExpressions = [];
     text = text
@@ -6155,6 +6287,9 @@ function formatQuestionMath(text) {
             mathExpressions.push(expression);
             return token;
         });
+    if (renderChapter13Math) {
+        text = wrapChapter13Math(text, mathExpressions);
+    }
     const escapeHtml = value => value
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -6269,6 +6404,13 @@ learningObjectives.push({
     categories: ["Chapter 15"]
 });
 
+const chapter13TopicGroups = [
+    { title: "Right-triangle foundations", objectiveIds: ["identify-sides", "pythagorean"] },
+    { title: "Trigonometric ratios", objectiveIds: ["evaluate-ratios"] },
+    { title: "Solving right triangles", objectiveIds: ["find-sides", "find-angles", "solve-triangle"] },
+    { title: "Applications and calculator practice", objectiveIds: ["word-problems", "calculator-trig"] }
+];
+
 function getChapter4Objective(question) {
     const section = (question.section || "").replace(/\s+/g, " ").trim();
     const definition = chapter4ObjectiveDefinitions.find(item => {
@@ -6357,7 +6499,7 @@ function renderQuestionBank() {
     objectiveList.innerHTML = '';
     const chapterQuestions = getSelectedChapterQuestions();
 
-    learningObjectives.forEach(objective => {
+    const appendObjectiveCard = (objective, parent) => {
         const questionCount = chapterQuestions.filter(question => question.objectiveId === objective.id).length;
         if (questionCount === 0) return;
         const button = document.createElement('button');
@@ -6365,7 +6507,39 @@ function renderQuestionBank() {
         button.className = 'objective-card';
         button.innerHTML = `<strong>${objective.title}</strong><span class="objective-description">${objective.description}</span><span class="objective-count">${questionCount} questions · Practice this objective</span>`;
         button.addEventListener('click', () => startObjectivePractice(objective.id));
-        objectiveList.appendChild(button);
+        parent.appendChild(button);
+    };
+
+    if (selectedChapter === "13") {
+        chapter13TopicGroups.forEach((group, index) => {
+            const objectives = learningObjectives.filter(objective => group.objectiveIds.includes(objective.id));
+            const questionCount = objectives.reduce((total, objective) =>
+                total + chapterQuestions.filter(question => question.objectiveId === objective.id).length, 0);
+            if (questionCount === 0) return;
+
+            const accordion = document.createElement('details');
+            accordion.className = 'topic-accordion';
+            accordion.open = index === 0;
+
+            const summary = document.createElement('summary');
+            const title = document.createElement('span');
+            title.textContent = group.title;
+            const count = document.createElement('span');
+            count.className = 'topic-accordion-count';
+            count.textContent = `${questionCount} questions`;
+            summary.append(title, count);
+
+            const cards = document.createElement('div');
+            cards.className = 'topic-objective-list';
+            objectives.forEach(objective => appendObjectiveCard(objective, cards));
+            accordion.append(summary, cards);
+            objectiveList.appendChild(accordion);
+        });
+        return;
+    }
+
+    learningObjectives.forEach(objective => {
+        appendObjectiveCard(objective, objectiveList);
     });
 }
 
@@ -6868,12 +7042,14 @@ function renderQuestionNav() {
 
 function renderQuestion(index) {
     const q = activeQuestions[index];
+    const renderChapter13Math = selectedChapter === "13";
     const mathRoots = [
         document.getElementById('question-stem'),
         document.getElementById('diagram-box'),
         document.getElementById('options-container')
     ];
-    clearMathTypesetting([...mathRoots, document.getElementById('feedback-box')]);
+    const hintPanel = document.getElementById('hint-panel');
+    clearMathTypesetting([...mathRoots, hintPanel, document.getElementById('feedback-box')]);
     document.getElementById('math-render-warning').hidden = true;
 
     document.getElementById('current-q-num').textContent = index + 1;
@@ -6887,14 +7063,21 @@ function renderQuestion(index) {
         'no-diagram',
         (!hasDiagramImage && q.diagramType === 'chapter4') || q.diagramType === 'chapter15-choice'
     );
-    document.getElementById('question-stem').innerHTML = formatQuestionMath(q.stem);
+    document.getElementById('question-stem').innerHTML = formatQuestionMath(q.stem, renderChapter13Math);
     document.getElementById('target-badge').textContent = q.section || q.objective;
+    const hintArea = document.getElementById('question-hint-area');
+    const hintToggle = document.getElementById('hint-toggle');
+    hintArea.hidden = !renderChapter13Math;
+    hintPanel.hidden = true;
+    hintPanel.innerHTML = renderChapter13Math ? formatQuestionMath(getStudentHint(q), true) : '';
+    hintToggle.textContent = 'Show hint';
+    hintToggle.setAttribute('aria-expanded', 'false');
     document.getElementById('diagram-box').innerHTML = q.diagramType === 'height-problem'
         ? generateHeightProblemSVG(q)
         : q.diagramType === 'roof-problem'
             ? generateRoofProblemSVG(q)
         : q.diagramType === 'trig-expression'
-            ? `<div class="trig-expression" role="img" aria-label="${q.expression}">${q.expression}</div>`
+            ? `<div class="trig-expression" role="img" aria-label="${q.expression}">${formatQuestionMath(q.expression, renderChapter13Math)}</div>`
             : q.diagramType === 'chapter4'
                 ? (hasDiagramImage
                     ? `<div class="chapter4-question"><img src="${q.image}" alt="${q.section || 'Chapter 4 measurement figure'}"></div>`
@@ -6921,7 +7104,7 @@ function renderQuestion(index) {
                 <input type="radio" id="opt_${opt.id}" name="quiz_opt" value="${opt.id}" ${isChecked} ${disabledAttr} onchange="selectOption('${opt.id}')">
                 <label class="option-label" for="opt_${opt.id}">
                     <span class="radio-indicator"></span>
-                    <span class="option-text"><strong>${opt.id})</strong> ${formatQuestionMath(opt.text)}${opt.image ? `<img class="option-image" src="${opt.image}" alt="${opt.id} graph choice">` : ''}</span>
+                    <span class="option-text"><strong>${opt.id})</strong> ${formatQuestionMath(opt.text, renderChapter13Math)}${opt.image ? `<img class="option-image" src="${opt.image}" alt="${opt.id} graph choice">` : ''}</span>
                 </label>
             </div>
         `;
@@ -7053,6 +7236,33 @@ function getStudentExplanation(q) {
     return explanation;
 }
 
+function getStudentHint(q) {
+    const hints = {
+        "Side Identification": "Locate the right angle first: the side across from it is the hypotenuse. Relative to the named acute angle, the adjacent side touches that angle and the opposite side is across from it.",
+        "Pythagorean Theorem": "Identify the hypotenuse before choosing a formula. Use a² + b² = c²; if a leg is missing, isolate its square before taking the square root.",
+        "Trig Ratios": "Use SOH–CAH–TOA to match the requested sine, cosine, or tangent to the correct pair of sides.",
+        "Trig Missing Sides": "Label the known and unknown sides relative to the given angle. Choose the ratio containing both, then rearrange it to isolate the missing side.",
+        "Trig Missing Angles": "Identify the opposite, adjacent, and hypotenuse sides for the requested angle. Use their ratio with the matching inverse trigonometric function.",
+        "Solve Right Triangle": "Find the missing side with the Pythagorean theorem first. Then use an inverse trigonometric ratio for one acute angle; the two acute angles sum to 90°.",
+        "Word Problem": "Sketch a right triangle from the situation. Mark the known distance, height, or line of sight, then identify the sides relative to the angle before choosing a ratio.",
+        "Evaluate Trig Ratios": "Set the calculator to degree mode. Enter the indicated sine, cosine, or tangent and round only as the question requests.",
+        "Inverse Trig": "Set the calculator to degree mode. Match the given ratio to sine, cosine, or tangent, then use its inverse to find the acute angle."
+    };
+    const hint = hints[q.category];
+    if (!hint) throw new Error(`No Chapter 13 hint is defined for category: ${q.category}`);
+    return hint;
+}
+
+function toggleQuestionHint() {
+    const hintPanel = document.getElementById('hint-panel');
+    const hintToggle = document.getElementById('hint-toggle');
+    const expanded = hintPanel.hidden;
+    hintPanel.hidden = !expanded;
+    hintToggle.setAttribute('aria-expanded', String(expanded));
+    hintToggle.textContent = expanded ? 'Hide hint' : 'Show hint';
+    if (expanded) typesetMathIn([hintPanel]);
+}
+
 function showFeedback(q, userAns) {
     const feedbackBox = document.getElementById('feedback-box');
     const solutionControls = document.getElementById('solution-controls');
@@ -7072,23 +7282,26 @@ function showFeedback(q, userAns) {
         return;
     }
     const isCorrect = userAns === q.correct;
+    const renderChapter13Math = selectedChapter === "13";
     const correctOption = q.options.find(option => option.id === q.correct);
 
     feedbackBox.className = `feedback-box ${isCorrect ? 'correct' : 'incorrect'}`;
     document.getElementById('feedback-icon').textContent = isCorrect ? '✓' : '✕';
     document.getElementById('feedback-status-text').innerHTML = formatQuestionMath(isCorrect
         ? 'Correct!'
-        : `Not quite. Correct answer: ${q.correct}) ${((correctOption && correctOption.text) || q.correct).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()}`);
+        : `Not quite. Correct answer: ${q.correct}) ${((correctOption && correctOption.text) || q.correct).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()}`, renderChapter13Math);
 
     const explanation = getStudentExplanation(q);
     const steps = explanation
         .split(/(?<=[.!?])\s+/)
         .filter(step => step.trim());
-    const hint = q.hint || 'Use the information given in the question and apply the matching measurement rule.';
+    const hint = q.hint || (renderChapter13Math
+        ? getStudentHint(q)
+        : 'Use the information given in the question and apply the matching measurement rule.');
     solutionContent.innerHTML = `
         <h3>Step-by-Step Solution</h3>
-        <p class="solution-hint"><strong>Hint:</strong> ${formatQuestionMath(hint)}</p>
-        <ol class="solution-steps">${steps.map(step => `<li>${formatQuestionMath(step)}</li>`).join('')}</ol>
+        <p class="solution-hint"><strong>Hint:</strong> ${formatQuestionMath(hint, renderChapter13Math)}</p>
+        <ol class="solution-steps">${steps.map(step => `<li>${formatQuestionMath(step, renderChapter13Math)}</li>`).join('')}</ol>
     `;
     solutionControls.hidden = false;
     feedbackBox.style.display = 'block';

@@ -16,4 +16,6 @@ The site and question data are static. No backend or external font download is r
 
 ## Math notation
 
-Inline and display LaTeX can be written with `\(...\)` and `\[...\]`. MathJax 3 is loaded from jsDelivr only when a question contains one of these delimiters; older question content continues to use the built-in formatter.
+Inline and display LaTeX can be written with `\(...\)` and `\[...\]`. MathJax 3 is loaded from jsDelivr only when rendered question content includes one of these delimiters; older question content continues to use the built-in formatter.
+
+Chapter 13 groups its existing practice objectives into expandable topic sections. Its questions include a **Show hint** control before submission, while worked solutions remain separate after an answer is submitted. Common trigonometric expressions, fractions, roots, Greek letters, and angle notation in Chapter 13 are formatted as LaTeX and rendered with MathJax when needed.
