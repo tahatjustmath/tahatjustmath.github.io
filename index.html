@@ -1104,6 +1104,68 @@
             color: #fb923c;
         }
 
+        .objective4-trig-grid {
+            gap: 16px;
+        }
+
+        .objective4-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 18px;
+        }
+
+        .objective4-card h4 {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            color: #34d399;
+            font-size: 1rem;
+        }
+
+        .objective4-card h4 .objective4-mnemonic {
+            color: #cbd6e2;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .objective4-middle-letter {
+            color: #ef4444;
+            font-weight: 800;
+        }
+
+        .objective4-last-letter {
+            color: #38bdf8;
+            font-weight: 800;
+        }
+
+        .objective4-card .guide-formula {
+            margin: 0;
+            padding: 10px 12px;
+            border: 1px solid #263448;
+            border-radius: 9px;
+            background: #071221;
+            font-size: 0.9rem;
+        }
+
+        .objective4-pythagorean-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .objective4-steps {
+            margin: 0;
+            padding: 14px 18px 0 34px;
+            border-top: 1px solid #26384d;
+            color: #cbd6e2;
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .objective4-steps li + li {
+            margin-top: 5px;
+        }
+
         .chapter13-learning-guide[hidden],
         .learning-navigation[hidden],
         .learning-outcomes[hidden] {
@@ -2911,34 +2973,46 @@
                                 <span class="chapter13-guide-objective-number">Objective 4</span>
                                 <h3 id="chapter13-guide-objective-4">Find missing sides using trigonometry and the Pythagorean theorem</h3>
                             </div>
-                            <p>First mark the known angle and label the sides opposite, adjacent, and hypotenuse. With an angle and one side, use SOH–CAH–TOA. With two side lengths and no angle needed, use the Pythagorean theorem. In the formulas below, replace \(A\) with \(B\) when angle B is given.</p>
-                            <div class="chapter13-guide-card-grid two-columns">
-                                <article class="chapter13-guide-card">
-                                    <h4>Unknown numerator: multiply</h4>
-                                    <p>If the missing side is the numerator in the ratio, multiply the other known side by the trig ratio.</p>
+                            <p>First mark the known angle and label the sides opposite, adjacent, and hypotenuse. With an angle and one side, use SOH–CAH–TOA. With two side lengths, use the Pythagorean theorem. In the formulas below, replace \(A\) with \(B\) when angle B is given.</p>
+                            <div class="chapter13-guide-card-grid two-columns objective4-trig-grid">
+                                <article class="chapter13-guide-card objective4-card">
+                                    <h4>
+                                        <span>Missing middle letter: multiply</span>
+                                        <span class="objective4-mnemonic">
+                                            ( S<span class="objective4-middle-letter">O</span>H, C<span class="objective4-middle-letter">A</span>H, T<span class="objective4-middle-letter">O</span>A )
+                                        </span>
+                                    </h4>
+                                    <p>If the missing side is the middle letter in the rule, multiply the known side by the trig ratio.</p>
                                     <p class="guide-formula">\(\text{opposite}=\text{hypotenuse}\cdot\sin(A)\)</p>
                                     <p class="guide-formula">\(\text{adjacent}=\text{hypotenuse}\cdot\cos(A)\)</p>
                                     <p class="guide-formula">\(\text{opposite}=\text{adjacent}\cdot\tan(A)\)</p>
                                 </article>
-                                <article class="chapter13-guide-card">
-                                    <h4>Unknown denominator: divide</h4>
-                                    <p>If the missing side is the denominator in the ratio, divide the known numerator side by the trig ratio.</p>
+                                <article class="chapter13-guide-card objective4-card">
+                                    <h4>
+                                        <span>Missing last letter: divide</span>
+                                        <span class="objective4-mnemonic">
+                                            ( SO<span class="objective4-last-letter">H</span>, CA<span class="objective4-last-letter">H</span>, TO<span class="objective4-last-letter">A</span> )
+                                        </span>
+                                    </h4>
+                                    <p>If the missing side is the last letter in the rule, divide the known side by the trig ratio.</p>
                                     <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{opposite}}{\sin(A)}\)</p>
                                     <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{adjacent}}{\cos(A)}\)</p>
                                     <p class="guide-formula">\(\text{adjacent}=\frac{\text{opposite}}{\tan(A)}\)</p>
                                 </article>
-                                <article class="chapter13-guide-card">
+                            </div>
+                            <div class="chapter13-guide-card-grid objective4-pythagorean-grid">
+                                <article class="chapter13-guide-card objective4-card">
                                     <h4>Two sides known: use \(a^2+b^2=c^2\)</h4>
-                                    <p>Add the leg squares when finding the hypotenuse. Subtract the known leg square when finding a missing leg.</p>
+                                    <p>Add leg squares when finding the hypotenuse \(c\). Subtract the known leg square when finding a missing leg.</p>
                                     <p class="guide-formula">\(c=\sqrt{a^2+b^2}\)</p>
                                     <p class="guide-formula">\(a=\sqrt{c^2-b^2}\)</p>
                                     <p class="guide-formula">\(b=\sqrt{c^2-a^2}\)</p>
                                 </article>
                             </div>
-                            <ol>
+                            <ol class="objective4-steps">
                                 <li>Identify the given angle (A or B) and mark each known and unknown side.</li>
-                                <li>Choose the ratio containing the known side and the missing side.</li>
-                                <li>Rearrange first: multiply for an unknown numerator; divide for an unknown denominator.</li>
+                                <li>Choose the ratio (SOH–CAH–TOA) containing the known side and the missing side.</li>
+                                <li>Rearrange first: multiply if the missing side is the middle letter; divide if it is the last letter.</li>
                                 <li>Substitute, calculate in degree mode, and round only the final answer.</li>
                             </ol>
                         </section>
