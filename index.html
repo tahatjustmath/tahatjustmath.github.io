@@ -61,16 +61,24 @@
             margin-bottom: 22px;
             box-shadow: var(--card-shadow);
             display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: stretch;
+            border: 1px solid var(--border-color);
+        }
+
+        .site-header-main {
+            display: flex;
             flex-wrap: wrap;
-            gap: 16px;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid var(--border-color);
+            gap: 12px 20px;
         }
 
         .brand {
             display: flex;
-            min-width: 0;
+            flex: 1 1 480px;
+            min-width: min(100%, 280px);
             align-items: center;
             gap: 12px;
         }
@@ -94,15 +102,51 @@
         }
 
         .brand-title p {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-top: 3px;
             font-size: 0.8rem;
             color: var(--neutral-muted);
             line-height: 1.4;
         }
 
+        #current-chapter-title,
+        #header-meta {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 3px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: var(--neutral-light);
+        }
+
+        #current-chapter-title {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        #header-meta[hidden] {
+            display: none;
+        }
+
+        #header-meta {
+            white-space: nowrap;
+        }
+
+        .site-header-actions {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
         .header-stats {
             display: none;
             align-items: center;
-            gap: 16px;
         }
 
         .assessment-active .header-stats {
@@ -119,6 +163,18 @@
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        .header-home-link,
+        .header-home-link:visited {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+        }
+
+        .header-home-link[hidden] {
+            display: none;
         }
 
         .header-home-link {
@@ -145,41 +201,84 @@
         }
 
         .site-footer {
-            display: flex;
-            max-width: 1120px;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px 20px;
-            margin: 16px auto 0;
-            padding: 14px 18px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: white;
-            color: var(--neutral-muted);
-            font-size: 0.78rem;
+            margin: 36px -20px -32px;
+            padding: 38px 20px 18px;
+            border-top: 1px solid #26384d;
+            background: #0b1329;
+            color: #cbd5e1;
+            font-size: 0.82rem;
         }
 
-        .site-footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 16px;
+        .site-footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .site-footer-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) repeat(2, minmax(150px, 1fr));
+            gap: 28px;
+            padding-bottom: 26px;
+            border-bottom: 1px solid #263448;
+        }
+
+        .site-footer-brand {
+            max-width: 460px;
+        }
+
+        .site-footer-brand strong {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 1.05rem;
+        }
+
+        .site-footer-brand p {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+
+        .site-footer-section h2 {
+            margin-bottom: 11px;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .site-footer-section ul {
+            display: grid;
+            gap: 8px;
+            list-style: none;
         }
 
         .site-footer a {
-            color: var(--primary);
-            font-weight: 700;
+            color: #cbd5e1;
+            font-size: 0.8rem;
             text-decoration: none;
         }
 
         .site-footer a:hover,
         .site-footer a:focus-visible {
-            color: var(--secondary);
+            color: white;
             text-decoration: underline;
         }
 
         .site-footer a:focus-visible {
-            outline: 3px solid #c99d4e;
+            outline: 2px solid #84cc16;
             outline-offset: 3px;
+        }
+
+        .site-footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px 20px;
+            padding-top: 16px;
+            color: #94a3b8;
+            font-size: 0.74rem;
         }
 
         .subject-portal {
@@ -404,11 +503,22 @@
 
         .workspace-breadcrumb {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 9px;
-            margin: 0 0 18px;
+            gap: 7px;
+            margin: 0;
+            padding-top: 12px;
+            border-top: 1px solid #e8edf0;
             color: var(--neutral-muted);
             font-size: 0.8rem;
+        }
+
+        .workspace-breadcrumb > span:last-child {
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: var(--neutral-light);
+            color: var(--neutral-dark);
+            font-weight: 700;
         }
 
         .workspace-breadcrumb a {
@@ -2020,25 +2130,58 @@
                 padding: 14px 16px;
             }
 
+            .site-header-main {
+                align-items: flex-start;
+            }
+
             .brand {
                 flex: 1 1 100%;
+                gap: 8px;
             }
 
             .brand-icon {
-                width: 88px;
-                height: 67px;
+                width: 64px;
+                height: 49px;
+            }
+
+            .brand-title h1 {
+                font-size: 1.05rem;
+            }
+
+            .brand-title p {
+                gap: 4px;
+                font-size: 0.72rem;
+            }
+
+            #current-chapter-title,
+            #header-meta {
+                padding: 2px 6px;
+            }
+
+            .site-header-actions {
+                width: 100%;
+                justify-content: space-between;
             }
 
             .header-home-link {
-                margin-left: auto;
                 padding: 8px 9px;
                 font-size: 0.74rem;
             }
 
             .site-footer {
+                margin: 30px -12px -16px;
+                padding: 30px 12px 16px;
+            }
+
+            .site-footer-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+                padding-bottom: 20px;
+            }
+
+            .site-footer-bottom {
                 align-items: flex-start;
                 flex-direction: column;
-                padding: 12px 14px;
             }
 
             .subject-portal {
@@ -2906,23 +3049,34 @@
 <div class="container">
     <!-- Header -->
     <header id="site-header">
-        <div class="brand">
-            <img class="brand-icon" src="assets/tahatjustmath-logo.png" alt="Tahat Just Math logo" width="132" height="100" decoding="async">
-            <div class="brand-title">
-                <h1 id="bank-title">Tahat Just Math</h1>
-                <p>
-                    <span id="current-chapter-title">Chapter 13: Trigonometry &amp; Right Triangles</span>
-                    <span id="header-meta"> · Question Bank · <span id="header-question-count">427</span> questions</span>
-                </p>
+        <div class="site-header-main">
+            <div class="brand">
+                <img class="brand-icon" src="assets/tahatjustmath-logo.png" alt="Tahat Just Math logo" width="132" height="100" decoding="async">
+                <div class="brand-title">
+                    <h1 id="bank-title">Tahat Just Math</h1>
+                    <p>
+                        <span id="current-chapter-title">Chapter 13: Trigonometry &amp; Right Triangles</span>
+                        <span id="header-meta">Question Bank · <span id="header-question-count">427</span> questions</span>
+                    </p>
+                </div>
+            </div>
+            <div class="site-header-actions">
+                <div class="header-stats">
+                    <div class="stat-badge">
+                        <span aria-hidden="true">⏱</span>
+                        <span id="timer">00:00</span>
+                    </div>
+                </div>
+                <a class="header-home-link" id="subject-home-button" href="index.html" hidden>Home / Subjects</a>
             </div>
         </div>
-        <div class="header-stats">
-            <div class="stat-badge">
-                <span>⏱</span>
-                <span id="timer">00:00</span>
-            </div>
-        </div>
-        <a class="header-home-link" id="subject-home-button" href="index.html" hidden>Home / Subjects</a>
+        <nav class="workspace-breadcrumb" id="workspace-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home / Subjects</a>
+            <span aria-hidden="true">›</span>
+            <a href="index.html">Technical Mathematics</a>
+            <span aria-hidden="true">›</span>
+            <span id="workspace-chapter-title">Chapter 13</span>
+        </nav>
     </header>
 
     <main class="subject-portal" id="subject-portal" hidden>
@@ -2946,13 +3100,6 @@
     </main>
 
     <main class="bank-card" id="bank-screen">
-        <nav class="workspace-breadcrumb" id="workspace-breadcrumb" aria-label="Breadcrumb">
-            <a href="index.html">Home / Subjects</a>
-            <span aria-hidden="true">/</span>
-            <span>Technical Mathematics</span>
-            <span aria-hidden="true">/</span>
-            <span id="workspace-chapter-title">Chapter 13</span>
-        </nav>
         <section class="bank-hero" aria-labelledby="bank-hero-title">
             <div class="bank-hero-layout">
                 <div class="bank-hero-content">
@@ -3580,11 +3727,34 @@
 </div>
 
 <footer class="site-footer">
-    <span>© Tahat Just Math · Self-paced mathematics practice</span>
-    <nav class="site-footer-links" aria-label="Footer navigation">
-        <a href="index.html">Home / Subjects</a>
-        <a href="#site-header">Back to top</a>
-    </nav>
+    <div class="site-footer-inner">
+        <div class="site-footer-grid">
+            <section class="site-footer-brand" aria-label="About Tahat Just Math">
+                <strong>Tahat Just Math</strong>
+                <p>Self-paced mathematics practice with guided lessons, interactive study tools, and chapter question banks.</p>
+            </section>
+            <nav class="site-footer-section" aria-label="Quick links">
+                <h2>Quick links</h2>
+                <ul>
+                    <li><a href="index.html">Subjects directory</a></li>
+                    <li><a href="#site-header">Back to top</a></li>
+                    <li><a href="https://github.com/tahatjustmath/tahatjustmath.github.io">GitHub project</a></li>
+                </ul>
+            </nav>
+            <nav class="site-footer-section" aria-label="Available question banks">
+                <h2>Question banks</h2>
+                <ul>
+                    <li><a href="index.html?chapter=13">Chapter 13 · Trigonometry</a></li>
+                    <li><a href="index.html?chapter=4">Chapter 4 · Accuracy &amp; Measurement</a></li>
+                    <li><a href="index.html?chapter=15">Chapter 15 · Graphs, Statistics &amp; Measurement</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="site-footer-bottom">
+            <span>© Tahat Just Math</span>
+            <span>Self-paced mathematics practice</span>
+        </div>
+    </div>
 </footer>
 
 <script>
