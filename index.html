@@ -4067,14 +4067,15 @@ function createPortalBankQuestions() {
         tan: Math.tan
     };
     const ratioLabel = (fn, angle) => `${fn} ${angle.toFixed(1)}°`;
-    const addQuestion = (category, stem, expression, correctText, distractors, correctIndex, explainEn) => {
+    const addQuestion = (category, stem, expression, correctText, distractors, correctIndex, explainEn, triangle = null) => {
         const choices = makePracticeOptions(correctText, distractors, correctIndex);
         added.push({
             id: id++,
             category,
             stem,
             expression,
-            diagramType: "trig-expression",
+            diagramType: triangle ? "triangle" : "trig-expression",
+            ...triangle,
             options: choices.options,
             correct: choices.correct,
             hintText: category === "Inverse Trig"
@@ -4195,6 +4196,12 @@ function createPortalBankQuestions() {
         );
     });
 
+    const triangleDiagrams = [
+        { targetAngle: "A", rotation: 20, vertices: ["A", "B", "C"], sides: { hyp: "c", legA: "a", legB: "b" } },
+        { targetAngle: "Y", rotation: 335, vertices: ["X", "Y", "Z"], sides: { hyp: "y", legA: "x", legB: "z" } },
+        { targetAngle: "R", rotation: 15, vertices: ["P", "R", "Q"], sides: { hyp: "q", legA: "r", legB: "p" } },
+        { targetAngle: "L", rotation: 340, vertices: ["L", "M", "N"], sides: { hyp: "n", legA: "m", legB: "l" } }
+    ];
     [
         ["the side adjacent to angle B is a", "the side opposite to angle B is c", "the side adjacent to angle A is c", "the side adjacent to angle A is a"],
         ["the side opposite to angle X is y", "the side adjacent to angle X is z", "the side opposite to angle Y is x", "the side opposite to angle X is x"],
@@ -4208,7 +4215,8 @@ function createPortalBankQuestions() {
             statements[3 - index % 4],
             statements.filter((_, optionIndex) => optionIndex !== 3 - index % 4),
             index % 4,
-            `The correct relationship is ${statements[3 - index % 4]}.`
+            `The correct relationship is ${statements[3 - index % 4]}.`,
+            triangleDiagrams[index]
         );
     });
 
