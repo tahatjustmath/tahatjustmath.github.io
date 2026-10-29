@@ -3259,15 +3259,42 @@ const questionsData = [
 
 function makePracticeOptions(correctText, distractors, correctIndex) {
     const choices = [correctText];
+    const normalizeChoice = text => text
+        .replace(/\s*\(\d+\)\s*$/, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+    const usedChoices = new Set([normalizeChoice(correctText)]);
+
     for (const distractor of distractors) {
-        if (!choices.includes(distractor)) choices.push(distractor);
+        const normalizedDistractor = normalizeChoice(distractor);
+        if (!usedChoices.has(normalizedDistractor)) {
+            choices.push(distractor);
+            usedChoices.add(normalizedDistractor);
+        }
         if (choices.length === 4) break;
     }
 
-    let adjustment = 1;
+    const numberMatch = correctText.match(/-?(?:\d+\.?\d*|\.\d+)/);
+    if (choices.length < 4 && !numberMatch) {
+        throw new Error(`Unable to generate unique choices for: ${correctText}`);
+    }
+
+    const decimalPlaces = numberMatch?.[0].includes(".") ? numberMatch[0].split(".")[1].length : 0;
+    const correctNumber = Number(numberMatch?.[0]);
+    const step = Math.max(Math.abs(correctNumber) * 0.1, 10 ** -decimalPlaces);
+    let adjustment = 0;
     while (choices.length < 4) {
-        const fallback = `${correctText} (${adjustment++})`;
-        if (!choices.includes(fallback)) choices.push(fallback);
+        const magnitude = Math.ceil((adjustment + 1) / 2);
+        const direction = adjustment % 2 === 0 ? 1 : -1;
+        const replacement = (correctNumber + direction * step * magnitude).toFixed(decimalPlaces);
+        const fallback = correctText.replace(numberMatch[0], replacement);
+        adjustment += 1;
+        const normalizedFallback = normalizeChoice(fallback);
+        if (!usedChoices.has(normalizedFallback)) {
+            choices.push(fallback);
+            usedChoices.add(normalizedFallback);
+        }
     }
 
     const correctChoice = choices.shift();
@@ -3377,9 +3404,9 @@ function createAddedPracticeQuestions() {
     ];
 
     triangleInputs.forEach((input, index) => {
-        const a = input.a ? Math.sqrt(input.c ** 2 - input.b ** 2) : null;
-        const b = input.b ? Math.sqrt(input.c ** 2 - input.a ** 2) : null;
-        const c = input.c ? Math.hypot(a, b) : null;
+        const c = input.c ?? Math.hypot(input.a, input.b);
+        const a = input.a ?? Math.sqrt(c ** 2 - input.b ** 2);
+        const b = input.b ?? Math.sqrt(c ** 2 - input.a ** 2);
         const angleA = Math.atan2(a, b) * 180 / Math.PI;
         const angleB = 90 - angleA;
         const formatLength = value => (value == null ? 0 : value).toFixed(2);
@@ -5424,6 +5451,15 @@ function streamlineFigureQuestions() {
                     .map(e => `${e} ${unit}`);
                 o.text = `${kept.join(', ')}; ${anglePart}`;
             });
+            const correctIndex = 'ABCD'.indexOf(q.correct);
+            const correctText = q.options.find(o => o.id === q.correct).text;
+            const choices = makePracticeOptions(
+                correctText,
+                q.options.filter(o => o.id !== q.correct).map(o => o.text),
+                correctIndex
+            );
+            q.options = choices.options;
+            q.correct = choices.correct;
         }
     });
 }
