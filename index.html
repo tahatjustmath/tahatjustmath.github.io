@@ -361,6 +361,280 @@
             background: white;
         }
 
+        .chapter13-reference-section {
+            margin-bottom: 14px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            scroll-margin-top: 84px;
+        }
+
+        .chapter13-reference-section > h3 {
+            color: var(--primary);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.28rem;
+            font-weight: 650;
+        }
+
+        .chapter13-reference-section > p {
+            margin-top: 5px;
+            color: var(--neutral-muted);
+            font-size: 0.88rem;
+        }
+
+        .reference-angle-lab {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: 18px;
+            margin-top: 14px;
+        }
+
+        .reference-triangle-card {
+            min-width: 0;
+            padding: 14px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .reference-angle-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .reference-angle-controls > span {
+            margin-right: auto;
+            color: #e0e9ed;
+            font-size: 0.82rem;
+            font-weight: 650;
+        }
+
+        .reference-angle-button {
+            min-height: 38px;
+            padding: 7px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .reference-angle-button[aria-pressed="true"] {
+            border-color: #d9b66f;
+            background: #d9b66f;
+            color: #203344;
+        }
+
+        .reference-angle-button:focus-visible {
+            outline: 3px solid white;
+            outline-offset: 2px;
+        }
+
+        .reference-triangle-diagram {
+            display: block;
+            width: min(100%, 390px);
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .reference-triangle-diagram .side-hypotenuse,
+        .reference-triangle-diagram .side-opposite,
+        .reference-triangle-diagram .side-adjacent {
+            fill: none;
+            stroke-width: 5;
+            stroke-linecap: round;
+            transition: stroke 0.2s ease;
+        }
+
+        .reference-triangle-diagram .side-hypotenuse {
+            stroke: var(--side-hypotenuse);
+        }
+
+        .reference-triangle-diagram .side-opposite {
+            stroke: var(--side-opposite);
+        }
+
+        .reference-triangle-diagram .side-adjacent {
+            stroke: var(--side-adjacent);
+        }
+
+        .reference-triangle-diagram .side-label-hypotenuse {
+            fill: #93c5fd;
+        }
+
+        .reference-triangle-diagram .side-label-opposite {
+            fill: #86efac;
+        }
+
+        .reference-triangle-diagram .side-label-adjacent {
+            fill: #fdba74;
+        }
+
+        #reference-angle-a-marker,
+        #reference-angle-b-marker {
+            stroke: #d9b66f;
+            stroke-width: 2.5;
+        }
+
+        #reference-angle-a-marker {
+            display: block;
+        }
+
+        #reference-angle-b-marker {
+            display: none;
+        }
+
+        .reference-side-key {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .reference-side-key > div {
+            padding: 8px 5px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .reference-side-key strong,
+        .reference-side-key span {
+            display: block;
+        }
+
+        .reference-side-key strong {
+            font-size: 0.73rem;
+        }
+
+        .reference-side-key span {
+            margin-top: 3px;
+            color: #d8e1e8;
+            font-size: 0.68rem;
+        }
+
+        .reference-formulas {
+            display: grid;
+            align-content: start;
+            gap: 9px;
+        }
+
+        .reference-formula-card {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary);
+            border-radius: 9px;
+            background: #f8fafc;
+        }
+
+        .reference-formula-card:nth-child(2) {
+            border-left-color: var(--side-hypotenuse);
+        }
+
+        .reference-formula-card:nth-child(3) {
+            border-left-color: var(--side-adjacent);
+        }
+
+        .reference-formula-card > strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-size: 0.82rem;
+        }
+
+        .reference-formula-card > div {
+            min-height: 28px;
+            font-size: 0.88rem;
+        }
+
+        .reference-triangle-status {
+            min-height: 1.4em;
+            margin-top: 9px;
+            color: #e0e9ed;
+            font-size: 0.8rem;
+        }
+
+        .special-triangle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .special-triangle-card {
+            padding: 14px;
+            border: 1px solid #cbd9e5;
+            border-radius: 10px;
+            background: #f4f7fa;
+        }
+
+        .special-triangle-card h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .special-triangle-card p {
+            margin-top: 5px;
+            color: var(--neutral-muted);
+            font-size: 0.82rem;
+        }
+
+        .special-triangle-ratios {
+            margin-top: 9px;
+            color: var(--neutral-dark);
+            font-size: 0.86rem;
+            font-weight: 650;
+        }
+
+        .special-ratio-table {
+            width: 100%;
+            margin-top: 14px;
+            border-collapse: collapse;
+            font-size: 0.84rem;
+            text-align: center;
+        }
+
+        .special-ratio-table th,
+        .special-ratio-table td {
+            padding: 8px 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .special-ratio-table th {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .calculator-pitfalls {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .calculator-pitfall {
+            padding: 12px;
+            border: 1px solid #f0dfb8;
+            border-radius: 9px;
+            background: #fffaf0;
+            color: #604a14;
+            font-size: 0.84rem;
+        }
+
+        .calculator-pitfall strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #48370f;
+        }
+
         .lesson-topic-list {
             display: grid;
             gap: 12px;
@@ -972,6 +1246,37 @@
                 padding: 12px;
             }
 
+            .chapter13-reference-section {
+                padding: 12px;
+            }
+
+            .reference-angle-lab,
+            .special-triangle-grid,
+            .calculator-pitfalls {
+                grid-template-columns: 1fr;
+            }
+
+            .reference-side-key {
+                gap: 4px;
+            }
+
+            .reference-side-key strong {
+                font-size: 0.67rem;
+            }
+
+            .reference-side-key span {
+                font-size: 0.62rem;
+            }
+
+            .special-ratio-table {
+                font-size: 0.78rem;
+            }
+
+            .special-ratio-table th,
+            .special-ratio-table td {
+                padding: 7px 4px;
+            }
+
             .triangle-side-key {
                 gap: 7px 10px;
                 font-size: 0.73rem;
@@ -1024,6 +1329,12 @@
 
             .chapter-card:last-child {
                 grid-column: 1 / -1;
+            }
+        }
+
+        @media (min-width: 521px) and (max-width: 700px) {
+            .reference-angle-lab {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1774,8 +2085,12 @@
             </details>
         </nav>
         <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 contents" hidden>
-            <a href="#chapter13-learning-guide">Learning guide</a>
+            <a href="#chapter13-learning-guide">Guide</a>
             <a href="#chapter13-prerequisites">Prerequisites</a>
+            <a href="#chapter13-anatomy">Triangle lab</a>
+            <a href="#chapter13-special-triangles">Special triangles</a>
+            <a href="#chapter13-lessons">Guided examples</a>
+            <a href="#chapter13-calculator-tips">Calculator tips</a>
             <a href="#practice-section">Practice problems</a>
             <a href="#start-full-test">Chapter quiz</a>
         </nav>
@@ -1793,7 +2108,93 @@
                     <p>To simplify a radical, factor out the largest perfect square: \(\sqrt{50}=\sqrt{25\cdot2}=5\sqrt{2}\).</p>
                 </div>
             </details>
+            <section class="chapter13-reference-section" id="chapter13-anatomy" aria-labelledby="chapter13-anatomy-title">
+                <h3 id="chapter13-anatomy-title">Triangle anatomy and SOH–CAH–TOA</h3>
+                <p>The hypotenuse stays the same. Opposite and adjacent depend on which acute angle you choose.</p>
+                <div class="reference-angle-lab">
+                    <div class="reference-triangle-card">
+                        <div class="reference-angle-controls" role="group" aria-label="Choose a reference angle">
+                            <span>Reference angle</span>
+                            <button class="reference-angle-button" id="reference-angle-a-button" type="button" aria-pressed="true" onclick="setReferenceAngle('A')">Angle A (θ)</button>
+                            <button class="reference-angle-button" id="reference-angle-b-button" type="button" aria-pressed="false" onclick="setReferenceAngle('B')">Angle B (φ)</button>
+                        </div>
+                        <svg class="reference-triangle-diagram" viewBox="0 0 360 270" role="img" aria-labelledby="reference-triangle-title reference-triangle-description">
+                            <title id="reference-triangle-title">Interactive right triangle</title>
+                            <desc id="reference-triangle-description">Angle A is selected. Side c is the blue hypotenuse, side b is the green opposite side, and side a is the orange adjacent side.</desc>
+                            <line x1="70" y1="40" x2="300" y2="220" class="side-hypotenuse"/>
+                            <line x1="70" y1="40" x2="70" y2="220" id="reference-vertical-side" class="side-adjacent"/>
+                            <line x1="70" y1="220" x2="300" y2="220" id="reference-horizontal-side" class="side-opposite"/>
+                            <path d="M 70 200 L 90 200 L 90 220" fill="none" stroke="#d9b66f" stroke-width="2"/>
+                            <path id="reference-angle-a-marker" d="M 70 67 A 27 27 0 0 1 91 56" fill="none"/>
+                            <path id="reference-angle-b-marker" d="M 273 220 A 27 27 0 0 1 279 203" fill="none"/>
+                            <circle cx="70" cy="40" r="4" fill="white"/>
+                            <circle cx="300" cy="220" r="4" fill="white"/>
+                            <circle cx="70" cy="220" r="4" fill="white"/>
+                            <text x="54" y="31" fill="white" font-size="15" font-weight="800">A</text>
+                            <text x="311" y="226" fill="white" font-size="15" font-weight="800">B</text>
+                            <text x="47" y="242" fill="white" font-size="14" font-weight="700">C · 90°</text>
+                            <text x="189" y="118" class="side-label-hypotenuse" font-size="14" font-weight="800" text-anchor="middle" transform="rotate(38 189 118)">Hypotenuse (c)</text>
+                            <text id="reference-vertical-label" x="9" y="133" class="side-label-adjacent" font-size="12" font-weight="800">Adjacent (a)</text>
+                            <text id="reference-horizontal-label" x="183" y="244" class="side-label-opposite" font-size="12" font-weight="800" text-anchor="middle">Opposite (b)</text>
+                        </svg>
+                        <div class="reference-side-key" aria-label="Side colors and roles relative to the selected angle: blue is the hypotenuse, green is opposite, and orange is adjacent.">
+                            <div><strong class="triangle-role-hypotenuse">Hypotenuse</strong><span>Opposite 90° · side c</span></div>
+                            <div><strong class="triangle-role-opposite" id="reference-opposite-key">Opposite</strong><span id="reference-opposite-description">Across from angle A · side b</span></div>
+                            <div><strong class="triangle-role-adjacent" id="reference-adjacent-key">Adjacent</strong><span id="reference-adjacent-description">Touches angle A · side a</span></div>
+                        </div>
+                        <p class="reference-triangle-status" id="reference-angle-status" aria-live="polite">Angle A selected: side b is opposite and side a is adjacent.</p>
+                    </div>
+                    <div class="reference-formulas" aria-label="SOH-CAH-TOA formulas">
+                        <div class="reference-formula-card">
+                            <strong>SOH · Sine</strong>
+                            <div id="reference-sine-formula"></div>
+                        </div>
+                        <div class="reference-formula-card">
+                            <strong>CAH · Cosine</strong>
+                            <div id="reference-cosine-formula"></div>
+                        </div>
+                        <div class="reference-formula-card">
+                            <strong>TOA · Tangent</strong>
+                            <div id="reference-tangent-formula"></div>
+                        </div>
+                        <p>Use the ratio that contains the side you know and the side you need.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="chapter13-reference-section" id="chapter13-special-triangles" aria-labelledby="special-triangle-title">
+                <h3 id="special-triangle-title">Exact ratios for special right triangles</h3>
+                <p>Recognize these side patterns to find exact values without a calculator.</p>
+                <div class="special-triangle-grid">
+                    <article class="special-triangle-card">
+                        <h4>45°–45°–90° · Isosceles right triangle</h4>
+                        <p>Both legs have the same length.</p>
+                        <div class="special-triangle-ratios">Side ratio: \(x:x:x\sqrt{2}\)</div>
+                    </article>
+                    <article class="special-triangle-card">
+                        <h4>30°–60°–90° · Half of an equilateral triangle</h4>
+                        <p>The short leg is opposite 30°; the hypotenuse is twice the short leg.</p>
+                        <div class="special-triangle-ratios">Side ratio: \(x:x\sqrt{3}:2x\)</div>
+                    </article>
+                </div>
+                <table class="special-ratio-table">
+                    <thead><tr><th scope="col">Ratio</th><th scope="col">30°</th><th scope="col">45°</th><th scope="col">60°</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">Sine</th><td>\(\frac{1}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{\sqrt{3}}{2}\)</td></tr>
+                        <tr><th scope="row">Cosine</th><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{1}{2}\)</td></tr>
+                        <tr><th scope="row">Tangent</th><td>\(\frac{\sqrt{3}}{3}\)</td><td>\(1\)</td><td>\(\sqrt{3}\)</td></tr>
+                    </tbody>
+                </table>
+            </section>
             <div class="lesson-topic-list" id="chapter13-lesson-topics"></div>
+            <section class="chapter13-reference-section" id="chapter13-calculator-tips" aria-labelledby="chapter13-calculator-title">
+                <h3 id="chapter13-calculator-title">Calculator checks and common pitfalls</h3>
+                <div class="calculator-pitfalls">
+                    <div class="calculator-pitfall"><strong>Check degree mode</strong>For angle problems in degrees, confirm the calculator shows DEG before using a trig or inverse-trig key.</div>
+                    <div class="calculator-pitfall"><strong>Keep the reference angle in view</strong>Opposite and adjacent change when you switch angles; the hypotenuse is always opposite the right angle.</div>
+                    <div class="calculator-pitfall"><strong>Round at the end</strong>Keep extra digits in intermediate steps, then round the final value exactly as the question requests.</div>
+                    <div class="calculator-pitfall"><strong>Model the situation first</strong>For elevation or depression, draw the horizontal reference line and label the known sides before choosing a ratio.</div>
+                </div>
+            </section>
         </section>
         <section class="practice-section" id="practice-section" aria-labelledby="objective-heading">
             <div class="bank-heading">
@@ -7028,6 +7429,7 @@ function getWorkedExampleDiagramMarkup(question) {
 function renderChapter13Guide() {
     const lessonTopics = document.getElementById('chapter13-lesson-topics');
     lessonTopics.innerHTML = '';
+    setReferenceAngle('A');
 
     chapter13Lessons.forEach((lesson, index) => {
         const example = getSelectedChapterQuestions().find(question =>
@@ -7132,6 +7534,67 @@ function renderChapter13Guide() {
     document.getElementById('chapter13-prerequisites').addEventListener('toggle', event => {
         if (event.currentTarget.open) typesetMathIn([event.currentTarget]);
     });
+    typesetMathIn([
+        document.getElementById('chapter13-special-triangles'),
+        document.getElementById('chapter13-prerequisites')
+    ]);
+}
+
+function setReferenceAngle(angle) {
+    const isAngleA = angle === 'A';
+    const verticalSide = document.getElementById('reference-vertical-side');
+    const horizontalSide = document.getElementById('reference-horizontal-side');
+    const verticalLabel = document.getElementById('reference-vertical-label');
+    const horizontalLabel = document.getElementById('reference-horizontal-label');
+    const formulaDefinitions = isAngleA
+        ? {
+            sine: '\\(\\sin(\\theta)=\\frac{b}{c}\\)',
+            cosine: '\\(\\cos(\\theta)=\\frac{a}{c}\\)',
+            tangent: '\\(\\tan(\\theta)=\\frac{b}{a}\\)'
+        }
+        : {
+            sine: '\\(\\sin(\\phi)=\\frac{a}{c}\\)',
+            cosine: '\\(\\cos(\\phi)=\\frac{b}{c}\\)',
+            tangent: '\\(\\tan(\\phi)=\\frac{a}{b}\\)'
+        };
+    const formulaElements = [
+        ['reference-sine-formula', formulaDefinitions.sine],
+        ['reference-cosine-formula', formulaDefinitions.cosine],
+        ['reference-tangent-formula', formulaDefinitions.tangent]
+    ];
+
+    [verticalSide, horizontalSide].forEach(side => side.classList.remove('side-opposite', 'side-adjacent'));
+    verticalSide.classList.add(isAngleA ? 'side-adjacent' : 'side-opposite');
+    horizontalSide.classList.add(isAngleA ? 'side-opposite' : 'side-adjacent');
+    verticalLabel.classList.remove('side-label-opposite', 'side-label-adjacent');
+    horizontalLabel.classList.remove('side-label-opposite', 'side-label-adjacent');
+    verticalLabel.classList.add(isAngleA ? 'side-label-adjacent' : 'side-label-opposite');
+    horizontalLabel.classList.add(isAngleA ? 'side-label-opposite' : 'side-label-adjacent');
+    verticalLabel.textContent = isAngleA ? 'Adjacent (a)' : 'Opposite (a)';
+    horizontalLabel.textContent = isAngleA ? 'Opposite (b)' : 'Adjacent (b)';
+    document.getElementById('reference-angle-a-button').setAttribute('aria-pressed', String(isAngleA));
+    document.getElementById('reference-angle-b-button').setAttribute('aria-pressed', String(!isAngleA));
+    document.getElementById('reference-angle-a-marker').style.display = isAngleA ? 'block' : 'none';
+    document.getElementById('reference-angle-b-marker').style.display = isAngleA ? 'none' : 'block';
+    document.getElementById('reference-opposite-description').textContent = isAngleA
+        ? 'Across from angle A · side b'
+        : 'Across from angle B · side a';
+    document.getElementById('reference-adjacent-description').textContent = isAngleA
+        ? 'Touches angle A · side a'
+        : 'Touches angle B · side b';
+    document.getElementById('reference-angle-status').textContent = isAngleA
+        ? 'Angle A selected: side b is opposite and side a is adjacent.'
+        : 'Angle B selected: side a is opposite and side b is adjacent.';
+    document.getElementById('reference-triangle-description').textContent = isAngleA
+        ? 'Angle A is selected. Side c is the blue hypotenuse, side b is the green opposite side, and side a is the orange adjacent side.'
+        : 'Angle B is selected. Side c is the blue hypotenuse, side a is the green opposite side, and side b is the orange adjacent side.';
+
+    formulaElements.forEach(([id, formula]) => {
+        const element = document.getElementById(id);
+        clearMathTypesetting([element]);
+        element.innerHTML = formatQuestionMath(formula, true);
+    });
+    typesetMathIn(formulaElements.map(([id]) => document.getElementById(id)));
 }
 
 function startFullAssessment() {
