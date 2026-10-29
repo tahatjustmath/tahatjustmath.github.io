@@ -26,6 +26,9 @@
             --neutral-muted: #607181;
             --neutral-light: #f5f7f8;
             --border-color: #dce4e8;
+            --side-hypotenuse: #2563eb;
+            --side-opposite: #15803d;
+            --side-adjacent: #ea580c;
             --card-shadow: 0 12px 32px -18px rgba(24, 50, 75, 0.28);
             --radius: 18px;
         }
@@ -160,7 +163,7 @@
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
             margin-bottom: 24px;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .bank-heading {
@@ -183,6 +186,7 @@
             position: relative;
             margin: 0 -34px 34px;
             padding: clamp(30px, 5vw, 56px) 34px;
+            border-radius: var(--radius) var(--radius) 0 0;
             color: white;
             background:
                 radial-gradient(ellipse at 86% 16%, rgba(20, 125, 120, 0.26), transparent 34%),
@@ -232,6 +236,356 @@
             max-width: 590px;
             color: #e0e9ed;
             font-size: 1.02rem;
+        }
+
+        .learning-outcomes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 18px;
+            max-width: 710px;
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .learning-outcomes li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            color: #f0f5f7;
+            font-size: 0.9rem;
+        }
+
+        .learning-outcomes li::before {
+            content: "✓";
+            flex: 0 0 auto;
+            color: #d9b66f;
+            font-weight: 800;
+        }
+
+        .learning-navigation {
+            position: sticky;
+            top: 12px;
+            z-index: 5;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: -8px 0 24px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 8px 22px -18px rgba(24, 50, 75, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .learning-navigation a {
+            padding: 7px 11px;
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .learning-navigation a:hover,
+        .learning-navigation a:focus-visible {
+            background: var(--primary-light);
+            outline: 2px solid transparent;
+        }
+
+        .learning-navigation a:focus-visible {
+            outline: 3px solid #c99d4e;
+        }
+
+        .chapter13-learning-guide {
+            margin: 0 0 34px;
+            scroll-margin-top: 84px;
+        }
+
+        .chapter13-learning-guide[hidden],
+        .learning-navigation[hidden],
+        .learning-outcomes[hidden] {
+            display: none;
+        }
+
+        .lesson-guide-heading {
+            margin-bottom: 16px;
+        }
+
+        .lesson-guide-heading h2 {
+            margin-top: 4px;
+            color: var(--primary);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .lesson-guide-heading p {
+            margin-top: 5px;
+            color: var(--neutral-muted);
+            font-size: 0.92rem;
+        }
+
+        .prerequisite-box {
+            margin-bottom: 14px;
+            border: 1px solid #cbd9e5;
+            border-radius: 12px;
+            background: #f4f7fa;
+            scroll-margin-top: 84px;
+        }
+
+        .prerequisite-box summary {
+            padding: 14px 16px;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 750;
+        }
+
+        .prerequisite-content {
+            padding: 0 16px 16px;
+            color: var(--neutral-dark);
+            font-size: 0.9rem;
+        }
+
+        .prerequisite-content p + p {
+            margin-top: 8px;
+        }
+
+        .prerequisite-content .math-callout {
+            margin: 10px 0;
+            padding: 10px 12px;
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            background: white;
+        }
+
+        .lesson-topic-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .lesson-topic {
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: white;
+            scroll-margin-top: 84px;
+        }
+
+        .lesson-topic > summary {
+            padding: 14px 16px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-weight: 750;
+            list-style-position: inside;
+        }
+
+        .lesson-topic[open] > summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lesson-topic-content {
+            padding: 16px;
+        }
+
+        .lesson-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+            padding: 4px;
+            border-radius: 10px;
+            background: var(--neutral-light);
+        }
+
+        .lesson-tab {
+            min-height: 40px;
+            flex: 1 1 0;
+            padding: 8px 12px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--neutral-muted);
+            font: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .lesson-tab[aria-selected="true"] {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(24, 50, 75, 0.1);
+        }
+
+        .lesson-tab:focus-visible,
+        .worked-step-toggle:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: 2px;
+        }
+
+        .lesson-panel {
+            color: var(--neutral-dark);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .lesson-panel[hidden] {
+            display: none;
+        }
+
+        .lesson-panel p + p,
+        .lesson-panel ul + p {
+            margin-top: 10px;
+        }
+
+        .lesson-panel ul {
+            padding-left: 1.3rem;
+        }
+
+        .triangle-side-key {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin: 12px 0;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .triangle-side-key[hidden] {
+            display: none;
+        }
+
+        .triangle-side-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .triangle-side-label::before {
+            width: 18px;
+            height: 4px;
+            border-radius: 999px;
+            background: currentColor;
+            content: "";
+        }
+
+        .triangle-role-hypotenuse {
+            color: var(--side-hypotenuse);
+        }
+
+        .triangle-role-opposite {
+            color: var(--side-opposite);
+        }
+
+        .triangle-role-adjacent {
+            color: var(--side-adjacent);
+        }
+
+        .worked-example-question {
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .worked-example-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .worked-example-diagram:empty {
+            display: none;
+        }
+
+        .worked-example-diagram svg {
+            width: min(100%, 300px);
+            height: auto;
+            max-height: 260px;
+        }
+
+        .worked-example-steps {
+            margin-top: 12px;
+            padding: 14px;
+            border: 1px solid #cbd9e5;
+            border-radius: 10px;
+            background: #f4f7fa;
+        }
+
+        .worked-example-steps ol {
+            margin: 10px 0 12px;
+            padding-left: 1.35rem;
+        }
+
+        .worked-example-steps li + li {
+            margin-top: 6px;
+        }
+
+        .worked-example-steps li[hidden],
+        .worked-example-answer[hidden] {
+            display: none;
+        }
+
+        .worked-step-toggle {
+            min-height: 40px;
+            padding: 8px 12px;
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .worked-example-answer {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #cbd9e5;
+            color: var(--primary);
+            font-weight: 750;
+        }
+
+        .triangle-diagram .side-hypotenuse {
+            stroke: var(--side-hypotenuse);
+        }
+
+        .triangle-diagram .side-opposite {
+            stroke: var(--side-opposite);
+        }
+
+        .triangle-diagram .side-adjacent {
+            stroke: var(--side-adjacent);
+        }
+
+        .triangle-diagram .side-label-hypotenuse {
+            fill: var(--side-hypotenuse);
+        }
+
+        .triangle-diagram .side-label-opposite {
+            fill: var(--side-opposite);
+        }
+
+        .triangle-diagram .side-label-adjacent {
+            fill: var(--side-adjacent);
+        }
+
+        .practice-section {
+            scroll-margin-top: 84px;
+        }
+
+        #start-full-test {
+            scroll-margin-top: 84px;
         }
 
         .bank-hero-actions {
@@ -591,6 +945,36 @@
             .bank-hero {
                 margin: 0 -18px 25px;
                 padding: 32px 20px;
+            }
+
+            .learning-outcomes {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .learning-navigation {
+                top: 6px;
+                gap: 4px;
+                margin: -4px 0 18px;
+                padding: 7px;
+            }
+
+            .learning-navigation a {
+                padding: 7px 8px;
+                font-size: 0.76rem;
+            }
+
+            .lesson-guide-heading h2 {
+                font-size: 1.55rem;
+            }
+
+            .lesson-topic-content {
+                padding: 12px;
+            }
+
+            .triangle-side-key {
+                gap: 7px 10px;
+                font-size: 0.73rem;
             }
 
             .bank-hero::after {
@@ -1332,6 +1716,12 @@
                 <p class="bank-eyebrow">Tahat Just Math · Self-paced practice</p>
                 <h2 id="bank-hero-title">Interactive Mathematics Simulation</h2>
                 <p class="bank-hero-description">Test questions, verify solutions step-by-step, and monitor live metrics.</p>
+                <ul class="learning-outcomes" id="chapter13-learning-outcomes" aria-label="What you will learn" hidden>
+                    <li>Identify the hypotenuse, opposite, and adjacent sides.</li>
+                    <li>Use the Pythagorean theorem and simplify radicals.</li>
+                    <li>Apply SOH–CAH–TOA and inverse trigonometric ratios.</li>
+                    <li>Model real situations with angles of elevation and depression.</li>
+                </ul>
                 <div class="bank-hero-actions">
                     <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
                         Start Full Assessment · <span id="bank-total-count">427</span> Questions
@@ -1383,7 +1773,29 @@
                 </ul>
             </details>
         </nav>
-        <section aria-labelledby="objective-heading">
+        <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 contents" hidden>
+            <a href="#chapter13-learning-guide">Learning guide</a>
+            <a href="#chapter13-prerequisites">Prerequisites</a>
+            <a href="#practice-section">Practice problems</a>
+            <a href="#start-full-test">Chapter quiz</a>
+        </nav>
+        <section class="chapter13-learning-guide" id="chapter13-learning-guide" aria-labelledby="lesson-guide-title" hidden>
+            <div class="lesson-guide-heading">
+                <span class="section-eyebrow">Learn the ideas · then try them</span>
+                <h2 id="lesson-guide-title">Chapter 13 learning guide</h2>
+                <p>Review each concept, then reveal a worked example one step at a time.</p>
+            </div>
+            <details class="prerequisite-box" id="chapter13-prerequisites">
+                <summary>Need a quick refresher? Pythagorean Theorem &amp; Radicals</summary>
+                <div class="prerequisite-content">
+                    <p>In a right triangle, the hypotenuse <span class="triangle-role-hypotenuse">c</span> is opposite the right angle. If a leg is missing, isolate it before taking a square root.</p>
+                    <p class="math-callout">\(a^2+b^2=c^2\), so \(a=\sqrt{c^2-b^2}\).</p>
+                    <p>To simplify a radical, factor out the largest perfect square: \(\sqrt{50}=\sqrt{25\cdot2}=5\sqrt{2}\).</p>
+                </div>
+            </details>
+            <div class="lesson-topic-list" id="chapter13-lesson-topics"></div>
+        </section>
+        <section class="practice-section" id="practice-section" aria-labelledby="objective-heading">
             <div class="bank-heading">
                 <span class="section-eyebrow">Focused practice</span>
                 <h2 id="objective-heading">Choose a learning objective</h2>
@@ -1431,6 +1843,11 @@
         </div>
         <div class="math-render-warning" id="math-render-warning" role="status" hidden>
             Math notation could not be rendered. The original notation is still available in the question text.
+        </div>
+        <div class="triangle-side-key" id="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle." hidden>
+            <span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span>
+            <span class="triangle-side-label triangle-role-opposite">Opposite</span>
+            <span class="triangle-side-label triangle-role-adjacent">Adjacent</span>
         </div>
 
         <div class="quiz-body">
@@ -6319,6 +6736,24 @@ function formatQuestionMath(text, renderChapter13Math = false) {
     return formatted;
 }
 
+function formatTriangleRoleText(text, renderChapter13Math = false) {
+    const formatted = formatQuestionMath(text, renderChapter13Math);
+    if (!renderChapter13Math) return formatted;
+
+    const roleClass = {
+        hypotenuse: 'triangle-role-hypotenuse',
+        opposite: 'triangle-role-opposite',
+        adjacent: 'triangle-role-adjacent'
+    };
+
+    return formatted.split(/(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\])/g).map(segment => {
+        if (segment.startsWith('\\(') || segment.startsWith('\\[')) return segment;
+        return segment.replace(/\b(hypotenuse|opposite|adjacent)\b/gi, (match, role) =>
+            `<span class="${roleClass[role.toLowerCase()]}">${match}</span>`
+        );
+    }).join('');
+}
+
 const learningObjectives = [
     {
         id: "chapter4",
@@ -6411,6 +6846,33 @@ const chapter13TopicGroups = [
     { title: "Applications and calculator practice", objectiveIds: ["word-problems", "calculator-trig"] }
 ];
 
+const chapter13Lessons = [
+    {
+        id: "foundations",
+        title: "Right-triangle foundations",
+        exampleObjectiveId: "pythagorean",
+        concept: "The hypotenuse lies opposite the right angle and is the longest side. Relative to an acute reference angle, the opposite side is across from it; the adjacent side touches it but is not the hypotenuse. For a missing leg, subtract squares before taking the square root: \\(a^2+b^2=c^2\\), so \\(a=\\sqrt{c^2-b^2}\\)."
+    },
+    {
+        id: "ratios",
+        title: "Trigonometric ratios",
+        exampleObjectiveId: "evaluate-ratios",
+        concept: "Name the sides relative to the reference angle, then use SOH–CAH–TOA: \\(\\sin(\\theta)=\\frac{\\text{opposite}}{\\text{hypotenuse}}\\), \\(\\cos(\\theta)=\\frac{\\text{adjacent}}{\\text{hypotenuse}}\\), and \\(\\tan(\\theta)=\\frac{\\text{opposite}}{\\text{adjacent}}\\)."
+    },
+    {
+        id: "solving",
+        title: "Solving right triangles",
+        exampleObjectiveId: "find-sides",
+        concept: "Choose the ratio containing the known and unknown sides. Rearrange it to isolate an unknown side; use \\(\\sin^{-1}\\), \\(\\cos^{-1}\\), or \\(\\tan^{-1}\\) when finding an angle from a side ratio. The two acute angles in a right triangle add to \\(90^\\circ\\)."
+    },
+    {
+        id: "applications",
+        title: "Applications and calculator practice",
+        exampleObjectiveId: "word-problems",
+        concept: "Draw and label a right triangle from the situation. An angle of elevation is measured upward from a horizontal line; an angle of depression is measured downward. Set the calculator to degree mode, identify the side roles, and choose a ratio that uses the known and unknown quantities."
+    }
+];
+
 function getChapter4Objective(question) {
     const section = (question.section || "").replace(/\s+/g, " ").trim();
     const definition = chapter4ObjectiveDefinitions.find(item => {
@@ -6470,6 +6932,7 @@ function getSelectedChapterQuestions() {
 function configureChapterBank() {
     const isChapter4 = selectedChapter === "4";
     const isChapter15 = selectedChapter === "15";
+    const isChapter13 = selectedChapter === "13";
     const title = isChapter4
         ? "Chapter 4: Accuracy & Measurement"
         : isChapter15
@@ -6477,6 +6940,13 @@ function configureChapterBank() {
             : "Chapter 13: Trigonometry & Right Triangles";
     const chapterQuestions = getSelectedChapterQuestions();
     document.getElementById('current-chapter-title').textContent = title;
+    document.getElementById('bank-hero-title').textContent = isChapter13
+        ? "Learn and Practice Right-Triangle Trigonometry"
+        : "Interactive Mathematics Simulation";
+    document.querySelector('.bank-hero-description').textContent = isChapter13
+        ? "Build confidence with clear concepts, guided examples, and self-paced practice."
+        : "Test questions, verify solutions step-by-step, and monitor live metrics.";
+    document.getElementById('chapter13-learning-outcomes').hidden = !isChapter13;
     document.getElementById('bank-total-count').textContent = chapterQuestions.length;
     document.getElementById('header-question-count').textContent = chapterQuestions.length;
     document.getElementById('hero-question-count').textContent = chapterQuestions.length;
@@ -6498,6 +6968,11 @@ function renderQuestionBank() {
     const objectiveList = document.getElementById('objective-list');
     objectiveList.innerHTML = '';
     const chapterQuestions = getSelectedChapterQuestions();
+    const isChapter13 = selectedChapter === "13";
+    document.getElementById('chapter13-learning-navigation').hidden = !isChapter13;
+    document.getElementById('chapter13-learning-guide').hidden = !isChapter13;
+    if (isChapter13) renderChapter13Guide();
+    else document.getElementById('chapter13-lesson-topics').innerHTML = '';
 
     const appendObjectiveCard = (objective, parent) => {
         const questionCount = chapterQuestions.filter(question => question.objectiveId === objective.id).length;
@@ -6540,6 +7015,122 @@ function renderQuestionBank() {
 
     learningObjectives.forEach(objective => {
         appendObjectiveCard(objective, objectiveList);
+    });
+}
+
+function getWorkedExampleDiagramMarkup(question) {
+    if (question.diagramType === "height-problem") return generateHeightProblemSVG(question);
+    if (question.diagramType === "roof-problem") return generateRoofProblemSVG(question);
+    if (question.diagramType === "trig-expression") return '';
+    return generateRotatedTriangleSVG(question);
+}
+
+function renderChapter13Guide() {
+    const lessonTopics = document.getElementById('chapter13-lesson-topics');
+    lessonTopics.innerHTML = '';
+
+    chapter13Lessons.forEach((lesson, index) => {
+        const example = getSelectedChapterQuestions().find(question =>
+            question.objectiveId === lesson.exampleObjectiveId &&
+            question.correct &&
+            question.explainEn &&
+            question.answerStatus !== 'unresolved'
+        );
+        if (!example) throw new Error(`No worked example is available for Chapter 13 lesson: ${lesson.title}`);
+
+        const explanationSteps = getStudentExplanation(example)
+            .split(/(?<=[.!?])\s+/)
+            .filter(step => step.trim());
+        if (explanationSteps.length === 0) throw new Error(`Worked example has no solution steps: ${example.id}`);
+
+        const topic = document.createElement('details');
+        topic.className = 'lesson-topic';
+        topic.id = `lesson-${lesson.id}`;
+        topic.open = index === 0;
+        topic.innerHTML = `
+            <summary>${lesson.title}</summary>
+            <div class="lesson-topic-content">
+                <div class="lesson-tabs" role="tablist" aria-label="${lesson.title} lesson">
+                    <button class="lesson-tab" id="lesson-${lesson.id}-concept-tab" type="button" role="tab" aria-selected="true" aria-controls="lesson-${lesson.id}-concept-panel" tabindex="0">Concept</button>
+                    <button class="lesson-tab" id="lesson-${lesson.id}-example-tab" type="button" role="tab" aria-selected="false" aria-controls="lesson-${lesson.id}-example-panel" tabindex="-1">Worked example</button>
+                </div>
+                <div class="lesson-panel" id="lesson-${lesson.id}-concept-panel" role="tabpanel" aria-labelledby="lesson-${lesson.id}-concept-tab">
+                    <p>${formatTriangleRoleText(lesson.concept, true)}</p>
+                    <div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle.">
+                        <span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span>
+                        <span class="triangle-side-label triangle-role-opposite">Opposite</span>
+                        <span class="triangle-side-label triangle-role-adjacent">Adjacent</span>
+                    </div>
+                </div>
+                <div class="lesson-panel" id="lesson-${lesson.id}-example-panel" role="tabpanel" aria-labelledby="lesson-${lesson.id}-example-tab" hidden>
+                    <p class="worked-example-question">${formatTriangleRoleText(example.stem, true)}</p>
+                    <div class="worked-example-diagram" role="img" aria-label="Diagram for worked example">${getWorkedExampleDiagramMarkup(example)}</div>
+                    <div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle.">
+                        <span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span>
+                        <span class="triangle-side-label triangle-role-opposite">Opposite</span>
+                        <span class="triangle-side-label triangle-role-adjacent">Adjacent</span>
+                    </div>
+                    <div class="worked-example-steps">
+                        <strong>Work through the solution</strong>
+                        <ol>${explanationSteps.map(step => `<li hidden>${formatTriangleRoleText(step, true)}</li>`).join('')}</ol>
+                        <p class="worked-example-status" aria-live="polite">No steps revealed yet.</p>
+                        <button class="worked-step-toggle" type="button">Reveal first step</button>
+                        <p class="worked-example-answer" hidden>Answer: ${example.correct}) ${formatQuestionMath(
+                            example.options.find(option => option.id === example.correct)?.text || example.correct,
+                            true
+                        )}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const tabs = Array.from(topic.querySelectorAll('[role="tab"]'));
+        const activateTab = (selectedTab, focus = false) => {
+            tabs.forEach(tab => {
+                const selected = tab === selectedTab;
+                tab.setAttribute('aria-selected', String(selected));
+                tab.tabIndex = selected ? 0 : -1;
+                document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+            });
+            if (focus) selectedTab.focus();
+            typesetMathIn([document.getElementById(selectedTab.getAttribute('aria-controls'))]);
+        };
+        tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
+        topic.querySelector('[role="tablist"]').addEventListener('keydown', event => {
+            const currentIndex = tabs.indexOf(document.activeElement);
+            let nextIndex;
+            if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+            else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+            else if (event.key === 'Home') nextIndex = 0;
+            else if (event.key === 'End') nextIndex = tabs.length - 1;
+            else return;
+            event.preventDefault();
+            activateTab(tabs[nextIndex], true);
+        });
+
+        const stepButton = topic.querySelector('.worked-step-toggle');
+        stepButton.addEventListener('click', () => {
+            const hiddenStep = topic.querySelector('.worked-example-steps li[hidden]');
+            const status = topic.querySelector('.worked-example-status');
+            const allSteps = Array.from(topic.querySelectorAll('.worked-example-steps li'));
+            if (hiddenStep) {
+                hiddenStep.hidden = false;
+                const revealedCount = allSteps.filter(step => !step.hidden).length;
+                status.textContent = `Step ${revealedCount} of ${allSteps.length} revealed.`;
+                stepButton.textContent = revealedCount < allSteps.length ? `Reveal step ${revealedCount + 1} of ${allSteps.length}` : 'Reveal answer';
+                typesetMathIn([hiddenStep]);
+                return;
+            }
+            topic.querySelector('.worked-example-answer').hidden = false;
+            stepButton.disabled = true;
+            stepButton.textContent = 'Answer revealed';
+        });
+        lessonTopics.appendChild(topic);
+        typesetMathIn([topic.querySelector('[role="tabpanel"]:not([hidden])')]);
+    });
+
+    document.getElementById('chapter13-prerequisites').addEventListener('toggle', event => {
+        if (event.currentTarget.open) typesetMathIn([event.currentTarget]);
     });
 }
 
@@ -6857,29 +7448,29 @@ function generateHeightProblemSVG(q) {
     const isLadder = q.observerType === "ladder";
     const hasSolidSlope = isLadder || q.sceneType === "roadbed" || q.sceneType === "conveyor" || q.sceneType === "cable-tower";
     const sightlineMarkup = isLadder
-        ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="#b45309" stroke-width="5"/><line x1="${observerX + groundDistance * 0.25}" y1="${groundY - heightPixels * 0.25 - 5}" x2="${observerX + groundDistance * 0.25 + 8}" y2="${groundY - heightPixels * 0.25 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.5}" y1="${groundY - heightPixels * 0.5 - 5}" x2="${observerX + groundDistance * 0.5 + 8}" y2="${groundY - heightPixels * 0.5 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.75}" y1="${groundY - heightPixels * 0.75 - 5}" x2="${observerX + groundDistance * 0.75 + 8}" y2="${groundY - heightPixels * 0.75 + 5}" stroke="#fef3c7" stroke-width="2"/>`
+        ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="5"/><line x1="${observerX + groundDistance * 0.25}" y1="${groundY - heightPixels * 0.25 - 5}" x2="${observerX + groundDistance * 0.25 + 8}" y2="${groundY - heightPixels * 0.25 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.5}" y1="${groundY - heightPixels * 0.5 - 5}" x2="${observerX + groundDistance * 0.5 + 8}" y2="${groundY - heightPixels * 0.5 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.75}" y1="${groundY - heightPixels * 0.75 - 5}" x2="${observerX + groundDistance * 0.75 + 8}" y2="${groundY - heightPixels * 0.75 + 5}" stroke="#fef3c7" stroke-width="2"/>`
         : hasSolidSlope
-            ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="${q.sceneType === "cable-tower" ? "#64748b" : "#334155"}" stroke-width="${q.sceneType === "cable-tower" ? 1.5 : 3.5}" ${q.sceneType === "cable-tower" ? "" : 'stroke-dasharray="7 5"'} />`
-            : `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="#18324b" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+            ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="${q.sceneType === "cable-tower" ? 2.5 : 3.5}" ${q.sceneType === "cable-tower" ? "" : 'stroke-dasharray="7 5"'} />`
+            : `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="2.5" stroke-dasharray="7 5"/>`;
     const hypotenuseLabelX = (observerX + objectX) / 2;
     const hypotenuseLabelY = (groundY + objectTopY) / 2;
 
     return `
-        <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${diagramDescription}">
+        <svg class="triangle-diagram" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${diagramDescription}. The hypotenuse is blue, the opposite side is green, and the adjacent side is orange.">
             <line x1="18" y1="${groundY}" x2="340" y2="${groundY}" stroke="#475569" stroke-width="2"/>
             ${q.observerType === "boat" ? `<path d="M 18 ${groundY + 8} q 9 -4 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0" fill="none" stroke="#38bdf8" stroke-width="1.5"/>` : ""}
             ${targetMarkup}
             ${sightlineMarkup}
             ${observerMarkup}
-            <line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="#147d78" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="var(--side-adjacent)" stroke-width="2.5" stroke-dasharray="5 5"/>
             <path d="M ${observerX + 15} ${groundY} A 15 15 0 0 0 ${observerX + 15 * Math.cos(angleRadians)} ${groundY - 15 * Math.sin(angleRadians)}" fill="none" stroke="#18324b" stroke-width="2"/>
             <path d="M ${objectX - 10} ${groundY} L ${objectX - 10} ${groundY - 10} L ${objectX} ${groundY - 10}" fill="none" stroke="#334155" stroke-width="1.5"/>
-            <line x1="${objectX + 45}" y1="${groundY}" x2="${objectX + 45}" y2="${objectTopY}" stroke="#64748b" stroke-width="1.5"/>
-            <line x1="${objectX + 41}" y1="${groundY}" x2="${objectX + 49}" y2="${groundY}" stroke="#64748b" stroke-width="1.5"/>
-            <line x1="${objectX + 41}" y1="${objectTopY}" x2="${objectX + 49}" y2="${objectTopY}" stroke="#64748b" stroke-width="1.5"/>
-            <text x="${observerX + groundDistance / 2}" y="${groundY + 18}" text-anchor="middle" font-size="11" fill="#1e293b" font-weight="600">${distanceLabel}</text>
-            <text x="${objectX + 51}" y="${(groundY + objectTopY) / 2 + 4}" font-size="12" fill="#1e293b" font-weight="700">${heightLabel}</text>
-            ${hypotenuseLabel ? `<text x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="#18324b" font-weight="700">${hypotenuseLabel}</text>` : ""}
+            <line x1="${objectX + 45}" y1="${groundY}" x2="${objectX + 45}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="2"/>
+            <line x1="${objectX + 41}" y1="${groundY}" x2="${objectX + 49}" y2="${groundY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
+            <line x1="${objectX + 41}" y1="${objectTopY}" x2="${objectX + 49}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
+            <text x="${observerX + groundDistance / 2}" y="${groundY + 18}" text-anchor="middle" font-size="11" fill="var(--side-adjacent)" font-weight="700">${distanceLabel}</text>
+            <text x="${objectX + 51}" y="${(groundY + objectTopY) / 2 + 4}" font-size="12" fill="var(--side-opposite)" font-weight="700">${heightLabel}</text>
+            ${hypotenuseLabel ? `<text x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="var(--side-hypotenuse)" font-weight="700">${hypotenuseLabel}</text>` : ""}
             <text x="${observerX + 20}" y="${groundY - 17}" font-size="10" fill="#1e293b" font-weight="700">${unknownSide === "angle" ? "θ = ?" : `${q.angleDeg}°`}</text>
             <text x="${objectX + 42}" y="${objectTopY - 7}" text-anchor="end" font-size="10" fill="#1e293b" font-weight="700">${sceneLabels[q.sceneType] || "Top"}</text>
         </svg>
@@ -6910,17 +7501,21 @@ function generateRoofProblemSVG(q) {
     const bis = theta / 2;
     const font = 'font-family="Arial, Helvetica, sans-serif"';
     const heightLabel = r.type === 'height'
-        ? `<text x="${cx + 8}" y="${(peakY + baseY) / 2}" fill="#b91c1c" font-weight="700" font-size="13" ${font} dominant-baseline="central">h = ?</text>`
+        ? `<text x="${cx + 8}" y="${(peakY + baseY) / 2}" fill="var(--side-opposite)" font-weight="700" font-size="13" ${font} dominant-baseline="central">h = ?</text>`
         : '';
     return `
-        <svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg">
+        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle roof diagram. The rafter is the blue hypotenuse, the vertical height is green, and the horizontal half-width is orange.">
             <polygon points="${left.x},${baseY} ${right.x},${baseY} ${cx},${peakY}" fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
-            <line x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="#18324b" stroke-width="1.8" stroke-dasharray="5 4"/>
+            <line x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="var(--side-opposite)" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <line x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3"/>
+            <line x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3"/>
+            <line x1="${right.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3" opacity="0.55"/>
+            <line x1="${cx}" y1="${baseY}" x2="${right.x}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3" opacity="0.55"/>
             <polyline points="${cx + 12},${baseY} ${cx + 12},${baseY - 12} ${cx},${baseY - 12}" fill="none" stroke="#18324b" stroke-width="1.8"/>
             <path d="M ${left.x + arc},${baseY} A ${arc} ${arc} 0 0 0 ${left.x + arc * Math.cos(theta)},${baseY - arc * Math.sin(theta)}" fill="none" stroke="#18324b" stroke-width="1.8"/>
             <text x="${r.type === 'angle' ? left.x + 46 * Math.cos(bis) : left.x + arc + 4}" y="${r.type === 'angle' ? baseY - 46 * Math.sin(bis) : baseY - 9}" fill="#1e293b" font-weight="800" font-size="${r.type === 'angle' ? 15 : 12}" ${font} text-anchor="${r.type === 'angle' ? 'middle' : 'start'}" dominant-baseline="central">${thetaLabel}</text>
-            <text x="${rafterPos.x}" y="${rafterPos.y}" fill="#b91c1c" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central" transform="rotate(${edgeDeg} ${rafterPos.x} ${rafterPos.y})">${rafterLabel}</text>
-            <text x="${cx}" y="${baseY + 24}" fill="#b91c1c" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central">${r.width.toFixed(1)}${unit}</text>
+            <text x="${rafterPos.x}" y="${rafterPos.y}" fill="var(--side-hypotenuse)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central" transform="rotate(${edgeDeg} ${rafterPos.x} ${rafterPos.y})">${rafterLabel}</text>
+            <text x="${cx}" y="${baseY + 24}" fill="var(--side-adjacent)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central">${r.width.toFixed(1)}${unit}</text>
             ${heightLabel}
         </svg>
     `;
@@ -6983,19 +7578,59 @@ function generateRotatedTriangleSVG(q) {
     const sq3 = { x: rC.x + uCB.x, y: rC.y + uCB.y };
 
     const vNames = q.vertices;
+    const targetAngleName = String(q.targetAngle || '').replace(/^∠\s*/, '').trim();
+    const targetAngleIndex = vNames.indexOf(targetAngleName);
+    const referenceAngleIndex = targetAngleIndex === 1 ? 1 : 0;
+    const referenceAngle = referenceAngleIndex === 0 ? rA : rB;
+    const referenceRays = referenceAngleIndex === 0 ? [rB, rC] : [rA, rC];
+    const referenceAngleLabel = targetAngleIndex === 0 || targetAngleIndex === 1
+        ? targetAngleName
+        : 'θ';
+    const vector1 = { x: referenceRays[0].x - referenceAngle.x, y: referenceRays[0].y - referenceAngle.y };
+    const vector2 = { x: referenceRays[1].x - referenceAngle.x, y: referenceRays[1].y - referenceAngle.y };
+    const vector1Length = Math.sqrt(vector1.x ** 2 + vector1.y ** 2) || 1;
+    const vector2Length = Math.sqrt(vector2.x ** 2 + vector2.y ** 2) || 1;
+    const angleMarkRadius = 13;
+    const arcStart = {
+        x: referenceAngle.x + vector1.x / vector1Length * angleMarkRadius,
+        y: referenceAngle.y + vector1.y / vector1Length * angleMarkRadius
+    };
+    const arcEnd = {
+        x: referenceAngle.x + vector2.x / vector2Length * angleMarkRadius,
+        y: referenceAngle.y + vector2.y / vector2Length * angleMarkRadius
+    };
+    const sweepFlag = vector1.x * vector2.y - vector1.y * vector2.x > 0 ? 1 : 0;
+    const bisector = {
+        x: vector1.x / vector1Length + vector2.x / vector2Length,
+        y: vector1.y / vector1Length + vector2.y / vector2Length
+    };
+    const bisectorLength = Math.sqrt(bisector.x ** 2 + bisector.y ** 2) || 1;
+    const angleLabelPosition = {
+        x: referenceAngle.x + bisector.x / bisectorLength * 24,
+        y: referenceAngle.y + bisector.y / bisectorLength * 24
+    };
+    const oppositeSideClass = referenceAngleIndex === 1 ? 'side-adjacent' : 'side-opposite';
+    const adjacentSideClass = referenceAngleIndex === 1 ? 'side-opposite' : 'side-adjacent';
+    const oppositeLabelClass = referenceAngleIndex === 1 ? 'side-label-adjacent' : 'side-label-opposite';
+    const adjacentLabelClass = referenceAngleIndex === 1 ? 'side-label-opposite' : 'side-label-adjacent';
 
     return `
-        <svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg">
+        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle. Relative to the marked angle, the hypotenuse is blue, the opposite side is green, and the adjacent side is orange.">
             <polygon points="${rA.x},${rA.y} ${rB.x},${rB.y} ${rC.x},${rC.y}" 
                      fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="${rA.x}" y1="${rA.y}" x2="${rB.x}" y2="${rB.y}" class="side-hypotenuse" stroke-width="4" stroke-linecap="round"/>
+            <line x1="${rA.x}" y1="${rA.y}" x2="${rC.x}" y2="${rC.y}" class="${adjacentSideClass}" stroke-width="4" stroke-linecap="round"/>
+            <line x1="${rB.x}" y1="${rB.y}" x2="${rC.x}" y2="${rC.y}" class="${oppositeSideClass}" stroke-width="4" stroke-linecap="round"/>
             <polygon points="${rC.x},${rC.y} ${sq1.x},${sq1.y} ${sq2.x},${sq2.y} ${sq3.x},${sq3.y}" 
                      fill="none" stroke="#18324b" stroke-width="1.8"/>
+            <path d="M ${arcStart.x} ${arcStart.y} A ${angleMarkRadius} ${angleMarkRadius} 0 0 ${sweepFlag} ${arcEnd.x} ${arcEnd.y}" fill="none" stroke="#18324b" stroke-width="1.8"/>
+            <text x="${angleLabelPosition.x}" y="${angleLabelPosition.y}" fill="#18324b" font-size="10" font-weight="700" text-anchor="middle" dominant-baseline="central">${referenceAngleLabel}</text>
             <text x="${lblA.x}" y="${lblA.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[0]}</text>
             <text x="${lblB.x}" y="${lblB.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[1]}</text>
             <text x="${lblC.x}" y="${lblC.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[2]}</text>
-            <text x="${midAB.x}" y="${midAB.y}" fill="#b91c1c" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.hyp}</text>
-            <text x="${midAC.x}" y="${midAC.y}" fill="#b91c1c" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.legA}</text>
-            <text x="${midBC.x}" y="${midBC.y}" fill="#b91c1c" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.legB}</text>
+            <text x="${midAB.x}" y="${midAB.y}" class="side-label-hypotenuse" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.hyp}</text>
+            <text x="${midAC.x}" y="${midAC.y}" class="${adjacentLabelClass}" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.legA}</text>
+            <text x="${midBC.x}" y="${midBC.y}" class="${oppositeLabelClass}" font-weight="700" font-size="13" text-anchor="middle" dominant-baseline="central">${q.sides.legB}</text>
         </svg>
     `;
 }
@@ -7065,6 +7700,7 @@ function renderQuestion(index) {
     );
     document.getElementById('question-stem').innerHTML = formatQuestionMath(q.stem, renderChapter13Math);
     document.getElementById('target-badge').textContent = q.section || q.objective;
+    document.getElementById('triangle-side-key').hidden = !renderChapter13Math || q.diagramType === 'trig-expression';
     const hintArea = document.getElementById('question-hint-area');
     const hintToggle = document.getElementById('hint-toggle');
     hintArea.hidden = !renderChapter13Math;
@@ -7300,8 +7936,9 @@ function showFeedback(q, userAns) {
         : 'Use the information given in the question and apply the matching measurement rule.');
     solutionContent.innerHTML = `
         <h3>Step-by-Step Solution</h3>
-        <p class="solution-hint"><strong>Hint:</strong> ${formatQuestionMath(hint, renderChapter13Math)}</p>
-        <ol class="solution-steps">${steps.map(step => `<li>${formatQuestionMath(step, renderChapter13Math)}</li>`).join('')}</ol>
+        <p class="solution-hint"><strong>Hint:</strong> ${formatTriangleRoleText(hint, renderChapter13Math)}</p>
+        ${renderChapter13Math ? `<div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle."><span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span><span class="triangle-side-label triangle-role-opposite">Opposite</span><span class="triangle-side-label triangle-role-adjacent">Adjacent</span></div>` : ''}
+        <ol class="solution-steps">${steps.map(step => `<li>${formatTriangleRoleText(step, renderChapter13Math)}</li>`).join('')}</ol>
     `;
     solutionControls.hidden = false;
     feedbackBox.style.display = 'block';

@@ -16,6 +16,8 @@ The site and question data are static. No backend or external font download is r
 
 ## Math notation
 
-Inline and display LaTeX can be written with `\(...\)` and `\[...\]`. MathJax 3 is loaded from jsDelivr only when rendered question content includes one of these delimiters; older question content continues to use the built-in formatter.
+Inline and display LaTeX can be written with `\(...\)` and `\[...\]`. MathJax 3 is loaded from jsDelivr only when rendered lesson or question content includes one of these delimiters; older question content continues to use the built-in formatter.
 
-Chapter 13 groups its existing practice objectives into expandable topic sections. Its questions include a **Show hint** control before submission, while worked solutions remain separate after an answer is submitted. Common trigonometric expressions, fractions, roots, Greek letters, and angle notation in Chapter 13 are formatted as LaTeX and rendered with MathJax when needed.
+Chapter 13 includes a learning guide with concept/worked-example tabs, a prerequisite refresher, and one-step-at-a-time solutions drawn from the existing question bank. Its right-triangle diagrams and solution text use blue for the hypotenuse, green for the opposite side, and orange for the adjacent side. A sticky contents bar links the guide, prerequisites, practice objectives, and assessment.
+
+Chapter 13 also groups its practice objectives into expandable topic sections. Questions include a **Show hint** control before submission, while full worked solutions remain separate after an answer is submitted. Common trigonometric expressions, fractions, roots, Greek letters, and angle notation are formatted as LaTeX and rendered with MathJax when needed. Other chapter banks retain their existing layouts and quiz behavior.
