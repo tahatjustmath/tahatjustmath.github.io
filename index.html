@@ -2911,22 +2911,36 @@
                                 <span class="chapter13-guide-objective-number">Objective 4</span>
                                 <h3 id="chapter13-guide-objective-4">Find missing sides using trigonometry and the Pythagorean theorem</h3>
                             </div>
+                            <p>First mark the known angle and label the sides opposite, adjacent, and hypotenuse. With an angle and one side, use SOH–CAH–TOA. With two side lengths and no angle needed, use the Pythagorean theorem. In the formulas below, replace \(A\) with \(B\) when angle B is given.</p>
                             <div class="chapter13-guide-card-grid two-columns">
                                 <article class="chapter13-guide-card">
-                                    <h4>Rearrange a trigonometric ratio</h4>
-                                    <p>Use a known side and angle to isolate the missing side.</p>
-                                    <p class="guide-formula">\(\text{opposite}=\text{hypotenuse}\cdot\sin(\theta)\)</p>
-                                    <p class="guide-formula">\(\text{adjacent}=\text{hypotenuse}\cdot\cos(\theta)\)</p>
-                                    <p class="guide-formula">\(\text{adjacent}=\frac{\text{opposite}}{\tan(\theta)}\)</p>
+                                    <h4>Unknown numerator: multiply</h4>
+                                    <p>If the missing side is the numerator in the ratio, multiply the other known side by the trig ratio.</p>
+                                    <p class="guide-formula">\(\text{opposite}=\text{hypotenuse}\cdot\sin(A)\)</p>
+                                    <p class="guide-formula">\(\text{adjacent}=\text{hypotenuse}\cdot\cos(A)\)</p>
+                                    <p class="guide-formula">\(\text{opposite}=\text{adjacent}\cdot\tan(A)\)</p>
                                 </article>
                                 <article class="chapter13-guide-card">
-                                    <h4>Use \(a^2+b^2=c^2\)</h4>
-                                    <p>Use this relationship when two side lengths are known.</p>
+                                    <h4>Unknown denominator: divide</h4>
+                                    <p>If the missing side is the denominator in the ratio, divide the known numerator side by the trig ratio.</p>
+                                    <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{opposite}}{\sin(A)}\)</p>
+                                    <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{adjacent}}{\cos(A)}\)</p>
+                                    <p class="guide-formula">\(\text{adjacent}=\frac{\text{opposite}}{\tan(A)}\)</p>
+                                </article>
+                                <article class="chapter13-guide-card">
+                                    <h4>Two sides known: use \(a^2+b^2=c^2\)</h4>
+                                    <p>Add the leg squares when finding the hypotenuse. Subtract the known leg square when finding a missing leg.</p>
                                     <p class="guide-formula">\(c=\sqrt{a^2+b^2}\)</p>
                                     <p class="guide-formula">\(a=\sqrt{c^2-b^2}\)</p>
                                     <p class="guide-formula">\(b=\sqrt{c^2-a^2}\)</p>
                                 </article>
                             </div>
+                            <ol>
+                                <li>Identify the given angle (A or B) and mark each known and unknown side.</li>
+                                <li>Choose the ratio containing the known side and the missing side.</li>
+                                <li>Rearrange first: multiply for an unknown numerator; divide for an unknown denominator.</li>
+                                <li>Substitute, calculate in degree mode, and round only the final answer.</li>
+                            </ol>
                         </section>
 
                         <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-5">
@@ -8269,7 +8283,7 @@ const chapter13Lessons = [
         id: "solving",
         title: "Solving right triangles",
         exampleObjectiveId: "find-sides",
-        concept: "Choose the ratio containing the known and unknown sides. Rearrange it to isolate an unknown side; use \\(\\sin^{-1}\\), \\(\\cos^{-1}\\), or \\(\\tan^{-1}\\) when finding an angle from a side ratio. The two acute angles in a right triangle add to \\(90^\\circ\\)."
+        concept: "Label opposite, adjacent, and hypotenuse relative to the given angle A or B. Choose SOH–CAH–TOA to connect the known and missing sides. In the formulas below, replace A with B when angle B is given. If the missing side is a numerator, multiply: \\(\\text{opposite}=\\text{hypotenuse}\\cdot\\sin(A)\\), \\(\\text{adjacent}=\\text{hypotenuse}\\cdot\\cos(A)\\), or \\(\\text{opposite}=\\text{adjacent}\\cdot\\tan(A)\\). If it is a denominator, divide: \\(\\text{hypotenuse}=\\frac{\\text{opposite}}{\\sin(A)}\\), \\(\\text{hypotenuse}=\\frac{\\text{adjacent}}{\\cos(A)}\\), or \\(\\text{adjacent}=\\frac{\\text{opposite}}{\\tan(A)}\\). When two sides are known, use \\(c=\\sqrt{a^2+b^2}\\) for the hypotenuse or \\(a=\\sqrt{c^2-b^2}\\), \\(b=\\sqrt{c^2-a^2}\\) for a leg. Use an inverse ratio for a missing angle; the two acute angles add to \\(90^\\circ\\)."
     },
     {
         id: "applications",
@@ -8594,9 +8608,7 @@ function renderChapter13Guide() {
         );
         if (!example) throw new Error(`No worked example is available for Chapter 13 lesson: ${lesson.title}`);
 
-        const explanationSteps = getStudentExplanation(example)
-            .split(/(?<=[.!?])\s+/)
-            .filter(step => step.trim());
+        const explanationSteps = getStudentExplanationSteps(example);
         if (explanationSteps.length === 0) throw new Error(`Worked example has no solution steps: ${example.id}`);
 
         const topic = document.createElement('details');
@@ -9804,7 +9816,7 @@ function getStudentExplanation(q) {
         explanation = `Use c² = a² + b². For a missing leg, subtract the known leg's square from c². ${explanation}`;
     } else if (q.category === "Trig Ratios" || q.category === "Evaluate Trig Ratios") {
         explanation = `Use SOH–CAH–TOA and evaluate in degree mode. ${explanation}`;
-    } else if (q.category === "Trig Missing Sides" || q.category === "Trig Missing Angles" || q.category === "Inverse Trig") {
+    } else if (q.category === "Trig Missing Angles" || q.category === "Inverse Trig") {
         explanation = `Choose the ratio that matches the known and unknown sides, then solve. ${explanation}`;
     } else if (q.category === "Solve Right Triangle") {
         explanation = `Find the missing side first, then use an inverse ratio for an acute angle. ${explanation}`;
@@ -9815,14 +9827,65 @@ function getStudentExplanation(q) {
     return explanation;
 }
 
+function getStudentExplanationSteps(q) {
+    const explanationSteps = getStudentExplanation(q)
+        .split(/(?<=[.!?])\s+/)
+        .filter(step => step.trim());
+
+    if (q.category === "Trig Missing Sides") {
+        const strategySteps = [
+            "Label the opposite, adjacent, and hypotenuse sides relative to the given angle A or B.",
+            "Choose the SOH, CAH, or TOA ratio that contains both the known side and the missing side."
+        ];
+        const targetMatch = q.stem.match(/Find side ([abc])\b/i);
+        const targetSide = targetMatch ? targetMatch[1].toLowerCase() : undefined;
+        const equationOperations = Array.from(getStudentExplanation(q).matchAll(
+            /\b([abc])\s*=\s*[^=]*?(×|\*|÷|\/)\s*(sin|cos|tan)\s*\(/gi
+        ));
+        const relevantOperations = targetSide
+            ? equationOperations.filter(match => match[1].toLowerCase() === targetSide)
+            : equationOperations;
+        if (relevantOperations.length) {
+            const angleName = q.stem.match(/∠\s*([A-Z])/i)?.[1] || "A";
+            const ratioNames = { sin: "sine", cos: "cosine", tan: "tangent" };
+            relevantOperations.forEach(([, side, operation, ratio]) => {
+                strategySteps.push(operation === "÷" || operation === "/"
+                    ? `For side ${side}, divide the known side by ${ratioNames[ratio.toLowerCase()]} of angle ${angleName}.`
+                    : `For side ${side}, multiply the other known side by ${ratioNames[ratio.toLowerCase()]} of angle ${angleName}.`);
+            });
+        } else {
+            strategySteps.push("Rearrange before substituting: multiply when the missing side is a numerator; divide when it is a denominator.");
+        }
+        return [...strategySteps, ...explanationSteps];
+    }
+
+    if (q.category === "Pythagorean Theorem") {
+        return [
+            "Identify the hypotenuse c, opposite the right angle, and the two legs a and b.",
+            "Choose the formula for the missing side: add the leg squares for c; subtract the known leg square from c² for a missing leg.",
+            ...explanationSteps
+        ];
+    }
+
+    if (q.category === "Solve Right Triangle") {
+        return [
+            "Find the missing side first: use c = √(a² + b²) for the hypotenuse, or subtract the known leg square from c² for a missing leg.",
+            "After finding the sides, use a matching inverse trigonometric ratio for one acute angle; subtract it from 90° to find the other.",
+            ...explanationSteps
+        ];
+    }
+
+    return explanationSteps;
+}
+
 function getStudentHint(q) {
     const hints = {
         "Side Identification": "Locate the right angle first: the side across from it is the hypotenuse. Relative to the named acute angle, the adjacent side touches that angle and the opposite side is across from it.",
-        "Pythagorean Theorem": "Identify the hypotenuse before choosing a formula. Use a² + b² = c²; if a leg is missing, isolate its square before taking the square root.",
+        "Pythagorean Theorem": "Identify c, the side opposite the right angle. If c is missing, use c = √(a² + b²). If a leg is missing, subtract the other leg's square from c², then take the square root. Round only the final value.",
         "Trig Ratios": "Use SOH–CAH–TOA to match the requested sine, cosine, or tangent to the correct pair of sides.",
-        "Trig Missing Sides": "Label the known and unknown sides relative to the given angle. Choose the ratio containing both, then rearrange it to isolate the missing side.",
+        "Trig Missing Sides": "Label opposite, adjacent, and hypotenuse relative to angle A or B. Choose SOH, CAH, or TOA to connect the known and missing sides. If the missing side is a numerator, multiply (for example, opposite = hypotenuse × sine of the given angle). If it is a denominator, divide (for example, hypotenuse = opposite ÷ sine of the given angle). Substitute the known values, use degree mode, and round only the final answer.",
         "Trig Missing Angles": "Identify the opposite, adjacent, and hypotenuse sides for the requested angle. Use their ratio with the matching inverse trigonometric function.",
-        "Solve Right Triangle": "Find the missing side with the Pythagorean theorem first. Then use an inverse trigonometric ratio for one acute angle; the two acute angles sum to 90°.",
+        "Solve Right Triangle": "Find the missing side first: add the leg squares for c, or subtract the known leg square from c² to find a leg. Then use a matching inverse ratio for one acute angle and subtract it from 90° to find the other.",
         "Word Problem": "Sketch a right triangle from the situation. Mark the known distance, height, or line of sight, then identify the sides relative to the angle before choosing a ratio.",
         "Evaluate Trig Ratios": "Set the calculator to degree mode. Enter the indicated sine, cosine, or tangent and round only as the question requests.",
         "Inverse Trig": "Set the calculator to degree mode. Match the given ratio to sine, cosine, or tangent, then use its inverse to find the acute angle."
@@ -9870,10 +9933,7 @@ function showFeedback(q, userAns) {
         ? 'Correct!'
         : `Not quite. Correct answer: ${q.correct}) ${((correctOption && correctOption.text) || q.correct).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()}`, renderChapter13Math);
 
-    const explanation = getStudentExplanation(q);
-    const steps = explanation
-        .split(/(?<=[.!?])\s+/)
-        .filter(step => step.trim());
+    const steps = getStudentExplanationSteps(q);
     const hint = q.hint || (renderChapter13Math
         ? getStudentHint(q)
         : 'Use the information given in the question and apply the matching measurement rule.');
