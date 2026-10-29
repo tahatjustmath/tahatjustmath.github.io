@@ -4311,7 +4311,7 @@ function createStatementQuestions() {
     const lower = vertex => vertex.toLowerCase();
     const fnRatio = { sin: ["opposite", "hypotenuse"], cos: ["adjacent", "hypotenuse"], tan: ["opposite", "adjacent"] };
     const ratioText = (fn, num, den, angle) =>
-        `${fn}(${angle}) = <span class="frac"><span class="frac-num">length of the ${num} side to angle ${angle}</span><span class="frac-den">length of the ${den} side to angle ${angle}</span></span>`;
+        `${fn}(${angle}) = \\frac{length of the ${num} side to angle ${angle}}{length of the ${den} side to angle ${angle}}`;
     const shortName = { o: "opposite", a: "adjacent", h: "hypotenuse" };
     const sideSides = vertices => ({ hyp: lower(vertices[2]), legA: lower(vertices[1]), legB: lower(vertices[0]) });
     const place = (items, correctIndex) => {
