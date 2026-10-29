@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tahat Just Math | Online Math Question Bank</title>
     <meta name="description" content="Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments from Tahat Just Math.">
+    <link rel="canonical" href="https://tahatjustmath.github.io/">
     <meta name="theme-color" content="#18324b">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tahat Just Math">
@@ -3739,6 +3740,8 @@
                 <ul>
                     <li><a href="index.html">Subjects directory</a></li>
                     <li><a href="#site-header">Back to top</a></li>
+                    <li><a href="privacy.html">Privacy policy</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="https://github.com/tahatjustmath/tahatjustmath.github.io">GitHub project</a></li>
                 </ul>
             </nav>
@@ -8908,6 +8911,21 @@ function configureChapterBank() {
     document.title = showSubjectPortal
         ? 'Subject Catalog · Tahat Just Math'
         : `${title} · Tahat Just Math`;
+    const canonicalUrl = showSubjectPortal
+        ? 'https://tahatjustmath.github.io/'
+        : new URL(`index.html?chapter=${selectedChapter}`, 'https://tahatjustmath.github.io/').href;
+    document.querySelector('link[rel="canonical"]').href = canonicalUrl;
+    document.querySelector('meta[property="og:url"]').content = canonicalUrl;
+    document.querySelector('meta[name="description"]').content = showSubjectPortal
+        ? 'Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments from Tahat Just Math.'
+        : isChapter13
+            ? 'Practice right-triangle trigonometry with 427 questions, guided examples, interactive triangle tools, and step-by-step solutions.'
+            : isChapter4
+                ? 'Practice accuracy and measurement with 126 interactive questions on significant digits, precision, measurement error, and measuring tools.'
+                : 'Practice graphs, statistics, and measurement with 248 interactive questions and worked solutions.';
+    document.querySelector('meta[property="og:title"]').content = document.title;
+    document.querySelector('meta[property="og:description"]').content =
+        document.querySelector('meta[name="description"]').content;
 }
 
 function renderQuestionBank() {
