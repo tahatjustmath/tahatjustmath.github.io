@@ -193,6 +193,12 @@
                 linear-gradient(118deg, #18324b 0%, #234a62 100%);
         }
 
+        .bank-hero.chapter13-hero {
+            background:
+                radial-gradient(ellipse at 82% 18%, rgba(35, 73, 113, 0.3), transparent 38%),
+                linear-gradient(118deg, #071629 0%, #0c2340 100%);
+        }
+
         .bank-hero::after {
             content: "∠";
             position: absolute;
@@ -206,10 +212,31 @@
             pointer-events: none;
         }
 
+        .bank-hero.chapter13-hero::after {
+            content: none;
+        }
+
+        .bank-hero-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .bank-hero.chapter13-hero .bank-hero-layout {
+            grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.7fr);
+            align-items: center;
+            gap: clamp(28px, 5vw, 72px);
+        }
+
         .bank-hero-content {
             position: relative;
             z-index: 1;
             max-width: 660px;
+        }
+
+        .bank-hero.chapter13-hero .bank-hero-content {
+            max-width: 760px;
         }
 
         .bank-eyebrow,
@@ -232,10 +259,55 @@
             line-height: 1.08;
         }
 
+        .bank-hero.chapter13-hero h2 {
+            max-width: 760px;
+            font-size: clamp(2rem, 4vw, 3.65rem);
+            line-height: 0.98;
+        }
+
         .bank-hero-description {
             max-width: 590px;
             color: #e0e9ed;
             font-size: 1.02rem;
+        }
+
+        .bank-hero.chapter13-hero .bank-eyebrow {
+            color: #78cf39;
+        }
+
+        .bank-hero.chapter13-hero .learning-outcomes li::before {
+            color: #78c936;
+        }
+
+        .chapter13-hero-visual {
+            display: flex;
+            min-height: 270px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 22px;
+            border: 1px solid rgba(201, 215, 229, 0.18);
+            border-radius: 20px;
+            background: rgba(8, 24, 43, 0.62);
+        }
+
+        .chapter13-hero-visual[hidden] {
+            display: none;
+        }
+
+        .chapter13-hero-visual svg {
+            width: min(100%, 300px);
+            height: auto;
+        }
+
+        .chapter13-hero-visual figcaption {
+            margin-top: 12px;
+            color: #cbd6e2;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 0.94rem;
+            font-style: italic;
+            font-weight: 600;
+            text-align: center;
         }
 
         .learning-outcomes {
@@ -549,6 +621,84 @@
 
         .chapter13-quiz-card .btn:hover {
             background: #e5c987;
+        }
+
+        .chapter13-random-quiz {
+            display: grid;
+            grid-template-columns: minmax(190px, 1fr) auto;
+            gap: 8px 12px;
+            align-items: end;
+            max-width: 500px;
+            margin-top: 20px;
+            padding: 10px 12px;
+            border: 1px solid rgba(223, 233, 239, 0.2);
+            border-radius: 14px;
+            background: rgba(7, 22, 41, 0.58);
+        }
+
+        .chapter13-random-quiz label {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            color: #e5edf2;
+            font-size: 0.9rem;
+            font-weight: 650;
+        }
+
+        .chapter13-random-quiz input {
+            width: 96px;
+            min-height: 40px;
+            padding: 7px 10px;
+            border: 1px solid #53677d;
+            border-radius: 8px;
+            outline: none;
+            background: #1c2a3c;
+            color: #80d23d;
+            font: inherit;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .chapter13-random-quiz input:focus-visible {
+            outline: 3px solid #d9b66f;
+            outline-offset: 2px;
+        }
+
+        .chapter13-random-quiz button {
+            min-height: 40px;
+            padding: 8px 18px;
+            border: 0;
+            border-radius: 8px;
+            background: #78c936;
+            color: #10220a;
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .chapter13-random-quiz button:hover {
+            background: #91dc51;
+        }
+
+        .chapter13-random-quiz button:focus-visible {
+            outline: 3px solid #d9b66f;
+            outline-offset: 2px;
+        }
+
+        .chapter13-random-quiz-hint,
+        .chapter13-random-quiz-error {
+            grid-column: 1 / -1;
+            color: #cbd6e2;
+            font-size: 0.78rem;
+        }
+
+        .chapter13-random-quiz-error {
+            color: #fecaca;
+        }
+
+        .chapter13-random-quiz-error:empty {
+            display: none;
         }
 
         .chapter13-learning-guide {
@@ -1474,6 +1624,28 @@
                 padding: 32px 20px;
             }
 
+            .bank-hero.chapter13-hero .bank-hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 24px;
+            }
+
+            .chapter13-hero-visual {
+                min-height: 205px;
+                padding: 16px;
+            }
+
+            .chapter13-hero-visual svg {
+                width: min(100%, 230px);
+            }
+
+            .chapter13-random-quiz {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter13-random-quiz button {
+                width: 100%;
+            }
+
             .learning-outcomes {
                 grid-template-columns: 1fr;
                 gap: 7px;
@@ -1582,6 +1754,16 @@
         }
 
         @media (min-width: 521px) and (max-width: 820px) {
+            .bank-hero.chapter13-hero .bank-hero-layout {
+                grid-template-columns: minmax(0, 1.3fr) minmax(210px, 0.8fr);
+                gap: 22px;
+            }
+
+            .chapter13-hero-visual {
+                min-height: 220px;
+                padding: 14px;
+            }
+
             .chapter-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -2282,22 +2464,39 @@
 
     <main class="bank-card" id="bank-screen">
         <section class="bank-hero" aria-labelledby="bank-hero-title">
-            <div class="bank-hero-content">
-                <p class="bank-eyebrow">Tahat Just Math · Self-paced practice</p>
-                <h2 id="bank-hero-title">Interactive Mathematics Simulation</h2>
-                <p class="bank-hero-description">Test questions, verify solutions step-by-step, and monitor live metrics.</p>
-                <ul class="learning-outcomes" id="chapter13-learning-outcomes" aria-label="What you will learn" hidden>
-                    <li>Identify the hypotenuse, opposite, and adjacent sides.</li>
-                    <li>Use the Pythagorean theorem and simplify radicals.</li>
-                    <li>Apply SOH–CAH–TOA and inverse trigonometric ratios.</li>
-                    <li>Model real situations with angles of elevation and depression.</li>
-                </ul>
-                <div class="bank-hero-actions">
-                    <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
-                        Start Full Assessment · <span id="bank-total-count">427</span> Questions
-                    </button>
-                    <span class="bank-question-total"><span id="hero-question-count">427</span> questions · <span id="hero-objective-count">8</span> learning objectives</span>
+            <div class="bank-hero-layout">
+                <div class="bank-hero-content">
+                    <p class="bank-eyebrow">Tahat Just Math · Self-paced practice</p>
+                    <h2 id="bank-hero-title">Interactive Mathematics Simulation</h2>
+                    <p class="bank-hero-description">Test questions, verify solutions step-by-step, and monitor live metrics.</p>
+                    <ul class="learning-outcomes" id="chapter13-learning-outcomes" aria-label="What you will learn" hidden>
+                        <li>Identify hypotenuse, opposite, and adjacent sides.</li>
+                        <li>Use Pythagorean theorem &amp; simplify radicals.</li>
+                        <li>Apply SOH–CAH–TOA and inverse ratios.</li>
+                        <li>Model real situations with angles of elevation/depression.</li>
+                    </ul>
+                    <div class="bank-hero-actions">
+                        <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
+                            Start Full Assessment · <span id="bank-total-count">427</span> Questions
+                        </button>
+                        <span class="bank-question-total"><span id="hero-question-count">427</span> questions · <span id="hero-objective-count">8</span> learning objectives</span>
+                    </div>
                 </div>
+                <figure class="chapter13-hero-visual" id="chapter13-hero-visual" hidden>
+                    <svg viewBox="0 0 320 250" role="img" aria-labelledby="chapter13-hero-triangle-title chapter13-hero-triangle-description">
+                        <title id="chapter13-hero-triangle-title">Right triangle with angle theta</title>
+                        <desc id="chapter13-hero-triangle-description">A right triangle diagram introducing Chapter 13 trigonometry.</desc>
+                        <line x1="30" y1="210" x2="284" y2="210" stroke="#f8fafc" stroke-width="5"/>
+                        <line x1="284" y1="210" x2="284" y2="24" stroke="#f8fafc" stroke-width="5"/>
+                        <line x1="30" y1="210" x2="284" y2="24" stroke="#f8fafc" stroke-width="5"/>
+                        <path d="M 257 210 L 257 183 L 284 183" fill="none" stroke="#78c936" stroke-width="4"/>
+                        <path d="M 72 210 A 42 42 0 0 0 64 185" fill="none" stroke="#e0b82f" stroke-width="4"/>
+                        <text x="83" y="194" fill="#e0b82f" font-size="24" font-weight="800">θ</text>
+                        <circle cx="197" cy="116" r="25" fill="#0b1c31" stroke="#78c936" stroke-width="4"/>
+                        <path d="M 197 102 L 197 130 M 183 116 L 211 116" stroke="#78c936" stroke-width="3"/>
+                    </svg>
+                    <figcaption>Chapter 13: Trigonometry &amp; Right Triangles</figcaption>
+                </figure>
             </div>
         </section>
         <nav class="chapter-navigation" aria-labelledby="chapter-navigation-title">
@@ -2618,7 +2817,15 @@
                 <div class="chapter13-quiz-card">
                     <span class="section-eyebrow">Chapter assessment</span>
                     <h3>Ready to check your understanding?</h3>
-                    <p>The full Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across all learning objectives. Start a full assessment from the button below, or practice one objective at a time in the Practice Problems tab.</p>
+                    <p>The Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across all learning objectives. Generate a fresh quiz with a random selection of questions, or use the full assessment to answer every question.</p>
+                    <form class="chapter13-random-quiz" id="chapter13-random-quiz-form" novalidate>
+                        <label for="chapter13-random-quiz-count">Number of Questions (Min 10):
+                            <input id="chapter13-random-quiz-count" name="questionCount" type="number" min="10" max="427" step="1" value="315" inputmode="numeric" required>
+                        </label>
+                        <button type="submit">Generate</button>
+                        <p class="chapter13-random-quiz-hint" id="chapter13-random-quiz-hint">Choose 10–427 questions. Each quiz uses a random, non-repeating selection.</p>
+                        <p class="chapter13-random-quiz-error" id="chapter13-random-quiz-error" role="alert" aria-live="polite"></p>
+                    </form>
                     <button class="btn" type="button" onclick="startFullAssessment()">Start the Chapter 13 Assessment · <span id="chapter13-quiz-count">427</span> Questions</button>
                 </div>
             </div>
@@ -7747,6 +7954,10 @@ document.addEventListener("DOMContentLoaded", () => {
     renderQuestionBank();
     initializeChapter13Navigation();
     initializeChapter13Tools();
+    document.getElementById('chapter13-random-quiz-form').addEventListener('submit', event => {
+        event.preventDefault();
+        generateRandomChapterQuiz();
+    });
 });
 
 function getQuestionsForChapter(chapter) {
@@ -7771,6 +7982,8 @@ function configureChapterBank() {
             ? "Chapter 15 & CG: Graphs, Statistics, and Measurement"
             : "Chapter 13: Trigonometry & Right Triangles";
     const chapterQuestions = getSelectedChapterQuestions();
+    document.querySelector('.bank-hero').classList.toggle('chapter13-hero', isChapter13);
+    document.getElementById('chapter13-hero-visual').hidden = !isChapter13;
     document.getElementById('current-chapter-title').textContent = title;
     document.getElementById('bank-hero-title').textContent = isChapter13
         ? "Learn and Practice Right-Triangle Trigonometry"
@@ -7807,6 +8020,10 @@ function renderQuestionBank() {
     practicePanel.hidden = isChapter13;
     document.getElementById('chapter13-quiz-question-count').textContent = chapterQuestions.length;
     document.getElementById('chapter13-quiz-count').textContent = chapterQuestions.length;
+    const randomQuizCount = document.getElementById('chapter13-random-quiz-count');
+    randomQuizCount.max = chapterQuestions.length;
+    document.getElementById('chapter13-random-quiz-hint').textContent =
+        `Choose 10–${chapterQuestions.length} questions. Each quiz uses a random, non-repeating selection.`;
     if (isChapter13) {
         practicePanel.setAttribute('role', 'tabpanel');
         practicePanel.setAttribute('aria-labelledby', 'chapter13-tab-practice');
@@ -8300,6 +8517,36 @@ function startFullAssessment() {
             ? "Chapter 15 & CG: Graphs, Statistics, and Measurement"
             : "Chapter 13: Trigonometry & Right Triangles";
     beginAssessment(getSelectedChapterQuestions(), title);
+}
+
+function generateRandomChapterQuiz() {
+    const countInput = document.getElementById('chapter13-random-quiz-count');
+    const errorMessage = document.getElementById('chapter13-random-quiz-error');
+    const chapterQuestions = getSelectedChapterQuestions();
+    const requestedCount = countInput.valueAsNumber;
+
+    if (selectedChapter !== "13") {
+        errorMessage.textContent = 'Random quiz generation is available for Chapter 13.';
+        countInput.setAttribute('aria-invalid', 'true');
+        return;
+    }
+    if (!Number.isInteger(requestedCount) || requestedCount < 10 || requestedCount > chapterQuestions.length) {
+        errorMessage.textContent = `Enter a whole number from 10 to ${chapterQuestions.length}.`;
+        countInput.setAttribute('aria-invalid', 'true');
+        countInput.focus();
+        return;
+    }
+
+    const shuffledQuestions = chapterQuestions.slice();
+    for (let index = 0; index < requestedCount; index += 1) {
+        const randomIndex = index + Math.floor(Math.random() * (shuffledQuestions.length - index));
+        [shuffledQuestions[index], shuffledQuestions[randomIndex]] =
+            [shuffledQuestions[randomIndex], shuffledQuestions[index]];
+    }
+
+    errorMessage.textContent = '';
+    countInput.setAttribute('aria-invalid', 'false');
+    beginAssessment(shuffledQuestions.slice(0, requestedCount), 'Chapter 13: Random Quiz');
 }
 
 function startObjectivePractice(objectiveId) {
