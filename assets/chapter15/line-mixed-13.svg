@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 470">
+<rect width="100%" height="100%" fill="white"/>
+<text x="410.0" y="28" text-anchor="middle" font-family="Arial" font-size="21">Weekly Savings</text>
+<line x1="72" y1="395.0" x2="796" y2="395.0" stroke="#999" opacity=".65"/><text x="62" y="400.0" text-anchor="end" font-family="Arial" font-size="13">10</text>
+<line x1="72" y1="381.4" x2="796" y2="381.4" stroke="#999" opacity=".65"/><text x="62" y="386.4" text-anchor="end" font-family="Arial" font-size="13">15</text>
+<line x1="72" y1="367.8" x2="796" y2="367.8" stroke="#999" opacity=".65"/><text x="62" y="372.8" text-anchor="end" font-family="Arial" font-size="13">20</text>
+<line x1="72" y1="354.2" x2="796" y2="354.2" stroke="#999" opacity=".65"/><text x="62" y="359.2" text-anchor="end" font-family="Arial" font-size="13">25</text>
+<line x1="72" y1="340.6" x2="796" y2="340.6" stroke="#999" opacity=".65"/><text x="62" y="345.6" text-anchor="end" font-family="Arial" font-size="13">30</text>
+<line x1="72" y1="327.0" x2="796" y2="327.0" stroke="#999" opacity=".65"/><text x="62" y="332.0" text-anchor="end" font-family="Arial" font-size="13">35</text>
+<line x1="72" y1="313.4" x2="796" y2="313.4" stroke="#999" opacity=".65"/><text x="62" y="318.4" text-anchor="end" font-family="Arial" font-size="13">40</text>
+<line x1="72" y1="299.8" x2="796" y2="299.8" stroke="#999" opacity=".65"/><text x="62" y="304.8" text-anchor="end" font-family="Arial" font-size="13">45</text>
+<line x1="72" y1="286.2" x2="796" y2="286.2" stroke="#999" opacity=".65"/><text x="62" y="291.2" text-anchor="end" font-family="Arial" font-size="13">50</text>
+<line x1="72" y1="272.6" x2="796" y2="272.6" stroke="#999" opacity=".65"/><text x="62" y="277.6" text-anchor="end" font-family="Arial" font-size="13">55</text>
+<line x1="72" y1="259.0" x2="796" y2="259.0" stroke="#999" opacity=".65"/><text x="62" y="264.0" text-anchor="end" font-family="Arial" font-size="13">60</text>
+<line x1="72" y1="245.4" x2="796" y2="245.4" stroke="#999" opacity=".65"/><text x="62" y="250.4" text-anchor="end" font-family="Arial" font-size="13">65</text>
+<line x1="72" y1="231.8" x2="796" y2="231.8" stroke="#999" opacity=".65"/><text x="62" y="236.8" text-anchor="end" font-family="Arial" font-size="13">70</text>
+<line x1="72" y1="218.2" x2="796" y2="218.2" stroke="#999" opacity=".65"/><text x="62" y="223.2" text-anchor="end" font-family="Arial" font-size="13">75</text>
+<line x1="72" y1="204.6" x2="796" y2="204.6" stroke="#999" opacity=".65"/><text x="62" y="209.6" text-anchor="end" font-family="Arial" font-size="13">80</text>
+<line x1="72" y1="191.0" x2="796" y2="191.0" stroke="#999" opacity=".65"/><text x="62" y="196.0" text-anchor="end" font-family="Arial" font-size="13">85</text>
+<line x1="72" y1="177.4" x2="796" y2="177.4" stroke="#999" opacity=".65"/><text x="62" y="182.4" text-anchor="end" font-family="Arial" font-size="13">90</text>
+<line x1="72" y1="163.8" x2="796" y2="163.8" stroke="#999" opacity=".65"/><text x="62" y="168.8" text-anchor="end" font-family="Arial" font-size="13">95</text>
+<line x1="72" y1="150.2" x2="796" y2="150.2" stroke="#999" opacity=".65"/><text x="62" y="155.2" text-anchor="end" font-family="Arial" font-size="13">100</text>
+<line x1="72" y1="136.6" x2="796" y2="136.6" stroke="#999" opacity=".65"/><text x="62" y="141.6" text-anchor="end" font-family="Arial" font-size="13">105</text>
+<line x1="72" y1="123.0" x2="796" y2="123.0" stroke="#999" opacity=".65"/><text x="62" y="128.0" text-anchor="end" font-family="Arial" font-size="13">110</text>
+<line x1="72" y1="109.4" x2="796" y2="109.4" stroke="#999" opacity=".65"/><text x="62" y="114.4" text-anchor="end" font-family="Arial" font-size="13">115</text>
+<line x1="72" y1="95.8" x2="796" y2="95.8" stroke="#999" opacity=".65"/><text x="62" y="100.8" text-anchor="end" font-family="Arial" font-size="13">120</text>
+<line x1="72" y1="82.2" x2="796" y2="82.2" stroke="#999" opacity=".65"/><text x="62" y="87.2" text-anchor="end" font-family="Arial" font-size="13">125</text>
+<line x1="72" y1="68.6" x2="796" y2="68.6" stroke="#999" opacity=".65"/><text x="62" y="73.6" text-anchor="end" font-family="Arial" font-size="13">130</text>
+<line x1="72" y1="55.0" x2="796" y2="55.0" stroke="#999" opacity=".65"/><text x="62" y="60.0" text-anchor="end" font-family="Arial" font-size="13">135</text>
+<line x1="72.0" y1="55" x2="72.0" y2="395" stroke="#aaa" opacity=".45"/><text x="72.0" y="418" text-anchor="middle" font-family="Arial" font-size="12">1</text>
+<line x1="152.4" y1="55" x2="152.4" y2="395" stroke="#aaa" opacity=".45"/><text x="152.4" y="418" text-anchor="middle" font-family="Arial" font-size="12">2</text>
+<line x1="232.9" y1="55" x2="232.9" y2="395" stroke="#aaa" opacity=".45"/><text x="232.9" y="418" text-anchor="middle" font-family="Arial" font-size="12">3</text>
+<line x1="313.3" y1="55" x2="313.3" y2="395" stroke="#aaa" opacity=".45"/><text x="313.3" y="418" text-anchor="middle" font-family="Arial" font-size="12">4</text>
+<line x1="393.8" y1="55" x2="393.8" y2="395" stroke="#aaa" opacity=".45"/><text x="393.8" y="418" text-anchor="middle" font-family="Arial" font-size="12">5</text>
+<line x1="474.2" y1="55" x2="474.2" y2="395" stroke="#aaa" opacity=".45"/><text x="474.2" y="418" text-anchor="middle" font-family="Arial" font-size="12">6</text>
+<line x1="554.7" y1="55" x2="554.7" y2="395" stroke="#aaa" opacity=".45"/><text x="554.7" y="418" text-anchor="middle" font-family="Arial" font-size="12">7</text>
+<line x1="635.1" y1="55" x2="635.1" y2="395" stroke="#aaa" opacity=".45"/><text x="635.1" y="418" text-anchor="middle" font-family="Arial" font-size="12">8</text>
+<line x1="715.6" y1="55" x2="715.6" y2="395" stroke="#aaa" opacity=".45"/><text x="715.6" y="418" text-anchor="middle" font-family="Arial" font-size="12">9</text>
+<line x1="796.0" y1="55" x2="796.0" y2="395" stroke="#aaa" opacity=".45"/><text x="796.0" y="418" text-anchor="middle" font-family="Arial" font-size="12">10</text>
+<polyline points="72.0,367.8 152.4,327.0 232.9,308.0 313.3,272.6 393.8,237.2 474.2,218.2 554.7,182.8 635.1,161.1 715.6,123.0 796.0,82.2" fill="none" stroke="#476db3" stroke-width="3"/>
+<circle cx="72.0" cy="367.8" r="5" fill="#476db3"/>
+<circle cx="152.4" cy="327.0" r="5" fill="#476db3"/>
+<circle cx="232.9" cy="308.0" r="5" fill="#476db3"/>
+<circle cx="313.3" cy="272.6" r="5" fill="#476db3"/>
+<circle cx="393.8" cy="237.2" r="5" fill="#476db3"/>
+<circle cx="474.2" cy="218.2" r="5" fill="#476db3"/>
+<circle cx="554.7" cy="182.8" r="5" fill="#476db3"/>
+<circle cx="635.1" cy="161.1" r="5" fill="#476db3"/>
+<circle cx="715.6" cy="123.0" r="5" fill="#476db3"/>
+<circle cx="796.0" cy="82.2" r="5" fill="#476db3"/>
+<text x="410.0" y="455" text-anchor="middle" font-family="Arial" font-size="16">Week</text>
+<text x="18" y="235.0" transform="rotate(-90 18 235.0)" text-anchor="middle" font-family="Arial" font-size="16">Savings ($)</text>
+</svg>
