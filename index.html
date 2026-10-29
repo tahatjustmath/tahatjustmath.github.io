@@ -11,7 +11,7 @@
     <meta property="og:title" content="Tahat Just Math | Online Math Question Bank">
     <meta property="og:description" content="Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments.">
     <meta property="og:url" content="https://tahatjustmath.github.io/">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/tahatjustmath-avatar.png" type="image/png">
     <style>
         :root {
             --primary: #18324b;
@@ -70,16 +70,13 @@
         }
 
         .brand-icon {
+            display: block;
             width: 42px;
             height: 42px;
-            background: var(--primary-light);
-            color: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .brand-title h1 {
@@ -1023,16 +1020,70 @@
         .feedback-header {
             font-weight: 700;
             font-size: 1.05rem;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .feedback-body-en {
+        .solution-toggle {
+            padding: 8px 12px;
+            border: 1px solid currentColor;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            color: inherit;
+            font: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .solution-toggle:hover {
+            background: white;
+        }
+
+        .solution-toggle:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: 3px;
+        }
+
+        .solution-panel {
+            margin-top: 12px;
+            padding: 16px;
+            border: 1px solid rgba(32, 51, 68, 0.12);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--neutral-dark);
             font-size: 0.9rem;
-            line-height: 1.5;
-            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .solution-panel h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .solution-hint {
+            margin-bottom: 10px;
+        }
+
+        .solution-steps {
+            padding-left: 1.35rem;
+        }
+
+        .solution-steps li + li {
+            margin-top: 6px;
+        }
+
+        .math-render-warning {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border: 1px solid #e6c46f;
+            border-radius: 8px;
+            background: #fff8e6;
+            color: #604a14;
+            font-size: 0.9rem;
         }
 
         /* Results Screen */
@@ -1173,7 +1224,7 @@
     <!-- Header -->
     <header>
         <div class="brand">
-            <div class="brand-icon">△</div>
+            <img class="brand-icon" src="assets/tahatjustmath-avatar.png" alt="Tahat Just Math logo">
             <div class="brand-title">
                 <h1 id="bank-title">Tahat Just Math</h1>
                 <p><span id="current-chapter-title">Chapter 13: Trigonometry &amp; Right Triangles</span> · Question Bank · <span id="header-question-count">427</span> questions</p>
@@ -1191,8 +1242,8 @@
         <section class="bank-hero" aria-labelledby="bank-hero-title">
             <div class="bank-hero-content">
                 <p class="bank-eyebrow">Tahat Just Math · Self-paced practice</p>
-                <h2 id="bank-hero-title">Study with clarity. Practice with purpose.</h2>
-                <p class="bank-hero-description">Build understanding one concept at a time with focused questions, clear feedback, and worked explanations.</p>
+                <h2 id="bank-hero-title">Interactive Mathematics Simulation</h2>
+                <p class="bank-hero-description">Test questions, verify solutions step-by-step, and monitor live metrics.</p>
                 <div class="bank-hero-actions">
                     <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
                         Start Full Assessment · <span id="bank-total-count">427</span> Questions
@@ -1284,6 +1335,9 @@
             </div>
             <div class="tag-badge" id="target-badge">Section 1</div>
         </div>
+        <div class="math-render-warning" id="math-render-warning" role="status" hidden>
+            Math notation could not be rendered. The original notation is still available in the question text.
+        </div>
 
         <div class="quiz-body">
             <!-- Rotated SVG Triangle Diagram Container -->
@@ -1303,8 +1357,11 @@
                 <span id="feedback-icon">✓</span>
                 <span id="feedback-status-text">Correct Answer!</span>
             </div>
-            <div class="feedback-body-en" id="feedback-en">
-                Review the worked solution below.
+            <div id="solution-controls" hidden>
+                <button class="solution-toggle" id="solution-toggle" type="button" aria-expanded="false" aria-controls="solution-content" onclick="toggleSolution()">
+                    Toggle solution
+                </button>
+                <div class="solution-panel" id="solution-content" hidden></div>
             </div>
         </div>
 
@@ -6026,8 +6083,63 @@ function correctChapter4ExtractedMath() {
 
 correctChapter4ExtractedMath();
 
+let mathJaxLoadPromise;
+
+function loadMathJax() {
+    if (window.MathJax?.typesetPromise) return Promise.resolve(window.MathJax);
+    if (mathJaxLoadPromise) return mathJaxLoadPromise;
+
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        startup: { typeset: false }
+    };
+
+    mathJaxLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+        script.async = true;
+        script.onload = () => resolve(window.MathJax);
+        script.onerror = () => {
+            mathJaxLoadPromise = null;
+            reject(new Error('MathJax could not be loaded from jsDelivr.'));
+        };
+        document.head.appendChild(script);
+    });
+
+    return mathJaxLoadPromise;
+}
+
+function clearMathTypesetting(elements) {
+    if (window.MathJax?.typesetClear) window.MathJax.typesetClear(elements);
+}
+
+function typesetMathIn(elements) {
+    const roots = elements.filter(element =>
+        element && /\\\(|\\\[/.test(element.textContent || '')
+    );
+    if (roots.length === 0) return;
+
+    loadMathJax()
+        .then(mathJax => mathJax.typesetPromise(roots))
+        .then(() => {
+            document.getElementById('math-render-warning').hidden = true;
+        })
+        .catch(error => {
+            document.getElementById('math-render-warning').hidden = false;
+            console.error('Unable to render LaTeX with MathJax.', error);
+        });
+}
+
 function formatQuestionMath(text) {
     const tables = [];
+    const mathExpressions = [];
     text = text
         .replace(/<table class=\"question-table\">[\s\S]*?<\/table>/g, table => {
             const token = `__QUESTION_TABLE_${tables.length}__`;
@@ -6035,7 +6147,12 @@ function formatQuestionMath(text) {
             return token;
         })
         .replace(/<p>/g, " ")
-        .replace(/<\/p>/g, "");
+        .replace(/<\/p>/g, "")
+        .replace(/\\\([\s\S]+?\\\)|\\\[[\s\S]+?\\\]/g, expression => {
+            const token = `__QUESTION_MATH_${mathExpressions.length}__`;
+            mathExpressions.push(expression);
+            return token;
+        });
     const escapeHtml = value => value
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -6058,6 +6175,9 @@ function formatQuestionMath(text) {
         .replace(/\^2/g, "²");
     tables.forEach((table, index) => {
         formatted = formatted.replace(`__QUESTION_TABLE_${index}__`, table);
+    });
+    mathExpressions.forEach((expression, index) => {
+        formatted = formatted.replace(`__QUESTION_MATH_${index}__`, expression);
     });
     return formatted;
 }
@@ -6746,7 +6866,14 @@ function renderQuestionNav() {
 
 function renderQuestion(index) {
     const q = activeQuestions[index];
-    
+    const mathRoots = [
+        document.getElementById('question-stem'),
+        document.getElementById('diagram-box'),
+        document.getElementById('options-container')
+    ];
+    clearMathTypesetting([...mathRoots, document.getElementById('feedback-box')]);
+    document.getElementById('math-render-warning').hidden = true;
+
     document.getElementById('current-q-num').textContent = index + 1;
     document.getElementById('total-q-count').textContent = activeQuestions.length;
     const progressPercent = Math.round(((index + 1) / activeQuestions.length) * 100);
@@ -6811,6 +6938,7 @@ function renderQuestion(index) {
     }
 
     renderQuestionNav();
+    typesetMathIn(mathRoots);
 }
 
 function selectOption(optId) {
@@ -6925,11 +7053,19 @@ function getStudentExplanation(q) {
 
 function showFeedback(q, userAns) {
     const feedbackBox = document.getElementById('feedback-box');
+    const solutionControls = document.getElementById('solution-controls');
+    const solutionContent = document.getElementById('solution-content');
+    const solutionToggle = document.getElementById('solution-toggle');
+    clearMathTypesetting([feedbackBox]);
+    solutionContent.hidden = true;
+    solutionContent.innerHTML = '';
+    solutionToggle.setAttribute('aria-expanded', 'false');
+
     if (q.answerStatus === 'unresolved' || !q.correct) {
         feedbackBox.className = 'feedback-box';
         document.getElementById('feedback-icon').textContent = 'i';
         document.getElementById('feedback-status-text').textContent = 'Answer key unresolved for this imported question.';
-        document.getElementById('feedback-en').textContent = 'The original question and choices are preserved in the rendered source-page image. No score is assigned until the marked answer is verified.';
+        solutionControls.hidden = true;
         feedbackBox.style.display = 'block';
         return;
     }
@@ -6942,11 +7078,27 @@ function showFeedback(q, userAns) {
         ? 'Correct!'
         : `Not quite. Correct answer: ${q.correct}) ${((correctOption && correctOption.text) || q.correct).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()}`);
 
-    document.getElementById('feedback-en').innerHTML = formatQuestionMath(
-        `Hint: ${q.hint || 'Use the information given in the question and apply the matching measurement rule.'}\nHow to solve it\n${getStudentExplanation(q)}`
-    );
-
+    const explanation = getStudentExplanation(q);
+    const steps = explanation
+        .split(/(?<=[.!?])\s+/)
+        .filter(step => step.trim());
+    const hint = q.hint || 'Use the information given in the question and apply the matching measurement rule.';
+    solutionContent.innerHTML = `
+        <h3>Step-by-Step Solution</h3>
+        <p class="solution-hint"><strong>Hint:</strong> ${formatQuestionMath(hint)}</p>
+        <ol class="solution-steps">${steps.map(step => `<li>${formatQuestionMath(step)}</li>`).join('')}</ol>
+    `;
+    solutionControls.hidden = false;
     feedbackBox.style.display = 'block';
+    typesetMathIn([feedbackBox]);
+}
+
+function toggleSolution() {
+    const solutionContent = document.getElementById('solution-content');
+    const expanded = solutionContent.hidden;
+    solutionContent.hidden = !expanded;
+    document.getElementById('solution-toggle').setAttribute('aria-expanded', String(expanded));
+    if (expanded) typesetMathIn([solutionContent]);
 }
 
 // --- FINISH QUIZ & PREVIEW ANSWERS ---
