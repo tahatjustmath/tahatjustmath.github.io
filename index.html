@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tahat Just Math | Online Math Question Bank</title>
     <meta name="description" content="Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments from Tahat Just Math.">
-    <meta name="theme-color" content="#4f46e5">
+    <meta name="theme-color" content="#18324b">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tahat Just Math">
     <meta property="og:title" content="Tahat Just Math | Online Math Question Bank">
@@ -14,20 +14,20 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-light: #eef2ff;
-            --secondary: #0ea5e9;
-            --success: #10b981;
-            --success-light: #ecfdf5;
-            --danger: #ef4444;
-            --danger-light: #fef2f2;
-            --neutral-dark: #1e293b;
-            --neutral-muted: #64748b;
-            --neutral-light: #f8fafc;
-            --border-color: #e2e8f0;
-            --card-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
-            --radius: 16px;
+            --primary: #18324b;
+            --primary-hover: #10283e;
+            --primary-light: #eaf1f5;
+            --secondary: #147d78;
+            --success: #18764d;
+            --success-light: #eaf6ef;
+            --danger: #bd3b36;
+            --danger-light: #fff0ef;
+            --neutral-dark: #203344;
+            --neutral-muted: #607181;
+            --neutral-light: #f5f7f8;
+            --border-color: #dce4e8;
+            --card-shadow: 0 12px 32px -18px rgba(24, 50, 75, 0.28);
+            --radius: 18px;
         }
 
         * {
@@ -38,15 +38,15 @@
 
         body {
             font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-            background-color: #f1f5f9;
+            background-color: #f3f5f5;
             color: var(--neutral-dark);
             line-height: 1.5;
             min-height: 100vh;
-            padding: 24px 16px;
+            padding: 32px 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1120px;
             margin: 0 auto;
         }
 
@@ -54,8 +54,8 @@
         header {
             background: white;
             border-radius: var(--radius);
-            padding: 18px 24px;
-            margin-bottom: 24px;
+            padding: 18px 26px;
+            margin-bottom: 22px;
             box-shadow: var(--card-shadow);
             display: flex;
             align-items: center;
@@ -94,9 +94,13 @@
         }
 
         .header-stats {
-            display: flex;
+            display: none;
             align-items: center;
             gap: 16px;
+        }
+
+        .assessment-active .header-stats {
+            display: flex;
         }
 
         .stat-badge {
@@ -157,19 +161,21 @@
         .bank-card {
             background: white;
             border-radius: var(--radius);
-            padding: 32px;
+            padding: 0 34px 34px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
             margin-bottom: 24px;
+            overflow: hidden;
         }
 
         .bank-heading {
-            margin-bottom: 22px;
+            margin: 0 0 18px;
         }
 
         .bank-heading h2 {
             font-size: 1.4rem;
-            margin-bottom: 6px;
+            letter-spacing: -0.025em;
+            margin-bottom: 5px;
         }
 
         .bank-heading p,
@@ -178,69 +184,252 @@
             font-size: 0.9rem;
         }
 
-        .bank-full-test {
-            margin-bottom: 24px;
+        .bank-hero {
+            position: relative;
+            margin: 0 -34px 34px;
+            padding: clamp(30px, 5vw, 56px) 34px;
+            color: white;
+            background:
+                radial-gradient(ellipse at 86% 16%, rgba(20, 125, 120, 0.26), transparent 34%),
+                linear-gradient(118deg, #18324b 0%, #234a62 100%);
+        }
+
+        .bank-hero::after {
+            content: "∠";
+            position: absolute;
+            right: clamp(24px, 7vw, 86px);
+            top: 50%;
+            transform: translateY(-56%) rotate(-12deg);
+            color: rgba(255, 255, 255, 0.09);
+            font-family: Georgia, serif;
+            font-size: clamp(8rem, 19vw, 16rem);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .bank-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 660px;
+        }
+
+        .bank-eyebrow,
+        .section-eyebrow {
+            color: #b6d9d4;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .bank-hero h2 {
+            max-width: 620px;
+            margin: 10px 0 12px;
+            color: white;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.15rem, 5vw, 3.65rem);
+            font-weight: 600;
+            letter-spacing: -0.045em;
+            line-height: 1.08;
+        }
+
+        .bank-hero-description {
+            max-width: 590px;
+            color: #e0e9ed;
+            font-size: 1.02rem;
+        }
+
+        .bank-hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .bank-hero .btn-primary {
+            min-height: 48px;
+            padding: 12px 20px;
+            background: #d9b66f;
+            border-color: #d9b66f;
+            color: #203344;
+            box-shadow: none;
+        }
+
+        .bank-hero .btn-primary:hover {
+            background: #e5c987;
+            border-color: #e5c987;
+        }
+
+        .bank-question-total {
+            color: #e0e9ed;
+            font-size: 0.88rem;
+            font-weight: 600;
         }
 
         .chapter-navigation {
-            margin: 28px 0 24px;
-            padding: 22px;
-            background: var(--neutral-light);
+            margin: 0 0 34px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-eyebrow {
+            color: var(--secondary);
+        }
+
+        .section-heading h2 {
+            margin-top: 4px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .section-heading p {
+            margin-top: 4px;
+            color: var(--neutral-muted);
+            font-size: 0.92rem;
+        }
+
+        .available-badge {
+            flex-shrink: 0;
+            padding: 7px 11px;
+            border: 1px solid #d5e8dc;
+            border-radius: 999px;
+            background: #f1f8f3;
+            color: #286244;
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .chapter-card {
+            display: flex;
+            min-height: 190px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
             border: 1px solid var(--border-color);
             border-radius: 14px;
-        }
-
-        .chapter-navigation h3 {
-            margin-bottom: 6px;
-            font-size: 1.05rem;
-        }
-
-        .chapter-navigation p {
-            margin-bottom: 14px;
-            color: var(--neutral-muted);
-            font-size: 0.88rem;
-        }
-
-        .chapter-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 10px;
-        }
-
-        .chapter-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding: 11px 13px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
             background: white;
             color: var(--neutral-dark);
             text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
         }
 
-        .chapter-link:hover,
-        .chapter-link:focus-visible {
-            border-color: var(--primary);
-            box-shadow: 0 3px 10px rgba(79, 70, 229, 0.12);
-            outline: none;
+        .chapter-card:hover,
+        .chapter-card:focus-visible {
+            transform: translateY(-3px);
+            border-color: #8eaeb6;
+            box-shadow: 0 12px 24px -16px rgba(24, 50, 75, 0.5);
+            outline: 3px solid transparent;
         }
 
-        .chapter-link.current {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            color: var(--primary);
+        .chapter-card:focus-visible,
+        .objective-card:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid #c99d4e;
+            outline-offset: 3px;
         }
 
-        .chapter-status {
-            color: var(--neutral-muted);
+        .chapter-card.current {
+            border-color: var(--secondary);
+            background: #f5faf9;
+            box-shadow: inset 0 0 0 1px var(--secondary);
+        }
+
+        .chapter-number {
+            margin-bottom: 13px;
+            color: var(--secondary);
             font-size: 0.72rem;
-            font-weight: 500;
-            white-space: nowrap;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .chapter-card strong {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.18rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .chapter-description {
+            margin-top: 7px;
+            color: var(--neutral-muted);
+            font-size: 0.86rem;
+            line-height: 1.5;
+        }
+
+        .chapter-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 18px;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 750;
+        }
+
+        .chapter-card-arrow {
+            color: var(--secondary);
+            font-size: 1.15rem;
+        }
+
+        .chapter-card.current .chapter-card-footer::after {
+            content: "Selected";
+            margin-left: auto;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #e1f1ed;
+            color: #176a65;
+            font-size: 0.7rem;
+        }
+
+        .upcoming-chapters {
+            margin-top: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--neutral-light);
+        }
+
+        .upcoming-chapters summary {
+            padding: 12px 15px;
+            color: var(--neutral-muted);
+            cursor: pointer;
+            font-size: 0.86rem;
+            font-weight: 650;
+        }
+
+        .upcoming-chapters ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 15px 14px;
+            list-style: none;
+        }
+
+        .upcoming-chapters li {
+            padding: 5px 9px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: white;
+            color: var(--neutral-muted);
+            font-size: 0.76rem;
         }
 
         .chapter4-question img {
@@ -256,13 +445,9 @@
             text-decoration: overline;
         }
 
-        .chapter-link.current .chapter-status {
-            color: var(--primary);
-        }
-
         .objective-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 14px;
         }
 
@@ -274,16 +459,18 @@
             padding: 18px;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            background: var(--neutral-light);
+            background: #fbfcfc;
             color: var(--neutral-dark);
             text-align: left;
             cursor: pointer;
-            transition: border-color 0.2s ease, background 0.2s ease;
+            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
         }
 
         .objective-card:hover {
-            border-color: #a5b4fc;
-            background: var(--primary-light);
+            transform: translateY(-2px);
+            border-color: #9ab8bd;
+            background: #f2f8f7;
+            box-shadow: 0 10px 20px -17px rgba(24, 50, 75, 0.6);
         }
 
         .objective-card strong {
@@ -346,8 +533,51 @@
         }
 
         @media (max-width: 520px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            header {
+                padding: 14px 16px;
+            }
+
             .bank-card {
-                padding: 22px 18px;
+                padding: 0 18px 22px;
+            }
+
+            .bank-hero {
+                margin: 0 -18px 25px;
+                padding: 32px 20px;
+            }
+
+            .bank-hero::after {
+                right: 12px;
+                opacity: 0.6;
+            }
+
+            .bank-hero-description {
+                max-width: 390px;
+                font-size: 0.94rem;
+            }
+
+            .bank-hero-actions {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-card {
+                min-height: 170px;
             }
 
             .objective-list {
@@ -359,16 +589,36 @@
             }
         }
 
+        @media (min-width: 521px) and (max-width: 820px) {
+            .chapter-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .chapter-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         .question-nav-btn:hover {
-            border-color: #a5b4fc;
-            background: #eef2ff;
+            border-color: #9ab8bd;
+            background: var(--primary-light);
         }
 
         .question-nav-btn.active {
             background: var(--primary);
             border-color: var(--primary);
             color: white;
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 6px 16px rgba(24, 50, 75, 0.2);
         }
 
         .question-nav-btn.answered {
@@ -586,7 +836,7 @@
         }
 
         .option-label:hover {
-            border-color: #a5b4fc;
+            border-color: #9ab8bd;
             background: #f8fafc;
         }
 
@@ -680,7 +930,7 @@
 
         .btn-primary:hover:not(:disabled) {
             background: var(--primary-hover);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 12px rgba(24, 50, 75, 0.3);
         }
 
         .btn-success {
@@ -752,7 +1002,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), #e0e7ff);
+            background: linear-gradient(135deg, var(--primary-light), #dce8ed);
             color: var(--primary);
             display: flex;
             flex-direction: column;
@@ -760,7 +1010,7 @@
             justify-content: center;
             margin: 0 auto 16px auto;
             border: 4px solid white;
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.15);
+            box-shadow: 0 6px 16px rgba(24, 50, 75, 0.15);
         }
 
         .score-num {
@@ -886,33 +1136,70 @@
     </header>
 
     <main class="bank-card" id="bank-screen">
-        <div class="bank-heading">
-            <h2>Choose a Learning Objective</h2>
-            <p>Practice one objective at a time, or take the full test organized in objective order.</p>
-        </div>
-        <div class="bank-full-test">
-            <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
-                Start Full Test · <span id="bank-total-count">427</span> Questions
-            </button>
-        </div>
-        <nav class="chapter-navigation" aria-labelledby="chapter-navigation-title">
-            <h3 id="chapter-navigation-title">Chapter Banks</h3>
-            <p>Choose a chapter bank. Chapters 4, 13, and 15 are ready; the remaining chapter banks can be added here as they are completed.</p>
-            <div class="chapter-links">
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 1 &amp; 2 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 3 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" data-chapter="4" href="index.html?chapter=4" aria-label="Chapter 4: Accuracy and Measurement">Chapter 4 <span class="chapter-status">Ready</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 5 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 6 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 7 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 8 <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 12 A <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" href="#" aria-disabled="true" onclick="return false;">Chapter 12 B <span class="chapter-status">Coming soon</span></a>
-                <a class="chapter-link" data-chapter="13" href="index.html?chapter=13" aria-label="Chapter 13: Trigonometry and Right Triangles">Chapter 13 <span class="chapter-status">Ready</span></a>
-                <a class="chapter-link" data-chapter="15" href="index.html?chapter=15" aria-label="Chapter 15 and CG: Graphs, Statistics, and Measurement">Chapter 15 &amp; CG <span class="chapter-status">248 questions</span></a>
+        <section class="bank-hero" aria-labelledby="bank-hero-title">
+            <div class="bank-hero-content">
+                <p class="bank-eyebrow">Tahat Just Math · Self-paced practice</p>
+                <h2 id="bank-hero-title">Study with clarity. Practice with purpose.</h2>
+                <p class="bank-hero-description">Build understanding one concept at a time with focused questions, clear feedback, and worked explanations.</p>
+                <div class="bank-hero-actions">
+                    <button class="btn btn-primary" id="start-full-test" type="button" onclick="startFullAssessment()">
+                        Start Full Assessment · <span id="bank-total-count">427</span> Questions
+                    </button>
+                    <span class="bank-question-total"><span id="hero-question-count">427</span> questions · <span id="hero-objective-count">8</span> learning objectives</span>
+                </div>
             </div>
+        </section>
+        <nav class="chapter-navigation" aria-labelledby="chapter-navigation-title">
+            <div class="section-heading">
+                <div>
+                    <span class="section-eyebrow">Course library</span>
+                    <h2 id="chapter-navigation-title">Choose a chapter</h2>
+                    <p>Select a ready-to-use question bank to begin studying.</p>
+                </div>
+                <span class="available-badge">3 banks available</span>
+            </div>
+            <div class="chapter-grid">
+                <a class="chapter-card" data-chapter="4" href="index.html?chapter=4" aria-label="Chapter 4: Accuracy and Measurement">
+                    <span class="chapter-number">Chapter 04</span>
+                    <strong>Accuracy &amp; Measurement</strong>
+                    <span class="chapter-description">Measurement, precision, and mathematical accuracy.</span>
+                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
+                </a>
+                <a class="chapter-card" data-chapter="13" href="index.html?chapter=13" aria-label="Chapter 13: Trigonometry and Right Triangles">
+                    <span class="chapter-number">Chapter 13</span>
+                    <strong>Trigonometry &amp; Right Triangles</strong>
+                    <span class="chapter-description">Triangle relationships, trig ratios, and real-world applications.</span>
+                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
+                </a>
+                <a class="chapter-card" data-chapter="15" href="index.html?chapter=15" aria-label="Chapter 15 and CG: Graphs, Statistics, and Measurement">
+                    <span class="chapter-number">Chapter 15 &amp; CG</span>
+                    <strong>Graphs, Statistics &amp; Measurement</strong>
+                    <span class="chapter-description">Explore data, graphs, and practical measurement.</span>
+                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
+                </a>
+            </div>
+            <details class="upcoming-chapters">
+                <summary>More chapters are being prepared</summary>
+                <ul>
+                    <li>Chapters 1 &amp; 2</li>
+                    <li>Chapter 3</li>
+                    <li>Chapter 5</li>
+                    <li>Chapter 6</li>
+                    <li>Chapter 7</li>
+                    <li>Chapter 8</li>
+                    <li>Chapter 12 A</li>
+                    <li>Chapter 12 B</li>
+                </ul>
+            </details>
         </nav>
-        <div class="objective-list" id="objective-list" aria-label="Question bank learning objectives"></div>
+        <section aria-labelledby="objective-heading">
+            <div class="bank-heading">
+                <span class="section-eyebrow">Focused practice</span>
+                <h2 id="objective-heading">Choose a learning objective</h2>
+                <p>Practice one skill at a time, or use the full assessment above to review the entire chapter.</p>
+            </div>
+            <div class="objective-list" id="objective-list" aria-label="Question bank learning objectives"></div>
+        </section>
     </main>
 
     <div id="assessment-ui" hidden>
@@ -5852,12 +6139,16 @@ document.addEventListener("DOMContentLoaded", () => {
     renderQuestionBank();
 });
 
-function getSelectedChapterQuestions() {
-    return selectedChapter === "4"
+function getQuestionsForChapter(chapter) {
+    return chapter === "4"
         ? questionsData.filter(question => question.category === "Chapter 4")
-        : selectedChapter === "15"
+        : chapter === "15"
             ? questionsData.filter(question => question.category === "Chapter 15")
         : questionsData.filter(question => question.category !== "Chapter 4" && question.category !== "Chapter 15");
+}
+
+function getSelectedChapterQuestions() {
+    return getQuestionsForChapter(selectedChapter);
 }
 
 function configureChapterBank() {
@@ -5872,12 +6163,18 @@ function configureChapterBank() {
     document.getElementById('current-chapter-title').textContent = title;
     document.getElementById('bank-total-count').textContent = chapterQuestions.length;
     document.getElementById('header-question-count').textContent = chapterQuestions.length;
+    document.getElementById('hero-question-count').textContent = chapterQuestions.length;
+    document.getElementById('hero-objective-count').textContent = learningObjectives.filter(objective =>
+        chapterQuestions.some(question => question.objectiveId === objective.id)
+    ).length;
     document.title = `${title} · Tahat Just Math`;
-    document.querySelectorAll('.chapter-link[data-chapter]').forEach(link => {
-        const isCurrent = link.dataset.chapter === selectedChapter;
-        link.classList.toggle('current', isCurrent);
-        if (isCurrent) link.setAttribute('aria-current', 'page');
-        else link.removeAttribute('aria-current');
+    document.querySelectorAll('.chapter-card[data-chapter]').forEach(card => {
+        const isCurrent = card.dataset.chapter === selectedChapter;
+        const chapterQuestionCount = getQuestionsForChapter(card.dataset.chapter).length;
+        card.classList.toggle('current', isCurrent);
+        card.querySelector('.chapter-question-count').textContent = `${chapterQuestionCount} questions`;
+        if (isCurrent) card.setAttribute('aria-current', 'page');
+        else card.removeAttribute('aria-current');
     });
 }
 
@@ -5925,6 +6222,7 @@ function beginAssessment(questionSet, title) {
     submittedStates = new Array(activeQuestions.length).fill(false);
     timerSeconds = 0;
 
+    document.body.classList.add('assessment-active');
     document.getElementById('bank-screen').hidden = true;
     document.getElementById('assessment-ui').hidden = false;
     document.getElementById('quiz-card').style.display = '';
@@ -5941,6 +6239,7 @@ function beginAssessment(questionSet, title) {
 
 function returnToBank() {
     clearInterval(timerInterval);
+    document.body.classList.remove('assessment-active');
     document.getElementById('assessment-ui').hidden = true;
     document.getElementById('bank-screen').hidden = false;
     const chapterQuestions = getSelectedChapterQuestions();
@@ -6213,7 +6512,7 @@ function generateHeightProblemSVG(q) {
         ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="#b45309" stroke-width="5"/><line x1="${observerX + groundDistance * 0.25}" y1="${groundY - heightPixels * 0.25 - 5}" x2="${observerX + groundDistance * 0.25 + 8}" y2="${groundY - heightPixels * 0.25 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.5}" y1="${groundY - heightPixels * 0.5 - 5}" x2="${observerX + groundDistance * 0.5 + 8}" y2="${groundY - heightPixels * 0.5 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.75}" y1="${groundY - heightPixels * 0.75 - 5}" x2="${observerX + groundDistance * 0.75 + 8}" y2="${groundY - heightPixels * 0.75 + 5}" stroke="#fef3c7" stroke-width="2"/>`
         : hasSolidSlope
             ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="${q.sceneType === "cable-tower" ? "#64748b" : "#334155"}" stroke-width="${q.sceneType === "cable-tower" ? 1.5 : 3.5}" ${q.sceneType === "cable-tower" ? "" : 'stroke-dasharray="7 5"'} />`
-            : `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="#4f46e5" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+            : `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="#18324b" stroke-width="2.5" stroke-dasharray="7 5"/>`;
     const hypotenuseLabelX = (observerX + objectX) / 2;
     const hypotenuseLabelY = (groundY + objectTopY) / 2;
 
@@ -6224,15 +6523,15 @@ function generateHeightProblemSVG(q) {
             ${targetMarkup}
             ${sightlineMarkup}
             ${observerMarkup}
-            <line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="5 5"/>
-            <path d="M ${observerX + 15} ${groundY} A 15 15 0 0 0 ${observerX + 15 * Math.cos(angleRadians)} ${groundY - 15 * Math.sin(angleRadians)}" fill="none" stroke="#4f46e5" stroke-width="2"/>
+            <line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="#147d78" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <path d="M ${observerX + 15} ${groundY} A 15 15 0 0 0 ${observerX + 15 * Math.cos(angleRadians)} ${groundY - 15 * Math.sin(angleRadians)}" fill="none" stroke="#18324b" stroke-width="2"/>
             <path d="M ${objectX - 10} ${groundY} L ${objectX - 10} ${groundY - 10} L ${objectX} ${groundY - 10}" fill="none" stroke="#334155" stroke-width="1.5"/>
             <line x1="${objectX + 45}" y1="${groundY}" x2="${objectX + 45}" y2="${objectTopY}" stroke="#64748b" stroke-width="1.5"/>
             <line x1="${objectX + 41}" y1="${groundY}" x2="${objectX + 49}" y2="${groundY}" stroke="#64748b" stroke-width="1.5"/>
             <line x1="${objectX + 41}" y1="${objectTopY}" x2="${objectX + 49}" y2="${objectTopY}" stroke="#64748b" stroke-width="1.5"/>
             <text x="${observerX + groundDistance / 2}" y="${groundY + 18}" text-anchor="middle" font-size="11" fill="#1e293b" font-weight="600">${distanceLabel}</text>
             <text x="${objectX + 51}" y="${(groundY + objectTopY) / 2 + 4}" font-size="12" fill="#1e293b" font-weight="700">${heightLabel}</text>
-            ${hypotenuseLabel ? `<text x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="#4f46e5" font-weight="700">${hypotenuseLabel}</text>` : ""}
+            ${hypotenuseLabel ? `<text x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="#18324b" font-weight="700">${hypotenuseLabel}</text>` : ""}
             <text x="${observerX + 20}" y="${groundY - 17}" font-size="10" fill="#1e293b" font-weight="700">${unknownSide === "angle" ? "Î¸ = ?" : `${q.angleDeg}°`}</text>
             <text x="${objectX + 42}" y="${objectTopY - 7}" text-anchor="end" font-size="10" fill="#1e293b" font-weight="700">${sceneLabels[q.sceneType] || "Top"}</text>
         </svg>
@@ -6267,10 +6566,10 @@ function generateRoofProblemSVG(q) {
         : '';
     return `
         <svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="${left.x},${baseY} ${right.x},${baseY} ${cx},${peakY}" fill="#eef2ff" stroke="#4f46e5" stroke-width="2.5" stroke-linejoin="round"/>
-            <line x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
-            <polyline points="${cx + 12},${baseY} ${cx + 12},${baseY - 12} ${cx},${baseY - 12}" fill="none" stroke="#4f46e5" stroke-width="1.8"/>
-            <path d="M ${left.x + arc},${baseY} A ${arc} ${arc} 0 0 0 ${left.x + arc * Math.cos(theta)},${baseY - arc * Math.sin(theta)}" fill="none" stroke="#4f46e5" stroke-width="1.8"/>
+            <polygon points="${left.x},${baseY} ${right.x},${baseY} ${cx},${peakY}" fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="#18324b" stroke-width="1.8" stroke-dasharray="5 4"/>
+            <polyline points="${cx + 12},${baseY} ${cx + 12},${baseY - 12} ${cx},${baseY - 12}" fill="none" stroke="#18324b" stroke-width="1.8"/>
+            <path d="M ${left.x + arc},${baseY} A ${arc} ${arc} 0 0 0 ${left.x + arc * Math.cos(theta)},${baseY - arc * Math.sin(theta)}" fill="none" stroke="#18324b" stroke-width="1.8"/>
             <text x="${r.type === 'angle' ? left.x + 46 * Math.cos(bis) : left.x + arc + 4}" y="${r.type === 'angle' ? baseY - 46 * Math.sin(bis) : baseY - 9}" fill="#1e293b" font-weight="800" font-size="${r.type === 'angle' ? 15 : 12}" ${font} text-anchor="${r.type === 'angle' ? 'middle' : 'start'}" dominant-baseline="central">${thetaLabel}</text>
             <text x="${rafterPos.x}" y="${rafterPos.y}" fill="#b91c1c" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central" transform="rotate(${edgeDeg} ${rafterPos.x} ${rafterPos.y})">${rafterLabel}</text>
             <text x="${cx}" y="${baseY + 24}" fill="#b91c1c" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central">${r.width.toFixed(1)}${unit}</text>
@@ -6340,9 +6639,9 @@ function generateRotatedTriangleSVG(q) {
     return `
         <svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg">
             <polygon points="${rA.x},${rA.y} ${rB.x},${rB.y} ${rC.x},${rC.y}" 
-                     fill="#eef2ff" stroke="#4f46e5" stroke-width="2.5" stroke-linejoin="round"/>
+                     fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
             <polygon points="${rC.x},${rC.y} ${sq1.x},${sq1.y} ${sq2.x},${sq2.y} ${sq3.x},${sq3.y}" 
-                     fill="none" stroke="#4f46e5" stroke-width="1.8"/>
+                     fill="none" stroke="#18324b" stroke-width="1.8"/>
             <text x="${lblA.x}" y="${lblA.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[0]}</text>
             <text x="${lblB.x}" y="${lblB.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[1]}</text>
             <text x="${lblC.x}" y="${lblC.y}" fill="#1e293b" font-weight="800" font-size="16" text-anchor="middle" dominant-baseline="central">${vNames[2]}</text>
