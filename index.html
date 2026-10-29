@@ -451,12 +451,6 @@
             border-radius: var(--radius) var(--radius) 0 0;
             color: white;
             background:
-                radial-gradient(ellipse at 86% 16%, rgba(20, 125, 120, 0.26), transparent 34%),
-                linear-gradient(118deg, #18324b 0%, #234a62 100%);
-        }
-
-        .bank-hero.chapter13-hero {
-            background:
                 radial-gradient(ellipse at 82% 18%, rgba(35, 73, 113, 0.3), transparent 38%),
                 linear-gradient(118deg, #071629 0%, #0c2340 100%);
         }
@@ -497,21 +491,24 @@
             max-width: 660px;
         }
 
-        .bank-hero.chapter13-hero .bank-hero-content {
-            max-width: 760px;
-        }
-
         .bank-eyebrow,
         .section-eyebrow {
-            color: #b6d9d4;
             font-size: 0.74rem;
             font-weight: 800;
             letter-spacing: 0.14em;
             text-transform: uppercase;
         }
 
+        .bank-eyebrow {
+            color: #78cf39;
+        }
+
+        .section-eyebrow {
+            color: var(--secondary);
+        }
+
         .bank-hero h2 {
-            max-width: 620px;
+            max-width: 760px;
             margin: 10px 0 12px;
             color: white;
             font-family: Georgia, "Times New Roman", serif;
@@ -521,20 +518,10 @@
             line-height: 1.08;
         }
 
-        .bank-hero.chapter13-hero h2 {
-            max-width: 760px;
-            font-size: clamp(2rem, 4vw, 3.65rem);
-            line-height: 0.98;
-        }
-
         .bank-hero-description {
             max-width: 590px;
             color: #e0e9ed;
             font-size: 1.02rem;
-        }
-
-        .bank-hero.chapter13-hero .bank-eyebrow {
-            color: #78cf39;
         }
 
         .bank-hero.chapter13-hero .learning-outcomes li::before {
@@ -968,6 +955,125 @@
             scroll-margin-top: 84px;
         }
 
+        .chapter13-guide-content {
+            display: grid;
+            gap: 18px;
+            padding: clamp(16px, 3vw, 30px);
+            border: 1px solid #26384d;
+            border-radius: 20px;
+            background: #071629;
+            color: #f0f5f7;
+        }
+
+        .chapter13-guide-objective {
+            display: grid;
+            gap: 16px;
+            min-width: 0;
+            padding: clamp(16px, 2.5vw, 26px);
+            border: 1px solid #26384d;
+            border-radius: 16px;
+            background: #0c1d32;
+        }
+
+        .chapter13-guide-objective-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .chapter13-guide-objective-number {
+            flex: 0 0 auto;
+            padding: 4px 10px;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 999px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .chapter13-guide-objective h3 {
+            color: white;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .chapter13-guide-objective > p {
+            color: #cbd6e2;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .chapter13-guide-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .chapter13-guide-card-grid.two-columns {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .chapter13-guide-card {
+            min-width: 0;
+            padding: 14px;
+            border: 1px solid #263448;
+            border-radius: 12px;
+            background: #071221;
+            color: #e7edf3;
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+
+        .chapter13-guide-card h4 {
+            margin-bottom: 6px;
+            color: var(--guide-accent, #34d399);
+            font-size: 0.92rem;
+            font-weight: 800;
+        }
+
+        .chapter13-guide-card p + p {
+            margin-top: 8px;
+        }
+
+        .chapter13-guide-card .guide-formula {
+            color: #e7edf3;
+            font-size: 0.91rem;
+            overflow-wrap: anywhere;
+        }
+
+        .chapter13-guide-card .guide-formula + .guide-formula {
+            margin-top: 10px;
+        }
+
+        .chapter13-guide-role-hypotenuse {
+            --guide-accent: var(--side-hypotenuse);
+        }
+
+        .chapter13-guide-role-opposite {
+            --guide-accent: #34d399;
+        }
+
+        .chapter13-guide-role-adjacent {
+            --guide-accent: #fb923c;
+        }
+
+        .chapter13-guide-card .triangle-role-hypotenuse {
+            color: #60a5fa;
+        }
+
+        .chapter13-guide-card .triangle-role-opposite {
+            color: #34d399;
+        }
+
+        .chapter13-guide-card .triangle-role-adjacent {
+            color: #fb923c;
+        }
+
         .chapter13-learning-guide[hidden],
         .learning-navigation[hidden],
         .learning-outcomes[hidden] {
@@ -1397,10 +1503,6 @@
             font-weight: 700;
         }
 
-        .triangle-side-key[hidden] {
-            display: none;
-        }
-
         .triangle-side-label {
             display: inline-flex;
             align-items: center;
@@ -1425,6 +1527,34 @@
 
         .triangle-role-adjacent {
             color: var(--side-adjacent);
+        }
+
+        .quiz-body .triangle-diagram .side-hypotenuse,
+        .quiz-body .triangle-diagram .side-opposite,
+        .quiz-body .triangle-diagram .side-adjacent {
+            stroke: #334155;
+        }
+
+        .quiz-body .triangle-diagram .side-label-hypotenuse,
+        .quiz-body .triangle-diagram .side-label-opposite,
+        .quiz-body .triangle-diagram .side-label-adjacent {
+            fill: #334155;
+        }
+
+        .solution-triangle-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f8fafc;
+        }
+
+        .solution-triangle-diagram svg {
+            width: min(100%, 300px);
+            height: auto;
+            max-height: 260px;
         }
 
         .worked-example-question {
@@ -1538,15 +1668,15 @@
         .bank-hero .btn-primary {
             min-height: 48px;
             padding: 12px 20px;
-            background: #d9b66f;
-            border-color: #d9b66f;
-            color: #203344;
+            background: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
             box-shadow: none;
         }
 
         .bank-hero .btn-primary:hover {
-            background: #e5c987;
-            border-color: #e5c987;
+            background: #116b67;
+            border-color: #116b67;
         }
 
         .bank-question-total {
@@ -1555,169 +1685,16 @@
             font-weight: 600;
         }
 
-        .chapter-navigation {
-            margin: 0 0 34px;
-        }
-
-        .section-heading {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .section-eyebrow {
-            color: var(--secondary);
-        }
-
-        .section-heading h2 {
-            margin-top: 4px;
+        #bank-screen h2,
+        #bank-screen h3,
+        #bank-screen h4 {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.75rem;
-            font-weight: 600;
-            letter-spacing: -0.025em;
         }
 
-        .section-heading p {
-            margin-top: 4px;
-            color: var(--neutral-muted);
-            font-size: 0.92rem;
-        }
-
-        .available-badge {
-            flex-shrink: 0;
-            padding: 7px 11px;
-            border: 1px solid #d5e8dc;
-            border-radius: 999px;
-            background: #f1f8f3;
-            color: #286244;
-            font-size: 0.76rem;
-            font-weight: 700;
-        }
-
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-        }
-
-        .chapter-card {
-            display: flex;
-            min-height: 190px;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            background: white;
-            color: var(--neutral-dark);
-            text-decoration: none;
-            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-        }
-
-        .chapter-card:hover,
-        .chapter-card:focus-visible {
-            transform: translateY(-3px);
-            border-color: #8eaeb6;
-            box-shadow: 0 12px 24px -16px rgba(24, 50, 75, 0.5);
-            outline: 3px solid transparent;
-        }
-
-        .chapter-card:focus-visible,
         .objective-card:focus-visible,
         .btn:focus-visible {
             outline: 3px solid #c99d4e;
             outline-offset: 3px;
-        }
-
-        .chapter-card.current {
-            border-color: var(--secondary);
-            background: #f5faf9;
-            box-shadow: inset 0 0 0 1px var(--secondary);
-        }
-
-        .chapter-number {
-            margin-bottom: 13px;
-            color: var(--secondary);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .chapter-card strong {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.18rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .chapter-description {
-            margin-top: 7px;
-            color: var(--neutral-muted);
-            font-size: 0.86rem;
-            line-height: 1.5;
-        }
-
-        .chapter-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            gap: 12px;
-            margin-top: auto;
-            padding-top: 18px;
-            color: var(--primary);
-            font-size: 0.82rem;
-            font-weight: 750;
-        }
-
-        .chapter-card-arrow {
-            color: var(--secondary);
-            font-size: 1.15rem;
-        }
-
-        .chapter-card.current .chapter-card-footer::after {
-            content: "Selected";
-            margin-left: auto;
-            padding: 4px 8px;
-            border-radius: 999px;
-            background: #e1f1ed;
-            color: #176a65;
-            font-size: 0.7rem;
-        }
-
-        .upcoming-chapters {
-            margin-top: 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--neutral-light);
-        }
-
-        .upcoming-chapters summary {
-            padding: 12px 15px;
-            color: var(--neutral-muted);
-            cursor: pointer;
-            font-size: 0.86rem;
-            font-weight: 650;
-        }
-
-        .upcoming-chapters ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 0 15px 14px;
-            list-style: none;
-        }
-
-        .upcoming-chapters li {
-            padding: 5px 9px;
-            border: 1px solid var(--border-color);
-            border-radius: 999px;
-            background: white;
-            color: var(--neutral-muted);
-            font-size: 0.76rem;
         }
 
         .chapter4-question img {
@@ -1983,6 +1960,11 @@
                 padding: 12px;
             }
 
+            .chapter13-guide-card-grid,
+            .chapter13-guide-card-grid.two-columns {
+                grid-template-columns: 1fr;
+            }
+
             .reference-angle-lab,
             .special-triangle-grid,
             .calculator-pitfalls {
@@ -2037,20 +2019,6 @@
                 gap: 10px;
             }
 
-            .section-heading {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 9px;
-            }
-
-            .chapter-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .chapter-card {
-                min-height: 170px;
-            }
-
             .objective-list,
             .topic-objective-list {
                 grid-template-columns: 1fr;
@@ -2080,13 +2048,6 @@
                 padding: 14px;
             }
 
-            .chapter-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .chapter-card:last-child {
-                grid-column: 1 / -1;
-            }
         }
 
         @media (min-width: 521px) and (max-width: 700px) {
@@ -2846,49 +2807,6 @@
                 </figure>
             </div>
         </section>
-        <nav class="chapter-navigation" aria-labelledby="chapter-navigation-title">
-            <div class="section-heading">
-                <div>
-                    <span class="section-eyebrow">Course library</span>
-                    <h2 id="chapter-navigation-title">Choose a chapter</h2>
-                    <p>Select a ready-to-use question bank to begin studying.</p>
-                </div>
-                <span class="available-badge">3 banks available</span>
-            </div>
-            <div class="chapter-grid">
-                <a class="chapter-card" data-chapter="4" href="index.html?chapter=4" aria-label="Chapter 4: Accuracy and Measurement">
-                    <span class="chapter-number">Chapter 04</span>
-                    <strong>Accuracy &amp; Measurement</strong>
-                    <span class="chapter-description">Measurement, precision, and mathematical accuracy.</span>
-                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
-                </a>
-                <a class="chapter-card" data-chapter="13" href="index.html?chapter=13" aria-label="Chapter 13: Trigonometry and Right Triangles">
-                    <span class="chapter-number">Chapter 13</span>
-                    <strong>Trigonometry &amp; Right Triangles</strong>
-                    <span class="chapter-description">Triangle relationships, trig ratios, and real-world applications.</span>
-                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
-                </a>
-                <a class="chapter-card" data-chapter="15" href="index.html?chapter=15" aria-label="Chapter 15 and CG: Graphs, Statistics, and Measurement">
-                    <span class="chapter-number">Chapter 15 &amp; CG</span>
-                    <strong>Graphs, Statistics &amp; Measurement</strong>
-                    <span class="chapter-description">Explore data, graphs, and practical measurement.</span>
-                    <span class="chapter-card-footer"><span class="chapter-question-count">Question bank</span><span class="chapter-card-arrow" aria-hidden="true">→</span></span>
-                </a>
-            </div>
-            <details class="upcoming-chapters">
-                <summary>More chapters are being prepared</summary>
-                <ul>
-                    <li>Chapters 1 &amp; 2</li>
-                    <li>Chapter 3</li>
-                    <li>Chapter 5</li>
-                    <li>Chapter 6</li>
-                    <li>Chapter 7</li>
-                    <li>Chapter 8</li>
-                    <li>Chapter 12 A</li>
-                    <li>Chapter 12 B</li>
-                </ul>
-            </details>
-        </nav>
         <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 sections" role="tablist" hidden>
             <button class="chapter13-tab-button" id="chapter13-tab-guide" type="button" role="tab" aria-selected="true" aria-controls="chapter13-view-guide" tabindex="0" onclick="switchChapter13Tab('guide')">Guide</button>
             <button class="chapter13-tab-button" id="chapter13-tab-prerequisites" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-prerequisites" tabindex="-1" onclick="switchChapter13Tab('prerequisites')">Prerequisites</button>
@@ -2901,29 +2819,104 @@
         </nav>
         <section class="chapter13-learning-guide" id="chapter13-learning-guide" aria-label="Chapter 13 learning resources" hidden>
             <div class="chapter13-tab-panel" id="chapter13-view-guide" role="tabpanel" aria-labelledby="chapter13-tab-guide">
-                <div class="chapter13-panel-card">
-                    <div class="chapter13-panel-heading">
-                        <span class="section-eyebrow">Concept guide</span>
-                        <h3>SOH–CAH–TOA and side identification</h3>
-                        <p>Opposite and adjacent are named relative to the chosen acute angle. The hypotenuse is always opposite the right angle.</p>
-                    </div>
-                    <div class="special-triangle-grid">
-                        <article class="special-triangle-card">
-                            <h4>SOH · Sine</h4>
-                            <div class="special-triangle-ratios">\(\sin(\theta)=\frac{\text{opposite}}{\text{hypotenuse}}\)</div>
-                        </article>
-                        <article class="special-triangle-card">
-                            <h4>CAH · Cosine</h4>
-                            <div class="special-triangle-ratios">\(\cos(\theta)=\frac{\text{adjacent}}{\text{hypotenuse}}\)</div>
-                        </article>
-                        <article class="special-triangle-card">
-                            <h4>TOA · Tangent</h4>
-                            <div class="special-triangle-ratios">\(\tan(\theta)=\frac{\text{opposite}}{\text{adjacent}}\)</div>
-                        </article>
-                    </div>
-                    <div class="calculator-pitfall chapter13-guide-callout">
-                        <strong>When the angle is unknown</strong>
-                        Use the matching inverse ratio: \(\theta=\sin^{-1}(\frac{\text{opposite}}{\text{hypotenuse}})\), \(\cos^{-1}(\frac{\text{adjacent}}{\text{hypotenuse}})\), or \(\tan^{-1}(\frac{\text{opposite}}{\text{adjacent}})\).
+                    <div class="chapter13-guide-content">
+                        <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-1">
+                            <div class="chapter13-guide-objective-heading">
+                                <span class="chapter13-guide-objective-number">Objective 1</span>
+                                <h3 id="chapter13-guide-objective-1">Identify sides relative to a reference angle \(\theta\)</h3>
+                            </div>
+                            <p>Every right triangle has three sides. The hypotenuse is fixed by the right angle; opposite and adjacent are named relative to the chosen acute angle.</p>
+                            <div class="chapter13-guide-card-grid">
+                                <article class="chapter13-guide-card chapter13-guide-role-hypotenuse">
+                                    <h4>Hypotenuse (\(c\))</h4>
+                                    Always opposite the \(90^\circ\) angle and the longest side.
+                                </article>
+                                <article class="chapter13-guide-card chapter13-guide-role-opposite">
+                                    <h4>Opposite</h4>
+                                    Directly across from the reference angle \(\theta\).
+                                </article>
+                                <article class="chapter13-guide-card chapter13-guide-role-adjacent">
+                                    <h4>Adjacent</h4>
+                                    Touches the reference angle \(\theta\), but is not the hypotenuse.
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-2">
+                            <div class="chapter13-guide-objective-heading">
+                                <span class="chapter13-guide-objective-number">Objective 2</span>
+                                <h3 id="chapter13-guide-objective-2">Use the primary trigonometric ratios (SOH–CAH–TOA)</h3>
+                            </div>
+                            <div class="chapter13-guide-card-grid">
+                                <article class="chapter13-guide-card chapter13-guide-role-opposite">
+                                    <h4>SOH · Sine</h4>
+                                    <p class="guide-formula">\(\sin(\theta)=\frac{\text{opposite}}{\text{hypotenuse}}\)</p>
+                                </article>
+                                <article class="chapter13-guide-card chapter13-guide-role-hypotenuse">
+                                    <h4>CAH · Cosine</h4>
+                                    <p class="guide-formula">\(\cos(\theta)=\frac{\text{adjacent}}{\text{hypotenuse}}\)</p>
+                                </article>
+                                <article class="chapter13-guide-card chapter13-guide-role-adjacent">
+                                    <h4>TOA · Tangent</h4>
+                                    <p class="guide-formula">\(\tan(\theta)=\frac{\text{opposite}}{\text{adjacent}}\)</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-3">
+                            <div class="chapter13-guide-objective-heading">
+                                <span class="chapter13-guide-objective-number">Objective 3</span>
+                                <h3 id="chapter13-guide-objective-3">Find unknown angles with inverse trigonometry</h3>
+                            </div>
+                            <p>When the side lengths are known, choose the inverse ratio that matches the given sides.</p>
+                            <div class="chapter13-guide-card">
+                                <p class="guide-formula">\(\theta=\sin^{-1}\left(\frac{\text{opposite}}{\text{hypotenuse}}\right)\)</p>
+                                <p class="guide-formula">\(\theta=\cos^{-1}\left(\frac{\text{adjacent}}{\text{hypotenuse}}\right)\)</p>
+                                <p class="guide-formula">\(\theta=\tan^{-1}\left(\frac{\text{opposite}}{\text{adjacent}}\right)\)</p>
+                            </div>
+                        </section>
+
+                        <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-4">
+                            <div class="chapter13-guide-objective-heading">
+                                <span class="chapter13-guide-objective-number">Objective 4</span>
+                                <h3 id="chapter13-guide-objective-4">Find missing sides using trigonometry and the Pythagorean theorem</h3>
+                            </div>
+                            <div class="chapter13-guide-card-grid two-columns">
+                                <article class="chapter13-guide-card">
+                                    <h4>Rearrange a trigonometric ratio</h4>
+                                    <p>Use a known side and angle to isolate the missing side.</p>
+                                    <p class="guide-formula">\(\text{opposite}=\text{hypotenuse}\cdot\sin(\theta)\)</p>
+                                    <p class="guide-formula">\(\text{adjacent}=\text{hypotenuse}\cdot\cos(\theta)\)</p>
+                                    <p class="guide-formula">\(\text{adjacent}=\frac{\text{opposite}}{\tan(\theta)}\)</p>
+                                </article>
+                                <article class="chapter13-guide-card">
+                                    <h4>Use \(a^2+b^2=c^2\)</h4>
+                                    <p>Use this relationship when two side lengths are known.</p>
+                                    <p class="guide-formula">\(c=\sqrt{a^2+b^2}\)</p>
+                                    <p class="guide-formula">\(a=\sqrt{c^2-b^2}\)</p>
+                                    <p class="guide-formula">\(b=\sqrt{c^2-a^2}\)</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="chapter13-guide-objective" aria-labelledby="chapter13-guide-objective-5">
+                            <div class="chapter13-guide-objective-heading">
+                                <span class="chapter13-guide-objective-number">Objective 5</span>
+                                <h3 id="chapter13-guide-objective-5">Apply trigonometry to real-world situations</h3>
+                            </div>
+                            <div class="chapter13-guide-card-grid two-columns">
+                                <article class="chapter13-guide-card">
+                                    <h4>Angle of elevation</h4>
+                                    <p>The angle measured upward from a horizontal line of sight to a point above the observer.</p>
+                                    <p class="guide-formula">For height \(h\) and horizontal distance \(d\): \(h=d\tan(\theta)\).</p>
+                                </article>
+                                <article class="chapter13-guide-card">
+                                    <h4>Angle of depression</h4>
+                                    <p>The angle measured downward from a horizontal line of sight to a point below the observer.</p>
+                                    <p>Draw and label the right triangle, then choose the ratio that matches the known and unknown sides.</p>
+                                </article>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -3228,12 +3221,6 @@
         <div class="math-render-warning" id="math-render-warning" role="status" hidden>
             Math notation could not be rendered. The original notation is still available in the question text.
         </div>
-        <div class="triangle-side-key" id="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle." hidden>
-            <span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span>
-            <span class="triangle-side-label triangle-role-opposite">Opposite</span>
-            <span class="triangle-side-label triangle-role-adjacent">Adjacent</span>
-        </div>
-
         <div class="quiz-body">
             <!-- Rotated SVG Triangle Diagram Container -->
             <div class="diagram-container" id="diagram-box">
@@ -8479,14 +8466,6 @@ function configureChapterBank() {
     document.title = showSubjectPortal
         ? 'Subject Catalog · Tahat Just Math'
         : `${title} · Tahat Just Math`;
-    document.querySelectorAll('.chapter-card[data-chapter]').forEach(card => {
-        const isCurrent = card.dataset.chapter === selectedChapter;
-        const chapterQuestionCount = getQuestionsForChapter(card.dataset.chapter).length;
-        card.classList.toggle('current', isCurrent);
-        card.querySelector('.chapter-question-count').textContent = `${chapterQuestionCount} questions`;
-        if (isCurrent) card.setAttribute('aria-current', 'page');
-        else card.removeAttribute('aria-current');
-    });
 }
 
 function renderQuestionBank() {
@@ -9334,29 +9313,29 @@ function generateHeightProblemSVG(q) {
     const isLadder = q.observerType === "ladder";
     const hasSolidSlope = isLadder || q.sceneType === "roadbed" || q.sceneType === "conveyor" || q.sceneType === "cable-tower";
     const sightlineMarkup = isLadder
-        ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="5"/><line x1="${observerX + groundDistance * 0.25}" y1="${groundY - heightPixels * 0.25 - 5}" x2="${observerX + groundDistance * 0.25 + 8}" y2="${groundY - heightPixels * 0.25 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.5}" y1="${groundY - heightPixels * 0.5 - 5}" x2="${observerX + groundDistance * 0.5 + 8}" y2="${groundY - heightPixels * 0.5 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.75}" y1="${groundY - heightPixels * 0.75 - 5}" x2="${observerX + groundDistance * 0.75 + 8}" y2="${groundY - heightPixels * 0.75 + 5}" stroke="#fef3c7" stroke-width="2"/>`
+        ? `<line class="side-hypotenuse" x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="5"/><line x1="${observerX + groundDistance * 0.25}" y1="${groundY - heightPixels * 0.25 - 5}" x2="${observerX + groundDistance * 0.25 + 8}" y2="${groundY - heightPixels * 0.25 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.5}" y1="${groundY - heightPixels * 0.5 - 5}" x2="${observerX + groundDistance * 0.5 + 8}" y2="${groundY - heightPixels * 0.5 + 5}" stroke="#fef3c7" stroke-width="2"/><line x1="${observerX + groundDistance * 0.75}" y1="${groundY - heightPixels * 0.75 - 5}" x2="${observerX + groundDistance * 0.75 + 8}" y2="${groundY - heightPixels * 0.75 + 5}" stroke="#fef3c7" stroke-width="2"/>`
         : hasSolidSlope
-            ? `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="${q.sceneType === "cable-tower" ? 2.5 : 3.5}" ${q.sceneType === "cable-tower" ? "" : 'stroke-dasharray="7 5"'} />`
-            : `<line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+            ? `<line class="side-hypotenuse" x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="${q.sceneType === "cable-tower" ? 2.5 : 3.5}" ${q.sceneType === "cable-tower" ? "" : 'stroke-dasharray="7 5"'} />`
+            : `<line class="side-hypotenuse" x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${objectTopY}" stroke="var(--side-hypotenuse)" stroke-width="2.5" stroke-dasharray="7 5"/>`;
     const hypotenuseLabelX = (observerX + objectX) / 2;
     const hypotenuseLabelY = (groundY + objectTopY) / 2;
 
     return `
-        <svg class="triangle-diagram" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${diagramDescription}. The hypotenuse is blue, the opposite side is green, and the adjacent side is orange.">
+        <svg class="triangle-diagram" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${diagramDescription}.">
             <line x1="18" y1="${groundY}" x2="340" y2="${groundY}" stroke="#475569" stroke-width="2"/>
             ${q.observerType === "boat" ? `<path d="M 18 ${groundY + 8} q 9 -4 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0" fill="none" stroke="#38bdf8" stroke-width="1.5"/>` : ""}
             ${targetMarkup}
             ${sightlineMarkup}
             ${observerMarkup}
-            <line x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="var(--side-adjacent)" stroke-width="2.5" stroke-dasharray="5 5"/>
+            <line class="side-adjacent" x1="${observerX}" y1="${groundY}" x2="${objectX}" y2="${groundY}" stroke="var(--side-adjacent)" stroke-width="2.5" stroke-dasharray="5 5"/>
             <path d="M ${observerX + 15} ${groundY} A 15 15 0 0 0 ${observerX + 15 * Math.cos(angleRadians)} ${groundY - 15 * Math.sin(angleRadians)}" fill="none" stroke="#18324b" stroke-width="2"/>
             <path d="M ${objectX - 10} ${groundY} L ${objectX - 10} ${groundY - 10} L ${objectX} ${groundY - 10}" fill="none" stroke="#334155" stroke-width="1.5"/>
-            <line x1="${objectX + 45}" y1="${groundY}" x2="${objectX + 45}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="2"/>
-            <line x1="${objectX + 41}" y1="${groundY}" x2="${objectX + 49}" y2="${groundY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
-            <line x1="${objectX + 41}" y1="${objectTopY}" x2="${objectX + 49}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
-            <text x="${observerX + groundDistance / 2}" y="${groundY + 18}" text-anchor="middle" font-size="11" fill="var(--side-adjacent)" font-weight="700">${distanceLabel}</text>
-            <text x="${objectX + 51}" y="${(groundY + objectTopY) / 2 + 4}" font-size="12" fill="var(--side-opposite)" font-weight="700">${heightLabel}</text>
-            ${hypotenuseLabel ? `<text x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="var(--side-hypotenuse)" font-weight="700">${hypotenuseLabel}</text>` : ""}
+            <line class="side-opposite" x1="${objectX + 45}" y1="${groundY}" x2="${objectX + 45}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="2"/>
+            <line class="side-opposite" x1="${objectX + 41}" y1="${groundY}" x2="${objectX + 49}" y2="${groundY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
+            <line class="side-opposite" x1="${objectX + 41}" y1="${objectTopY}" x2="${objectX + 49}" y2="${objectTopY}" stroke="var(--side-opposite)" stroke-width="1.5"/>
+            <text class="side-label-adjacent" x="${observerX + groundDistance / 2}" y="${groundY + 18}" text-anchor="middle" font-size="11" fill="var(--side-adjacent)" font-weight="700">${distanceLabel}</text>
+            <text class="side-label-opposite" x="${objectX + 51}" y="${(groundY + objectTopY) / 2 + 4}" font-size="12" fill="var(--side-opposite)" font-weight="700">${heightLabel}</text>
+            ${hypotenuseLabel ? `<text class="side-label-hypotenuse" x="${hypotenuseLabelX}" y="${hypotenuseLabelY - 7}" text-anchor="middle" transform="rotate(${-q.angleDeg} ${hypotenuseLabelX} ${hypotenuseLabelY - 7})" font-size="12" fill="var(--side-hypotenuse)" font-weight="700">${hypotenuseLabel}</text>` : ""}
             <text x="${observerX + 20}" y="${groundY - 17}" font-size="10" fill="#1e293b" font-weight="700">${unknownSide === "angle" ? "θ = ?" : `${q.angleDeg}°`}</text>
             <text x="${objectX + 42}" y="${objectTopY - 7}" text-anchor="end" font-size="10" fill="#1e293b" font-weight="700">${sceneLabels[q.sceneType] || "Top"}</text>
         </svg>
@@ -9387,21 +9366,21 @@ function generateRoofProblemSVG(q) {
     const bis = theta / 2;
     const font = 'font-family="Arial, Helvetica, sans-serif"';
     const heightLabel = r.type === 'height'
-        ? `<text x="${cx + 8}" y="${(peakY + baseY) / 2}" fill="var(--side-opposite)" font-weight="700" font-size="13" ${font} dominant-baseline="central">h = ?</text>`
+        ? `<text class="side-label-opposite" x="${cx + 8}" y="${(peakY + baseY) / 2}" fill="var(--side-opposite)" font-weight="700" font-size="13" ${font} dominant-baseline="central">h = ?</text>`
         : '';
     return `
-        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle roof diagram. The rafter is the blue hypotenuse, the vertical height is green, and the horizontal half-width is orange.">
+        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle roof diagram showing the rafter, height, and horizontal half-width.">
             <polygon points="${left.x},${baseY} ${right.x},${baseY} ${cx},${peakY}" fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
-            <line x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="var(--side-opposite)" stroke-width="2.5" stroke-dasharray="5 4"/>
-            <line x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3"/>
-            <line x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3"/>
-            <line x1="${right.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3" opacity="0.55"/>
-            <line x1="${cx}" y1="${baseY}" x2="${right.x}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3" opacity="0.55"/>
+            <line class="side-opposite" x1="${cx}" y1="${peakY}" x2="${cx}" y2="${baseY}" stroke="var(--side-opposite)" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <line class="side-hypotenuse" x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3"/>
+            <line class="side-adjacent" x1="${left.x}" y1="${baseY}" x2="${cx}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3"/>
+            <line class="side-hypotenuse" x1="${right.x}" y1="${baseY}" x2="${cx}" y2="${peakY}" stroke="var(--side-hypotenuse)" stroke-width="3" opacity="0.55"/>
+            <line class="side-adjacent" x1="${cx}" y1="${baseY}" x2="${right.x}" y2="${baseY}" stroke="var(--side-adjacent)" stroke-width="3" opacity="0.55"/>
             <polyline points="${cx + 12},${baseY} ${cx + 12},${baseY - 12} ${cx},${baseY - 12}" fill="none" stroke="#18324b" stroke-width="1.8"/>
             <path d="M ${left.x + arc},${baseY} A ${arc} ${arc} 0 0 0 ${left.x + arc * Math.cos(theta)},${baseY - arc * Math.sin(theta)}" fill="none" stroke="#18324b" stroke-width="1.8"/>
             <text x="${r.type === 'angle' ? left.x + 46 * Math.cos(bis) : left.x + arc + 4}" y="${r.type === 'angle' ? baseY - 46 * Math.sin(bis) : baseY - 9}" fill="#1e293b" font-weight="800" font-size="${r.type === 'angle' ? 15 : 12}" ${font} text-anchor="${r.type === 'angle' ? 'middle' : 'start'}" dominant-baseline="central">${thetaLabel}</text>
-            <text x="${rafterPos.x}" y="${rafterPos.y}" fill="var(--side-hypotenuse)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central" transform="rotate(${edgeDeg} ${rafterPos.x} ${rafterPos.y})">${rafterLabel}</text>
-            <text x="${cx}" y="${baseY + 24}" fill="var(--side-adjacent)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central">${r.width.toFixed(1)}${unit}</text>
+            <text class="side-label-hypotenuse" x="${rafterPos.x}" y="${rafterPos.y}" fill="var(--side-hypotenuse)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central" transform="rotate(${edgeDeg} ${rafterPos.x} ${rafterPos.y})">${rafterLabel}</text>
+            <text class="side-label-adjacent" x="${cx}" y="${baseY + 24}" fill="var(--side-adjacent)" font-weight="700" font-size="13" ${font} text-anchor="middle" dominant-baseline="central">${r.width.toFixed(1)}${unit}</text>
             ${heightLabel}
         </svg>
     `;
@@ -9501,7 +9480,7 @@ function generateRotatedTriangleSVG(q) {
     const adjacentLabelClass = referenceAngleIndex === 1 ? 'side-label-opposite' : 'side-label-adjacent';
 
     return `
-        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle. Relative to the marked angle, the hypotenuse is blue, the opposite side is green, and the adjacent side is orange.">
+        <svg class="triangle-diagram" viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Right triangle with a marked angle and right angle.">
             <polygon points="${rA.x},${rA.y} ${rB.x},${rB.y} ${rC.x},${rC.y}" 
                      fill="#eaf1f5" stroke="#18324b" stroke-width="2.5" stroke-linejoin="round"/>
             <line x1="${rA.x}" y1="${rA.y}" x2="${rB.x}" y2="${rB.y}" class="side-hypotenuse" stroke-width="4" stroke-linecap="round"/>
@@ -9586,7 +9565,6 @@ function renderQuestion(index) {
     );
     document.getElementById('question-stem').innerHTML = formatQuestionMath(q.stem, renderChapter13Math);
     document.getElementById('target-badge').textContent = q.section || q.objective;
-    document.getElementById('triangle-side-key').hidden = !renderChapter13Math || q.diagramType === 'trig-expression';
     const hintArea = document.getElementById('question-hint-area');
     const hintToggle = document.getElementById('hint-toggle');
     hintArea.hidden = !renderChapter13Math;
@@ -9820,10 +9798,17 @@ function showFeedback(q, userAns) {
     const hint = q.hint || (renderChapter13Math
         ? getStudentHint(q)
         : 'Use the information given in the question and apply the matching measurement rule.');
+    const triangleDiagram = renderChapter13Math
+        ? document.querySelector('#diagram-box .triangle-diagram')
+        : null;
+    const solutionDiagramMarkup = triangleDiagram
+        ? `<div class="solution-triangle-diagram">${triangleDiagram.outerHTML}</div>`
+        : '';
     solutionContent.innerHTML = `
         <h3>Step-by-Step Solution</h3>
         <p class="solution-hint"><strong>Hint:</strong> ${formatTriangleRoleText(hint, renderChapter13Math)}</p>
-        ${renderChapter13Math ? `<div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle."><span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span><span class="triangle-side-label triangle-role-opposite">Opposite</span><span class="triangle-side-label triangle-role-adjacent">Adjacent</span></div>` : ''}
+        ${solutionDiagramMarkup}
+        ${solutionDiagramMarkup ? `<div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle."><span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span><span class="triangle-side-label triangle-role-opposite">Opposite</span><span class="triangle-side-label triangle-role-adjacent">Adjacent</span></div>` : ''}
         <ol class="solution-steps">${steps.map(step => `<li>${formatTriangleRoleText(step, renderChapter13Math)}</li>`).join('')}</ol>
     `;
     solutionControls.hidden = false;
