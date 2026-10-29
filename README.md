@@ -4,7 +4,7 @@ A lightweight, static mathematics question bank. The site uses plain HTML, CSS, 
 
 ## Run locally
 
-Open `index.html` in a browser. Chapter banks are selected with the `chapter` query parameter; for example, `index.html?chapter=4`.
+Open `index.html` in a browser to view the subject catalog. Choose **Technical Mathematics** to access the available banks. Chapter banks can also be opened directly with the `chapter` query parameter; for example, `index.html?chapter=13`.
 
 ## Publish on GitHub Pages
 
@@ -19,5 +19,7 @@ The site and question data are static. No backend or external font download is r
 Inline and display LaTeX can be written with `\(...\)` and `\[...\]`. MathJax 3 is loaded from jsDelivr only when rendered lesson or question content includes one of these delimiters; older question content continues to use the built-in formatter.
 
 Chapter 13 opens with a learning-objectives introduction and a right-triangle illustration, followed by eight sticky tabs: Guide, Prerequisites, Triangle Lab, Special Triangles, Guided Examples, Calculator Tips, Practice Problems, and Chapter Quiz. The guide includes an interactive reference-angle model, SOH–CAH–TOA formulas, exact/decimal special-triangle ratios, a Pythagorean calculator, a radical simplifier, and a validated side-ratio calculator. The chapter quiz can generate a random, non-repeating selection of 10 or more questions from the existing bank, or run the full assessment. Worked examples and one-step-at-a-time solutions use questions from the existing bank. Right-triangle diagrams and solution text use blue for the hypotenuse, green for the opposite side, and orange for the adjacent side.
+
+The home page is a subject catalog inspired by the attached course portal. It lists eight subject tracks and places the existing question banks under Technical Mathematics. Other subject tracks are marked as being prepared; their curriculum cards are not presented as active question banks.
 
 Chapter 13 also groups its practice objectives into expandable topic sections. Questions include a **Show hint** control before submission, while full worked solutions remain separate after an answer is submitted. Common trigonometric expressions, fractions, roots, Greek letters, and angle notation are formatted as LaTeX and rendered with MathJax when needed. Other chapter banks retain their existing layouts and quiz behavior.
