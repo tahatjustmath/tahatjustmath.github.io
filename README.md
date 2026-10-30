@@ -8,7 +8,7 @@ Open `index.html` in a browser to view the subject catalog. Choose **Technical M
 
 ## Publish on GitHub Pages
 
-To publish at `https://tahatjustmath.github.io/`, the files in this folder must be in the root of the `tahatjustmath.github.io` repository. If publishing from a repository with another name, GitHub Pages uses a project URL instead, such as `https://tahatjustmath.github.io/TestBank/`.
+The live site is published at `https://tahatjustmath.com/` from the root of the `tahatjustmath.github.io` repository. The custom domain is configured in the repository's **Settings → Pages**; its `CNAME` file contains `tahatjustmath.com`. If publishing from a repository with another name, GitHub Pages uses a project URL instead, such as `https://tahatjustmath.github.io/TestBank/`.
 
 In the repository's **Settings → Pages**, select **Deploy from a branch**, choose the `main` branch and `/ (root)`, then save. GitHub Pages serves `index.html` as the home page; no workflow or build command is required.
 
