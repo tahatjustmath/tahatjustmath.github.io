@@ -3019,47 +3019,6 @@
             opacity: 0.8;
         }
 
-        .student-info-form {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        @media (max-width: 600px) {
-            .student-info-form {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--neutral-dark);
-        }
-
-        .form-group input {
-            padding: 10px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary);
-        }
-
         /* Detailed Answers Review List */
         .answers-preview {
             background: #f8fafc;
@@ -3101,6 +3060,14 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+        }
+
+        .email-result-note {
+            max-width: 640px;
+            margin: 12px auto 0;
+            color: var(--neutral-muted);
+            font-size: 0.9rem;
+            text-align: center;
         }
 
         @keyframes fadeIn {
@@ -3802,18 +3769,6 @@
             Final Grade: --
         </div>
 
-        <!-- Student Info Fields -->
-        <div class="student-info-form">
-            <div class="form-group">
-                <label for="student-name">Your Full Name:</label>
-                <input type="text" id="student-name" placeholder="e.g. Mohammad Tahat">
-            </div>
-            <div class="form-group">
-                <label for="student-id">Student ID / Number:</label>
-                <input type="text" id="student-id" placeholder="e.g. 20261055">
-            </div>
-        </div>
-
         <!-- Detailed Answers Preview -->
         <div class="answers-preview">
             <h4>ðŸ“‹ Detailed Answers Review (Q1 - Q<span id="review-question-count">427</span>)</h4>
@@ -3824,13 +3779,14 @@
 
         <!-- Send Results via Email Button -->
         <div class="action-email-container">
-            <button class="btn btn-success" style="font-size: 1.05rem; padding: 14px 28px;" onclick="sendResultsEmail()">
-                ✉ Send Results via Email
+            <button class="btn btn-success" type="button" style="font-size: 1.05rem; padding: 14px 28px;" onclick="sendResultsEmail()">
+                Email My Result
             </button>
             <button class="btn btn-secondary" type="button" onclick="returnToBank()">
                 Return to Question Bank
             </button>
         </div>
+        <p class="email-result-note">This opens your email app with the quiz name and score addressed to contact@tahatjustmath.com. Review the draft and send it yourself if you want to share your result.</p>
     </div>
     </div>
 </div>
@@ -10494,37 +10450,19 @@ function finishQuiz() {
 
 // --- SEND RESULTS VIA EMAIL ---
 function sendResultsEmail() {
-    const studentName = document.getElementById('student-name').value.trim();
-    const studentID = document.getElementById('student-id').value.trim();
-
-    if (!studentName || !studentID) {
-        alert("Please enter your Name and Student ID before sending results via email.");
-        return;
-    }
-
     let score = 0;
     userAnswers.forEach((ans, idx) => {
         if (ans === activeQuestions[idx].correct) score++;
     });
 
     const percent = Math.round((score / activeQuestions.length) * 100);
-    let detailsStr = "";
-    activeQuestions.forEach((q, idx) => {
-        detailsStr += `Q${idx+1}: ${userAnswers[idx] || 'None'}\n`;
-    });
-
-    const emailSubject = encodeURIComponent(`${activeAssessmentTitle} Results (${activeQuestions.length} Qs): ${studentName} (ID: ${studentID})`);
+    const emailSubject = encodeURIComponent(`${activeAssessmentTitle} Quiz Result`);
     const emailBody = encodeURIComponent(
-        `Student Name: ${studentName}\n` +
-        `Student ID: ${studentID}\n` +
         `Assessment: ${activeAssessmentTitle}\n` +
-        `Final Score: ${score} / ${activeQuestions.length} (${percent}%)\n` +
-        `Time Elapsed: ${document.getElementById('timer').textContent}\n\n` +
-        `--- Answers Breakdown ---\n` +
-        detailsStr
+        `Final Score: ${score} / ${activeQuestions.length} (${percent}%)`
     );
 
-    window.location.href = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+    window.location.href = `mailto:contact@tahatjustmath.com?subject=${emailSubject}&body=${emailBody}`;
 }
 </script>
 </body>
