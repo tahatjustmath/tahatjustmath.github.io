@@ -2323,6 +2323,59 @@
             fill: var(--side-adjacent);
         }
 
+        .practice-mode-switch {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 20px;
+        }
+
+        .practice-mode-switch[hidden] { display: none; }
+
+        .practice-mode-switch button {
+            min-height: 44px;
+            padding: 10px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: white;
+            color: var(--primary);
+            font: inherit;
+            font-weight: 750;
+            cursor: pointer;
+        }
+
+        .practice-mode-switch button[aria-pressed="true"] {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .practice-mode-switch button:focus-visible {
+            outline: 3px solid #d9b66f;
+            outline-offset: 2px;
+        }
+
+        .mx-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 0 0 16px; }
+        .mx-stat { padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 12px; background: #f8fafb; }
+        .mx-stat strong { display: block; font-size: 1.15rem; color: var(--primary); }
+        .mx h4 { margin: 18px 0 6px; color: var(--primary); }
+        .mx-rules li { margin: 5px 0; }
+        .mx-warn { margin: 14px 0; padding: 12px 16px; border-left: 4px solid #bd3b36; background: #fdf2f1; }
+        .mx-agree { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0; padding: 12px 16px; border-left: 4px solid #147d78; background: #f1f7f7; }
+        .mx-agree input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
+        .mx .mx-btn { display: inline-block; min-height: 44px; padding: 10px 18px; border: 0; border-radius: 8px; background: #18324b; color: #fff; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+        .mx .mx-btn:hover, .mx .mx-btn:focus-visible { background: #10283e; }
+        .mx .mx-btn:disabled { background: #9aa8b5; cursor: not-allowed; }
+        .mx .mx-btn.mx-alt { min-height: 38px; padding: 7px 12px; background: #147d78; }
+        .mx .mx-btn.mx-light { background: #e6edf1; color: #18324b; }
+        .mx-note { margin: 10px 0; font-size: 0.85rem; color: #526576; }
+        .mx-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #18324b; color: #fff; }
+        .mx-bar b { font-variant-numeric: tabular-nums; font-size: 1.2rem; }
+        .mx-bar.low { background: #bd3b36; }
+        .mx-frame-wrap { margin-top: 12px; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #fff; }
+        #mx-frame { display: block; width: 100%; height: min(78vh, 900px); min-height: 520px; border: 0; }
+        #mx-stage:fullscreen { overflow: auto; padding: 12px; background: #fff; }
+
         .practice-section {
             scroll-margin-top: 84px;
         }
@@ -3486,7 +3539,7 @@
                 <p id="subject-catalog-description">Choose an available chapter to open its interactive lessons, tools, and question bank.</p>
             </div>
             <div class="subject-chapter-grid" id="subject-chapter-grid"></div>
-            <a class="mock-exam-banner" href="mock-exam.html">
+            <a class="mock-exam-banner" href="index.html?chapter=13&amp;tab=quiz">
                 <span class="section-eyebrow">Exam practice</span>
                 <strong>Mock Exam: timed and proctored</strong>
                 <span>Test yourself under real exam conditions with a timer and anti-cheating monitoring. Open the mock exam</span>
@@ -4012,31 +4065,81 @@
               </div>
             </div>
             <div class="chapter13-tab-panel" id="chapter13-view-quiz" role="tabpanel" aria-labelledby="chapter13-tab-quiz" hidden>
-                <div class="chapter13-quiz-card">
-                    <span class="section-eyebrow">Chapter assessment</span>
-                    <h3>Ready to check your understanding?</h3>
-                    <p>The Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across all learning objectives. Generate a fresh quiz with a random selection of questions, or use the full assessment to answer every question.</p>
-                    <form class="chapter13-random-quiz" id="chapter13-random-quiz-form" novalidate>
-                        <label for="chapter13-random-quiz-count">Number of Questions (Min 10):
-                            <input id="chapter13-random-quiz-count" name="questionCount" type="number" min="10" max="427" step="1" value="315" inputmode="numeric" required>
+                <div class="chapter13-panel-card mx">
+                    <div class="chapter13-panel-heading">
+                        <span class="section-eyebrow">Chapter assessment</span>
+                        <h3>Chapter quiz: timed mock exam</h3>
+                        <p>Take the Chapter 13 mock exam under real exam conditions. It is timed and monitored by the TestPortal proctoring platform.</p>
+                    </div>
+                    <div id="mx-rules">
+                        <div class="mx-stats">
+                            <div class="mx-stat"><span>Time allowed</span><strong id="mx-time">60 minutes</strong></div>
+                            <div class="mx-stat"><span>Format</span><strong>Online, proctored</strong></div>
+                            <div class="mx-stat"><span>Attempts</span><strong>As set by your instructor</strong></div>
+                        </div>
+                        <h4>Before you start</h4>
+                        <ul class="mx-rules">
+                            <li>Use a laptop or desktop with a stable internet connection.</li>
+                            <li>Close all other tabs, chat apps and programs. Switching tabs or windows may be recorded as a violation.</li>
+                            <li>Allow full screen, and the camera or microphone if the test asks for them.</li>
+                            <li>Have only what your instructor allows: pen, paper and a scientific calculator.</li>
+                            <li>Do not copy, paste, take screenshots or search for answers.</li>
+                            <li>Do not refresh the page once the test begins. Your time keeps running.</li>
+                            <li>Enter your real name and student ID when the test asks, so your result can be matched to you.</li>
+                        </ul>
+                        <p class="mx-warn"><strong>Academic integrity:</strong> cheating, impersonation and leaving the exam window can lead to a zero or other penalties set by your instructor.</p>
+                        <label class="mx-agree" for="mx-agree">
+                            <input type="checkbox" id="mx-agree">
+                            <span>I have read the rules, I will work alone and honestly, and I understand my activity may be recorded.</span>
                         </label>
-                        <button type="submit">Generate</button>
-                        <p class="chapter13-random-quiz-hint" id="chapter13-random-quiz-hint">Choose 10–427 questions. Each quiz uses a random, non-repeating selection.</p>
-                        <p class="chapter13-random-quiz-error" id="chapter13-random-quiz-error" role="alert" aria-live="polite"></p>
-                    </form>
-                    <button class="btn" type="button" onclick="startFullAssessment()">Start the Chapter 13 Assessment · <span id="chapter13-quiz-count">427</span> Questions</button>
+                        <button class="mx-btn" id="mx-start" type="button" disabled>Start mock exam</button>
+                        <p class="mx-note">Want to rehearse first? Use the Practice problems tab.</p>
+                    </div>
+                    <div id="mx-stage" hidden>
+                        <div class="mx-bar" id="mx-bar">
+                            <span>Reference timer: <b id="mx-clock">60:00</b></span>
+                            <span>Window leaves: <b id="mx-leaves">0</b></span>
+                            <span>
+                                <button class="mx-btn mx-alt" id="mx-fs" type="button">Full screen</button>
+                                <a class="mx-btn mx-alt" id="mx-newtab" target="_blank" rel="noopener noreferrer" href="#">Open in new tab</a>
+                            </span>
+                        </div>
+                        <div class="mx-frame-wrap">
+                            <iframe id="mx-frame" title="TestPortal mock exam" allow="camera; microphone; fullscreen; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                        <p class="mx-note">The official timer and proctoring run inside the exam window. The reference timer is only a reminder.</p>
+                        <button class="mx-btn mx-light" id="mx-end" type="button">I have finished</button>
+                    </div>
                 </div>
             </div>
         </section>
         <div class="chapter13-tab-panel" id="chapter13-view-practice" role="tabpanel" aria-labelledby="chapter13-tab-practice" hidden>
+            <div class="practice-mode-switch" id="practice-mode-switch" role="group" aria-label="Practice mode" hidden>
+                <button type="button" id="practice-mode-objective" aria-pressed="true" onclick="setPracticeMode('objective')">Practice by objective</button>
+                <button type="button" id="practice-mode-random" aria-pressed="false" onclick="setPracticeMode('random')">Random practice</button>
+            </div>
             <section class="practice-section" id="practice-section" aria-labelledby="objective-heading">
                 <div class="bank-heading">
                     <span class="section-eyebrow">Focused practice</span>
                     <h2 id="objective-heading">Choose a learning objective</h2>
-                    <p>Practice one skill at a time, or use the full assessment above to review the entire chapter.</p>
+                    <p id="objective-intro">Practice one skill at a time, or use the full assessment from the hero section to review the entire chapter.</p>
                 </div>
                 <div class="objective-list" id="objective-list" aria-label="Question bank learning objectives"></div>
             </section>
+            <div class="chapter13-quiz-card" id="practice-random-panel" hidden>
+                <span class="section-eyebrow">Random practice</span>
+                <h3>Mixed practice across every objective</h3>
+                <p>The Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across <span id="chapter13-objective-count">8</span> learning objectives. A random set always includes at least one question from every objective, so a 10-question set covers the whole chapter.</p>
+                <form class="chapter13-random-quiz" id="chapter13-random-quiz-form" novalidate>
+                    <label for="chapter13-random-quiz-count">Number of Questions (Min 10):
+                        <input id="chapter13-random-quiz-count" name="questionCount" type="number" min="10" max="427" step="1" value="10" inputmode="numeric" required>
+                    </label>
+                    <button type="submit">Generate</button>
+                    <p class="chapter13-random-quiz-hint" id="chapter13-random-quiz-hint">Choose 10–427 questions. Each set uses a random, non-repeating selection.</p>
+                    <p class="chapter13-random-quiz-error" id="chapter13-random-quiz-error" role="alert" aria-live="polite"></p>
+                </form>
+                <button class="btn" type="button" onclick="startFullAssessment()">Practice all <span id="chapter13-quiz-count">427</span> questions</button>
+            </div>
         </div>
     </main>
 
@@ -4195,7 +4298,7 @@
                 <ul>
                     <li><a href="index.html">Subjects directory</a></li>
                     <li><a href="#site-header">Back to top</a></li>
-                    <li><a href="mock-exam.html">Mock exam</a></li>
+                    <li><a href="index.html?chapter=13&amp;tab=quiz">Mock exam</a></li>
                     <li><a href="privacy.html">Privacy policy</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="https://github.com/tahatjustmath/tahatjustmath.github.io">GitHub project</a></li>
@@ -9281,6 +9384,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderQuestionBank();
     initializeChapter13Navigation();
     initializeChapter13Tools();
+    initializeMockExam();
     document.getElementById('chapter13-random-quiz-form').addEventListener('submit', event => {
         event.preventDefault();
         generateRandomChapterQuiz();
@@ -9452,15 +9556,20 @@ function renderQuestionBank() {
     practicePanel.hidden = isChapter13;
     document.getElementById('chapter13-quiz-question-count').textContent = chapterQuestions.length;
     document.getElementById('chapter13-quiz-count').textContent = chapterQuestions.length;
+    document.getElementById('chapter13-objective-count').textContent =
+        new Set(chapterQuestions.map(question => question.objectiveId)).size;
+    document.getElementById('practice-mode-switch').hidden = !isChapter13;
+    setPracticeMode('objective');
     const randomQuizCount = document.getElementById('chapter13-random-quiz-count');
     randomQuizCount.max = chapterQuestions.length;
     document.getElementById('chapter13-random-quiz-hint').textContent =
-        `Choose 10–${chapterQuestions.length} questions. Each quiz uses a random, non-repeating selection.`;
+        `Choose 10–${chapterQuestions.length} questions. Each set uses a random, non-repeating selection.`;
     if (isChapter13) {
         practicePanel.setAttribute('role', 'tabpanel');
         practicePanel.setAttribute('aria-labelledby', 'chapter13-tab-practice');
         renderChapter13Guide();
-        switchChapter13Tab('guide');
+        const requestedTab = new URLSearchParams(window.location.search).get('tab');
+        switchChapter13Tab(['quiz', 'practice'].includes(requestedTab) ? requestedTab : 'guide');
     } else {
         practicePanel.removeAttribute('role');
         practicePanel.removeAttribute('aria-labelledby');
@@ -9997,16 +10106,98 @@ function generateRandomChapterQuiz() {
         return;
     }
 
-    const shuffledQuestions = chapterQuestions.slice();
-    for (let index = 0; index < requestedCount; index += 1) {
-        const randomIndex = index + Math.floor(Math.random() * (shuffledQuestions.length - index));
-        [shuffledQuestions[index], shuffledQuestions[randomIndex]] =
-            [shuffledQuestions[randomIndex], shuffledQuestions[index]];
-    }
+    const pool = shuffleInPlace(chapterQuestions.slice());
+    const picked = [];
+    const seenObjectives = new Set();
+    // One question per objective first, so every objective is covered.
+    pool.forEach(question => {
+        if (!seenObjectives.has(question.objectiveId) && picked.length < requestedCount) {
+            seenObjectives.add(question.objectiveId);
+            picked.push(question);
+        }
+    });
+    pool.forEach(question => {
+        if (picked.length < requestedCount && !picked.includes(question)) picked.push(question);
+    });
+    shuffleInPlace(picked);
 
     errorMessage.textContent = '';
     countInput.setAttribute('aria-invalid', 'false');
-    beginAssessment(shuffledQuestions.slice(0, requestedCount), 'Chapter 13: Random Quiz');
+    beginAssessment(picked, 'Chapter 13: Random Practice');
+}
+
+function shuffleInPlace(items) {
+    for (let index = items.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+    }
+    return items;
+}
+
+function setPracticeMode(mode) {
+    const isRandom = mode === 'random' && selectedChapter === "13";
+    document.getElementById('practice-section').hidden = isRandom;
+    document.getElementById('practice-random-panel').hidden = !isRandom;
+    document.getElementById('practice-mode-objective').setAttribute('aria-pressed', String(!isRandom));
+    document.getElementById('practice-mode-random').setAttribute('aria-pressed', String(isRandom));
+}
+
+function initializeMockExam() {
+    // Change these two values to update the mock exam.
+    const EXAM_URL = 'https://mtahat.testportal.com/test.html?t=WXY9TCUUWSB7';
+    const EXAM_MINUTES = 60;
+    const $ = id => document.getElementById(id);
+    const agree = $('mx-agree'), startBtn = $('mx-start'), rules = $('mx-rules'), stage = $('mx-stage');
+    const clock = $('mx-clock'), leaves = $('mx-leaves'), bar = $('mx-bar'), frame = $('mx-frame');
+    let timer = null, endAt = 0, leaveCount = 0, running = false;
+
+    $('mx-time').textContent = `${EXAM_MINUTES} minutes`;
+    $('mx-newtab').href = EXAM_URL;
+    agree.addEventListener('change', () => { startBtn.disabled = !agree.checked; });
+
+    const tick = () => {
+        const left = Math.max(0, Math.round((endAt - Date.now()) / 1000));
+        clock.textContent = `${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+        bar.classList.toggle('low', left <= 300);
+        if (left === 0) { clearInterval(timer); clock.textContent = 'Time is up'; }
+    };
+    const finish = () => {
+        running = false;
+        clearInterval(timer);
+        if (document.fullscreenElement) document.exitFullscreen();
+        frame.src = 'about:blank';
+        stage.hidden = true;
+        rules.hidden = false;
+        agree.checked = false;
+        startBtn.disabled = true;
+        leaveCount = 0;
+        leaves.textContent = '0';
+    };
+
+    startBtn.addEventListener('click', () => {
+        running = true;
+        rules.hidden = true;
+        stage.hidden = false;
+        frame.src = EXAM_URL;
+        endAt = Date.now() + EXAM_MINUTES * 60000;
+        tick();
+        timer = setInterval(tick, 1000);
+        stage.scrollIntoView();
+        if (stage.requestFullscreen) stage.requestFullscreen().catch(() => {});
+    });
+    $('mx-end').addEventListener('click', () => {
+        if (window.confirm('Finish and close the exam window? Make sure you submitted your answers in the test first.')) finish();
+    });
+    $('mx-fs').addEventListener('click', () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else if (stage.requestFullscreen) stage.requestFullscreen();
+    });
+    document.addEventListener('visibilitychange', () => {
+        if (running && document.hidden) { leaveCount += 1; leaves.textContent = leaveCount; }
+    });
+    window.addEventListener('beforeunload', event => {
+        if (running) { event.preventDefault(); event.returnValue = ''; }
+    });
 }
 
 function startObjectivePractice(objectiveId) {
