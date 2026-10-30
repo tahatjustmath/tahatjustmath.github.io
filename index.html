@@ -3626,15 +3626,29 @@
                     </svg>
                     <figcaption>Chapter 13: Trigonometry &amp; Right Triangles</figcaption>
                 </figure>
+                <figure class="chapter13-hero-visual" id="chapter15-hero-visual" hidden>
+                    <svg viewBox="0 0 320 250" role="img" aria-labelledby="chapter15-hero-title">
+                        <title id="chapter15-hero-title">Circle graph and bar graph illustrating data</title>
+                        <circle cx="105" cy="120" r="70" fill="#0b1c31" stroke="#f8fafc" stroke-width="5"/>
+                        <path d="M 105 120 L 105 50 A 70 70 0 0 1 172 99 Z" fill="#78c936"/>
+                        <path d="M 105 120 L 172 99 A 70 70 0 0 1 130 187 Z" fill="#e0b82f"/>
+                        <path d="M 105 120 L 130 187 A 70 70 0 0 1 60 175 Z" fill="#38bdf8"/>
+                        <rect x="205" y="140" width="22" height="70" fill="#78c936"/>
+                        <rect x="233" y="100" width="22" height="110" fill="#e0b82f"/>
+                        <rect x="261" y="60" width="22" height="150" fill="#38bdf8"/>
+                        <line x1="198" y1="210" x2="292" y2="210" stroke="#f8fafc" stroke-width="4"/>
+                    </svg>
+                    <figcaption>Chapter 15: Graphs, Statistics &amp; Measurement</figcaption>
+                </figure>
             </div>
         </section>
-        <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter 13 sections" role="tablist" hidden>
+        <nav class="learning-navigation" id="chapter13-learning-navigation" aria-label="Chapter sections" role="tablist" hidden>
             <button class="chapter13-tab-button" id="chapter13-tab-guide" type="button" role="tab" aria-selected="true" aria-controls="chapter13-view-guide" tabindex="0" onclick="switchChapter13Tab('guide')">Guide</button>
-            <button class="chapter13-tab-button" id="chapter13-tab-prerequisites" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-prerequisites" tabindex="-1" onclick="switchChapter13Tab('prerequisites')">Prerequisites</button>
-            <button class="chapter13-tab-button" id="chapter13-tab-lab" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-lab" tabindex="-1" onclick="switchChapter13Tab('lab')">Triangle lab</button>
-            <button class="chapter13-tab-button" id="chapter13-tab-special" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-special" tabindex="-1" onclick="switchChapter13Tab('special')">Special triangles</button>
-            <button class="chapter13-tab-button" id="chapter13-tab-examples" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-examples" tabindex="-1" onclick="switchChapter13Tab('examples')">Guided examples</button>
-            <button class="chapter13-tab-button" id="chapter13-tab-calculator" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-calculator" tabindex="-1" onclick="switchChapter13Tab('calculator')">Calculator tips</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-prerequisites" data-chapters="13" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-prerequisites" tabindex="-1" onclick="switchChapter13Tab('prerequisites')">Prerequisites</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-lab" data-chapters="13" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-lab" tabindex="-1" onclick="switchChapter13Tab('lab')">Triangle lab</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-special" data-chapters="13" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-special" tabindex="-1" onclick="switchChapter13Tab('special')">Special triangles</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-examples" data-chapters="13" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-examples" tabindex="-1" onclick="switchChapter13Tab('examples')">Guided examples</button>
+            <button class="chapter13-tab-button" id="chapter13-tab-calculator" data-chapters="13" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-calculator" tabindex="-1" onclick="switchChapter13Tab('calculator')">Calculator tips</button>
             <button class="chapter13-tab-button" id="chapter13-tab-practice" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-practice" tabindex="-1" onclick="switchChapter13Tab('practice')">Practice problems</button>
             <button class="chapter13-tab-button" id="chapter13-tab-quiz" type="button" role="tab" aria-selected="false" aria-controls="chapter13-view-quiz" tabindex="-1" onclick="switchChapter13Tab('quiz')">Chapter quiz</button>
         </nav>
@@ -3815,6 +3829,85 @@
                             </aside>
                         </section>
                     </div>
+                </div>
+            </div>
+            <div class="chapter13-tab-panel" id="chapter13-view-guide15" role="tabpanel" aria-labelledby="chapter13-tab-guide" hidden>
+                <div class="chapter13-guide-content">
+                    <section class="chapter13-guide-objective" aria-labelledby="chapter15-guide-1">
+                        <div class="chapter13-guide-objective-heading">
+                            <span class="chapter13-guide-objective-number">Objectives 1–3</span>
+                            <h3 id="chapter15-guide-1">Construct, calculate and interpret circle graphs</h3>
+                        </div>
+                        <p>A circle graph (pie chart) shows how a whole is shared among categories. The full circle is \(360^\circ\), so each category receives a central angle proportional to its share of the total.</p>
+                        <div class="chapter13-guide-card-grid two-columns">
+                            <article class="chapter13-guide-card">
+                                <h4>Central angle from a percentage</h4>
+                                <p class="guide-formula">\(\text{angle}=\frac{\text{percent}}{100}\times 360^\circ\)</p>
+                            </article>
+                            <article class="chapter13-guide-card">
+                                <h4>Central angle from a count</h4>
+                                <p class="guide-formula">\(\text{angle}=\frac{\text{category count}}{\text{total count}}\times 360^\circ\)</p>
+                            </article>
+                        </div>
+                        <aside class="chapter13-guide-objective-note" aria-label="Key idea about circle graphs">
+                            <strong>Key idea</strong>
+                            <p>The central angles of all categories add to \(360^\circ\). To read a value from a pie chart, multiply the total by the category's fraction of the circle. Round only the final answer.</p>
+                        </aside>
+                    </section>
+                    <section class="chapter13-guide-objective" aria-labelledby="chapter15-guide-2">
+                        <div class="chapter13-guide-objective-heading">
+                            <span class="chapter13-guide-objective-number">Objectives 4–5</span>
+                            <h3 id="chapter15-guide-2">Read line graphs and bar graphs</h3>
+                        </div>
+                        <div class="chapter13-guide-card-grid two-columns">
+                            <article class="chapter13-guide-card">
+                                <h4>Line graph</h4>
+                                <p>Shows how a quantity changes. Find the given value on the horizontal axis, move up to the line, then across to the vertical axis (or the reverse for the opposite question).</p>
+                            </article>
+                            <article class="chapter13-guide-card">
+                                <h4>Bar graph</h4>
+                                <p>Compares categories. Read each bar's height on the scale, then add, subtract or compare as the question asks.</p>
+                            </article>
+                        </div>
+                    </section>
+                    <section class="chapter13-guide-objective" aria-labelledby="chapter15-guide-3">
+                        <div class="chapter13-guide-objective-heading">
+                            <span class="chapter13-guide-objective-number">Objectives 6–7</span>
+                            <h3 id="chapter15-guide-3">Build frequency distributions and histograms</h3>
+                        </div>
+                        <ol class="objective4-steps">
+                            <li>Choose equal-width class intervals that cover the smallest to the largest value.</li>
+                            <li>Tally each data value into exactly one interval and count the frequency \(f\).</li>
+                            <li>Check that the frequencies add up to the number of data values.</li>
+                            <li>For a histogram, draw one bar per interval, with the bar height equal to its frequency and no gaps between bars.</li>
+                        </ol>
+                    </section>
+                    <section class="chapter13-guide-objective" aria-labelledby="chapter15-guide-4">
+                        <div class="chapter13-guide-objective-heading">
+                            <span class="chapter13-guide-objective-number">Objectives 8–11</span>
+                            <h3 id="chapter15-guide-4">Mean, median and mode</h3>
+                        </div>
+                        <div class="chapter13-guide-card-grid two-columns">
+                            <article class="chapter13-guide-card">
+                                <h4>Mean</h4>
+                                <p class="guide-formula">\(\bar{x}=\frac{\sum x}{n}\)</p>
+                                <p>Add all values and divide by the number of values.</p>
+                            </article>
+                            <article class="chapter13-guide-card">
+                                <h4>Median</h4>
+                                <p>Order the data. The median is the middle value; for an even count, it is the mean of the two middle values.</p>
+                            </article>
+                            <article class="chapter13-guide-card">
+                                <h4>Mode</h4>
+                                <p>The most frequent value. A data set can have one mode, several modes, or none.</p>
+                            </article>
+                            <article class="chapter13-guide-card">
+                                <h4>Mean of a frequency distribution</h4>
+                                <p class="guide-formula">\(\bar{x}=\frac{\sum xf}{\sum f}\)</p>
+                                <p>Use the midpoint \(x\) of each interval, multiply by its frequency \(f\), then add the products and divide by the total frequency.</p>
+                            </article>
+                        </div>
+                    </section>
                 </div>
             </div>
             <div class="chapter13-tab-panel" id="chapter13-view-prerequisites" role="tabpanel" aria-labelledby="chapter13-tab-prerequisites" hidden>
@@ -4112,8 +4205,9 @@
                     <div class="chapter13-panel-heading">
                         <span class="section-eyebrow">Chapter assessment</span>
                         <h3>Chapter quiz: timed mock exam</h3>
-                        <p>Take the Chapter 13 mock exam under real exam conditions. It is timed and monitored by the TestPortal proctoring platform.</p>
+                        <p id="mx-intro">Take the Chapter 13 mock exam under real exam conditions. It is timed and monitored by the TestPortal proctoring platform.</p>
                     </div>
+                    <p class="mx-note" id="mx-soon" hidden>The mock exam for this chapter is being prepared and will appear here soon. Meanwhile, use the Practice problems tab.</p>
                     <div id="mx-rules">
                         <div class="mx-stats">
                             <div class="mx-stat"><span>Time allowed</span><strong id="mx-time">40 minutes</strong></div>
@@ -4182,9 +4276,9 @@
             <div class="chapter13-quiz-card" id="practice-random-panel" hidden>
                 <span class="section-eyebrow">Random practice</span>
                 <h3>Mixed practice across every objective</h3>
-                <p>Chapter 13 contains <span id="chapter13-quiz-question-count">427</span> questions across <span id="chapter13-objective-count">8</span> learning objectives. A random set always includes at least one question from every objective, so a 10-question set covers the whole chapter.</p>
+                <p><span id="random-chapter-label">Chapter 13</span> contains <span id="chapter13-quiz-question-count">427</span> questions across <span id="chapter13-objective-count">8</span> learning objectives. A random set always includes at least one question from every objective, so a set of <span id="random-min-count">10</span> questions covers the whole chapter.</p>
                 <form class="chapter13-random-quiz" id="chapter13-random-quiz-form" novalidate>
-                    <label for="chapter13-random-quiz-count">Number of Questions (Min 10):
+                    <label for="chapter13-random-quiz-count">Number of Questions (Min <span id="random-min-label">10</span>):
                         <input id="chapter13-random-quiz-count" name="questionCount" type="number" min="10" max="427" step="1" value="10" inputmode="numeric" required>
                     </label>
                     <button type="submit">Generate</button>
@@ -9369,12 +9463,28 @@ const chapter4ObjectiveDefinitions = [
 }));
 
 learningObjectives.splice(0, 1, ...chapter4ObjectiveDefinitions);
-learningObjectives.push({
-    id: "chapter15",
-    title: "Chapter 15 & CG: Graphs, Statistics, and Measurement",
-    description: "Practice circle graphs and data interpretation.",
-    categories: ["Chapter 15"]
-});
+const chapter15ObjectiveDefinitions = [
+    ["circle-construct", "1. Constructing a Circle Graph from Percentages", "Convert percentages to central angles and select the circle graph that represents the data.", 1001, 1011],
+    ["circle-angles", "2. Finding Central Angles for a Circle Graph (Data or Counts Given)", "Compute the central angle that represents a category as a share of the total.", 1012, 1062],
+    ["circle-interpret", "3. Interpreting Circle Graphs", "Use the fractions of a circle graph to find and compare quantities.", 1229, 1248],
+    ["line-graphs", "4. Reading and Interpreting Line Graphs", "Read values and trends from a line graph.", 1063, 1077],
+    ["bar-graphs", "5. Reading and Interpreting Bar Graphs", "Read, compare and combine values shown in a bar graph.", 1189, 1213],
+    ["freq-distribution", "6. Constructing a Frequency Distribution from Raw Data", "Group raw data into class intervals and record the frequency of each interval.", 1169, 1188],
+    ["histogram", "7. Constructing a Histogram from a Frequency Distribution", "Select the histogram that represents a given frequency distribution.", 1214, 1228],
+    ["mean", "8. Finding the Mean of a Data Set", "Calculate the arithmetic mean of a set of measurements.", 1078, 1097],
+    ["median", "9. Finding the Median of a Data Set", "Order the data and identify the middle value.", 1098, 1127],
+    ["mode", "10. Finding the Mode of a Data Set", "Identify the most frequently occurring value.", 1128, 1148],
+    ["grouped-mean", "11. Finding the Mean from a Grouped Frequency Distribution", "Use class midpoints and frequencies to estimate the mean.", 1149, 1168]
+].map(([key, title, description, from, to]) => ({
+    id: `chapter15-${key}`,
+    title,
+    description,
+    categories: [],
+    idRange: [from, to]
+}));
+learningObjectives.push(...chapter15ObjectiveDefinitions);
+const getChapter15Objective = question =>
+    chapter15ObjectiveDefinitions.find(item => question.id >= item.idRange[0] && question.id <= item.idRange[1]);
 
 const chapter13TopicGroups = [
     { title: "Right-triangle foundations", objectiveIds: ["identify-sides", "pythagorean"] },
@@ -9483,7 +9593,9 @@ function getChapter4Objective(question) {
 questionsData.forEach(question => {
     const objective = question.category === "Chapter 4"
         ? getChapter4Objective(question)
-        : learningObjectives.find(item => item.id === classifyChapter13Objective(question)) ||
+        : question.category === "Chapter 15"
+            ? getChapter15Objective(question)
+            : learningObjectives.find(item => item.id === classifyChapter13Objective(question)) ||
             learningObjectives.find(item => item.categories.includes(question.category));
     if (!objective) throw new Error(`Question ${question.id} has no learning objective.`);
     question.objectiveId = objective.id;
@@ -9667,8 +9779,10 @@ function configureChapterBank() {
     document.getElementById('bank-screen').hidden = showSubjectPortal;
     document.getElementById('subject-home-button').hidden = showSubjectPortal;
     document.getElementById('workspace-breadcrumb').hidden = showSubjectPortal;
-    document.querySelector('.bank-hero').classList.toggle('chapter13-hero', isChapter13);
+    const hasTabs = isChapter13 || isChapter15;
+    document.querySelector('.bank-hero').classList.toggle('chapter13-hero', hasTabs);
     document.getElementById('chapter13-hero-visual').hidden = !isChapter13;
+    document.getElementById('chapter15-hero-visual').hidden = !isChapter15;
     document.getElementById('current-chapter-title').textContent = showSubjectPortal ? 'Subject catalog' : title;
     document.getElementById('header-meta').hidden = showSubjectPortal;
     document.getElementById('workspace-chapter-title').textContent = isChapter4
@@ -9678,11 +9792,24 @@ function configureChapterBank() {
             : 'Chapter 13';
     document.getElementById('bank-hero-title').textContent = isChapter13
         ? "Learn and Practice Right-Triangle Trigonometry"
-        : "Interactive Mathematics Simulation";
+        : isChapter15
+            ? "Learn and Practice Graphs and Statistics"
+            : "Interactive Mathematics Simulation";
     document.querySelector('.bank-hero-description').textContent = isChapter13
         ? "Build confidence with clear concepts, guided examples, and self-paced practice."
-        : "Test questions, verify solutions step-by-step, and monitor live metrics.";
-    document.getElementById('chapter13-learning-outcomes').hidden = !isChapter13;
+        : isChapter15
+            ? "Build confidence reading and constructing graphs and calculating mean, median and mode, with hints, step-by-step solutions and a built-in calculator."
+            : "Test questions, verify solutions step-by-step, and monitor live metrics.";
+    const outcomes = document.getElementById('chapter13-learning-outcomes');
+    if (isChapter15) {
+        outcomes.replaceChildren(...[
+            "Construct and interpret circle graphs and central angles.",
+            "Read line graphs and bar graphs.",
+            "Build frequency distributions and histograms.",
+            "Find the mean, median and mode, including from grouped data."
+        ].map(text => Object.assign(document.createElement('li'), { textContent: text })));
+    }
+    outcomes.hidden = !hasTabs;
     document.getElementById('bank-total-count').textContent = chapterQuestions.length;
     document.getElementById('header-question-count').textContent = chapterQuestions.length;
     document.getElementById('hero-question-count').textContent = chapterQuestions.length;
@@ -9719,24 +9846,35 @@ function renderQuestionBank() {
     objectiveList.innerHTML = '';
     const chapterQuestions = getSelectedChapterQuestions();
     const isChapter13 = selectedChapter === "13";
-    document.getElementById('chapter13-learning-navigation').hidden = !isChapter13;
-    document.getElementById('chapter13-learning-guide').hidden = !isChapter13;
+    const hasTabs = isChapter13 || selectedChapter === "15";
+    document.getElementById('chapter13-learning-navigation').hidden = !hasTabs;
+    document.getElementById('chapter13-learning-guide').hidden = !hasTabs;
+    document.querySelectorAll('#chapter13-learning-navigation [data-chapters]').forEach(button => {
+        button.hidden = !button.dataset.chapters.split(',').includes(selectedChapter);
+    });
     const practicePanel = document.getElementById('chapter13-view-practice');
-    practicePanel.hidden = isChapter13;
+    practicePanel.hidden = hasTabs;
     document.getElementById('chapter13-quiz-question-count').textContent = chapterQuestions.length;
     document.getElementById('chapter13-quiz-count').textContent = chapterQuestions.length;
-    document.getElementById('chapter13-objective-count').textContent =
-        new Set(chapterQuestions.map(question => question.objectiveId)).size;
-    document.getElementById('practice-mode-switch').hidden = !isChapter13;
+    const objectiveTotal = new Set(chapterQuestions.map(question => question.objectiveId)).size;
+    document.getElementById('chapter13-objective-count').textContent = objectiveTotal;
+    document.getElementById('practice-mode-switch').hidden = !hasTabs;
     setPracticeMode('objective');
+    // A random set must be able to include one question from every objective.
+    const minRandomCount = Math.max(10, objectiveTotal);
+    document.getElementById('random-chapter-label').textContent = `Chapter ${selectedChapter}`;
+    document.getElementById('random-min-count').textContent = minRandomCount;
+    document.getElementById('random-min-label').textContent = minRandomCount;
     const randomQuizCount = document.getElementById('chapter13-random-quiz-count');
+    randomQuizCount.min = minRandomCount;
     randomQuizCount.max = chapterQuestions.length;
+    randomQuizCount.value = minRandomCount;
     document.getElementById('chapter13-random-quiz-hint').textContent =
-        `Choose 10–${chapterQuestions.length} questions. Each set uses a random, non-repeating selection.`;
-    if (isChapter13) {
+        `Choose ${minRandomCount}–${chapterQuestions.length} questions. Each set uses a random, non-repeating selection.`;
+    if (hasTabs) {
         practicePanel.setAttribute('role', 'tabpanel');
         practicePanel.setAttribute('aria-labelledby', 'chapter13-tab-practice');
-        renderChapter13Guide();
+        if (isChapter13) renderChapter13Guide();
         const requestedTab = new URLSearchParams(window.location.search).get('tab');
         switchChapter13Tab(['quiz', 'practice'].includes(requestedTab) ? requestedTab : 'guide');
     } else {
@@ -9897,15 +10035,16 @@ function renderChapter13Guide() {
 function switchChapter13Tab(tabName, focusTab = false) {
     toggleQuizCalculator(false);
     const tab = document.getElementById(`chapter13-tab-${tabName}`);
-    const panel = document.getElementById(`chapter13-view-${tabName}`);
-    if (!tab || !panel) throw new Error(`Unknown Chapter 13 tab: ${tabName}`);
+    const panelKey = tabName === 'guide' && selectedChapter === "15" ? 'guide15' : tabName;
+    const panel = document.getElementById(`chapter13-view-${panelKey}`);
+    if (!tab || !panel) throw new Error(`Unknown Chapter ${selectedChapter} tab: ${tabName}`);
 
     document.querySelectorAll('#chapter13-learning-navigation [role="tab"]').forEach(button => {
         const selected = button === tab;
         button.setAttribute('aria-selected', String(selected));
         button.tabIndex = selected ? 0 : -1;
     });
-    document.querySelectorAll('#chapter13-view-guide, #chapter13-view-prerequisites, #chapter13-view-lab, #chapter13-view-special, #chapter13-view-examples, #chapter13-view-calculator, #chapter13-view-practice, #chapter13-view-quiz').forEach(view => {
+    document.querySelectorAll('.chapter13-tab-panel').forEach(view => {
         view.hidden = view !== panel;
     });
     if (focusTab) tab.focus();
@@ -9922,18 +10061,19 @@ function initializeChapter13Navigation() {
     const navigation = document.getElementById('chapter13-learning-navigation');
     const tabNames = ['guide', 'prerequisites', 'lab', 'special', 'examples', 'calculator', 'practice', 'quiz'];
     navigation.addEventListener('keydown', event => {
-        const currentIndex = tabNames.findIndex(name =>
+        const visibleTabs = tabNames.filter(name => !document.getElementById(`chapter13-tab-${name}`).hidden);
+        const currentIndex = visibleTabs.findIndex(name =>
             document.getElementById(`chapter13-tab-${name}`) === document.activeElement
         );
         if (currentIndex < 0) return;
         let nextIndex;
-        if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabNames.length;
-        else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabNames.length) % tabNames.length;
+        if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % visibleTabs.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
         else if (event.key === 'Home') nextIndex = 0;
-        else if (event.key === 'End') nextIndex = tabNames.length - 1;
+        else if (event.key === 'End') nextIndex = visibleTabs.length - 1;
         else return;
         event.preventDefault();
-        switchChapter13Tab(tabNames[nextIndex], true);
+        switchChapter13Tab(visibleTabs[nextIndex], true);
     });
 }
 
@@ -10237,13 +10377,14 @@ function generateRandomChapterQuiz() {
     const chapterQuestions = getSelectedChapterQuestions();
     const requestedCount = countInput.valueAsNumber;
 
-    if (selectedChapter !== "13") {
-        errorMessage.textContent = 'Random quiz generation is available for Chapter 13.';
+    if (selectedChapter !== "13" && selectedChapter !== "15") {
+        errorMessage.textContent = 'Random quiz generation is available for Chapters 13 and 15.';
         countInput.setAttribute('aria-invalid', 'true');
         return;
     }
-    if (!Number.isInteger(requestedCount) || requestedCount < 10 || requestedCount > chapterQuestions.length) {
-        errorMessage.textContent = `Enter a whole number from 10 to ${chapterQuestions.length}.`;
+    const minCount = Math.max(10, new Set(chapterQuestions.map(question => question.objectiveId)).size);
+    if (!Number.isInteger(requestedCount) || requestedCount < minCount || requestedCount > chapterQuestions.length) {
+        errorMessage.textContent = `Enter a whole number from ${minCount} to ${chapterQuestions.length}.`;
         countInput.setAttribute('aria-invalid', 'true');
         countInput.focus();
         return;
@@ -10266,7 +10407,7 @@ function generateRandomChapterQuiz() {
 
     errorMessage.textContent = '';
     countInput.setAttribute('aria-invalid', 'false');
-    beginAssessment(picked, 'Chapter 13: Random Practice');
+    beginAssessment(picked, `Chapter ${selectedChapter}: Random Practice`);
 }
 
 function shuffleInPlace(items) {
@@ -10278,7 +10419,7 @@ function shuffleInPlace(items) {
 }
 
 function setPracticeMode(mode) {
-    const isRandom = mode === 'random' && selectedChapter === "13";
+    const isRandom = mode === 'random' && (selectedChapter === "13" || selectedChapter === "15");
     document.getElementById('practice-section').hidden = isRandom;
     document.getElementById('practice-random-panel').hidden = !isRandom;
     document.getElementById('practice-mode-objective').setAttribute('aria-pressed', String(!isRandom));
@@ -10286,10 +10427,22 @@ function setPracticeMode(mode) {
 }
 
 function initializeMockExam() {
-    // Change these two values to update the mock exam.
-    const EXAM_URL = 'https://mtahat.testportal.com/test.html?t=WXY9TCUUWSB7';
-    const EXAM_MINUTES = 40;
+    // Per-chapter TestPortal exams. Add a url for a chapter to enable its mock exam.
+    const EXAMS = {
+        '13': { url: 'https://mtahat.testportal.com/test.html?t=WXY9TCUUWSB7', minutes: 40 },
+        '15': { url: '', minutes: 40 }
+    };
+    const exam = EXAMS[selectedChapter] || { url: '', minutes: 40 };
+    const EXAM_URL = exam.url;
+    const EXAM_MINUTES = exam.minutes;
     const $ = id => document.getElementById(id);
+    $('mx-intro').textContent = `Take the Chapter ${selectedChapter} mock exam under real exam conditions. It is timed and monitored by the TestPortal proctoring platform.`;
+    if (!EXAM_URL) {
+        $('mx-rules').hidden = true;
+        $('mx-soon').hidden = false;
+        $('mx-intro').hidden = true;
+        return;
+    }
     const agree = $('mx-agree'), startBtn = $('mx-start'), rules = $('mx-rules'), stage = $('mx-stage');
     const clock = $('mx-clock'), leaves = $('mx-leaves'), bar = $('mx-bar'), frame = $('mx-frame');
     let timer = null, endAt = 0, leaveCount = 0, running = false;
@@ -10922,9 +11075,10 @@ function renderQuestion(index) {
     document.getElementById('target-badge').textContent = q.section || q.objective;
     const hintArea = document.getElementById('question-hint-area');
     const hintToggle = document.getElementById('hint-toggle');
-    hintArea.hidden = !renderChapter13Math;
+    const hasStudyTools = selectedChapter === "13" || selectedChapter === "15";
+    hintArea.hidden = !hasStudyTools;
     hintPanel.hidden = true;
-    hintPanel.innerHTML = renderChapter13Math ? formatQuestionMath(getStudentHint(q), true) : '';
+    hintPanel.innerHTML = hasStudyTools ? formatQuestionMath(getStudentHint(q), renderChapter13Math) : '';
     hintToggle.textContent = 'Show hint';
     hintToggle.setAttribute('aria-expanded', 'false');
     document.getElementById('diagram-box').innerHTML = q.diagramType === 'height-problem'
@@ -11143,6 +11297,25 @@ function getStudentExplanationSteps(q) {
 }
 
 function getStudentHint(q) {
+    if (q.category === "Chapter 15") {
+        const hints15 = {
+            "circle-construct": "Convert each percentage to a central angle with percent ÷ 100 × 360°. The angles must add to 360°. Choose the graph whose sectors match those angles.",
+            "circle-angles": "Find the category's share of the total (category ÷ total, adding categories if several are combined), then multiply by 360°. Round only the final answer.",
+            "circle-interpret": "Read each sector as a fraction (or percent) of the whole, multiply by the total amount, then add or subtract the categories the question asks about.",
+            "line-graphs": "Find the given value on the horizontal axis, go up to the line, then across to the vertical axis. Read the scale carefully before choosing an answer.",
+            "bar-graphs": "Read the height of each bar against the vertical scale, then compare, add or subtract the bars the question names.",
+            "freq-distribution": "Tally every data value into exactly one interval. The frequencies must add up to the number of data values.",
+            "histogram": "Each bar's height equals the frequency of its interval, bars touch, and the intervals appear in order on the horizontal axis.",
+            "mean": "Add all the values, then divide by how many values there are. Round only the final answer, as instructed.",
+            "median": "Order the data from smallest to largest. With an odd count take the middle value; with an even count average the two middle values.",
+            "mode": "Count how often each value occurs. The mode is the value that occurs most often.",
+            "grouped-mean": "Multiply each midpoint x by its frequency f, add the products to get Σxf, then divide by the total frequency Σf."
+        };
+        const key = q.objectiveId.replace("chapter15-", "");
+        const hint15 = (window.I18N && I18N.hint(q.objectiveId)) || hints15[key];
+        if (!hint15) throw new Error(`No Chapter 15 hint is defined for objective: ${q.objectiveId}`);
+        return hint15;
+    }
     const hints = {
         "Side Identification": "Locate the right angle first: the side across from it is the hypotenuse. Relative to the named acute angle, the adjacent side touches that angle and the opposite side is across from it.",
         "Pythagorean Theorem": "Identify c, the side opposite the right angle. If c is missing, use c = √(a² + b²). If a leg is missing, subtract the other leg's square from c², then take the square root. Round only the final value.",
@@ -11270,29 +11443,29 @@ function finishQuiz() {
 
 // --- SEND RESULTS VIA EMAIL ---
 function updateStudentIdField() {
-    const isStudent = document.getElementById("result-sender-role").value === "Student";
-    const studentIdField = document.getElementById("result-student-id-field");
-    const studentIdInput = document.getElementById("result-student-id");
+    const isStudent = document.getElementById('result-sender-role').value === 'Student';
+    const studentIdField = document.getElementById('result-student-id-field');
+    const studentIdInput = document.getElementById('result-student-id');
 
     studentIdField.hidden = !isStudent;
     studentIdInput.required = isStudent;
-    if (!isStudent) studentIdInput.value = "";
+    if (!isStudent) studentIdInput.value = '';
 }
 
 function sendResultsEmail() {
-    const nameInput = document.getElementById("result-sender-name");
-    const roleInput = document.getElementById("result-sender-role");
-    const studentIdInput = document.getElementById("result-student-id");
+    const nameInput = document.getElementById('result-sender-name');
+    const roleInput = document.getElementById('result-sender-role');
+    const studentIdInput = document.getElementById('result-student-id');
     const senderName = nameInput.value.trim();
     const senderRole = roleInput.value;
     const studentId = studentIdInput.value.trim();
 
-    nameInput.setCustomValidity(senderName ? "" : "Please enter your name.");
+    nameInput.setCustomValidity(senderName ? '' : 'Please enter your name.');
     if (!nameInput.reportValidity()) return;
-    roleInput.setCustomValidity(senderRole ? "" : "Please choose Visitor, Student, or Teacher.");
+    roleInput.setCustomValidity(senderRole ? '' : 'Please choose Visitor, Student, or Teacher.');
     if (!roleInput.reportValidity()) return;
-    studentIdInput.setCustomValidity(senderRole === "Student" && !studentId ? "Please enter your student ID." : "");
-    if (senderRole === "Student" && !studentIdInput.reportValidity()) return;
+    studentIdInput.setCustomValidity(senderRole === 'Student' && !studentId ? 'Please enter your student ID.' : '');
+    if (senderRole === 'Student' && !studentIdInput.reportValidity()) return;
 
     let score = 0;
     userAnswers.forEach((ans, idx) => {
@@ -11304,7 +11477,7 @@ function sendResultsEmail() {
     const emailBody = encodeURIComponent(
         `Name: ${senderName}\n` +
         `Role: ${senderRole}\n` +
-        (senderRole === "Student" ? `Student ID: ${studentId}\n` : "") +
+        (senderRole === 'Student' ? `Student ID: ${studentId}\n` : '') +
         `Assessment: ${activeAssessmentTitle}\n` +
         `Final Score: ${score} / ${activeQuestions.length} (${percent}%)`
     );
