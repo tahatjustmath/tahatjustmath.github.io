@@ -3070,6 +3070,36 @@
             text-align: center;
         }
 
+        .result-email-details {
+            max-width: 520px;
+            margin: 0 auto 20px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .result-email-details label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--neutral-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .result-email-details input,
+        .result-email-details select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .result-email-details input:focus-visible,
+        .result-email-details select:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -3751,7 +3781,7 @@
     <div class="results-card" id="results-card">
         <div class="results-header">
             <h2>Quiz Completed!</h2>
-            <p style="color: var(--neutral-muted); margin-top: 4px;">Review your score and send your results directly to your instructor.</p>
+            <p style="color: var(--neutral-muted); margin-top: 4px;">Review your score and choose whether to share it with Tahat Just Math.</p>
         </div>
 
         <div class="results-score-circle">
@@ -3767,6 +3797,26 @@
         </div>
         <div id="final-summary" style="text-align: center; font-size: 0.9rem; color: var(--neutral-muted); margin-bottom: 24px;">
             Final Grade: --
+        </div>
+
+        <div class="result-email-details">
+            <div>
+                <label for="result-sender-name">Your name</label>
+                <input id="result-sender-name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div>
+                <label for="result-sender-role">I am a</label>
+                <select id="result-sender-role" required onchange="updateStudentIdField()">
+                    <option value="">Choose one</option>
+                    <option value="Visitor">Visitor</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                </select>
+            </div>
+            <div id="result-student-id-field" hidden>
+                <label for="result-student-id">Student ID</label>
+                <input id="result-student-id" type="text" autocomplete="off" maxlength="64">
+            </div>
         </div>
 
         <!-- Detailed Answers Preview -->
@@ -3786,7 +3836,7 @@
                 Return to Question Bank
             </button>
         </div>
-        <p class="email-result-note">This opens your email app with the quiz name and score addressed to contact@tahatjustmath.com. Review the draft and send it yourself if you want to share your result.</p>
+        <p class="email-result-note">Emailing your result opens a draft addressed to contact@tahatjustmath.com with your name, role, quiz, and score. If you select Student, your student ID is included. Review the draft and send it yourself only if you want to share these details.</p>
     </div>
     </div>
 </div>
@@ -10449,7 +10499,31 @@ function finishQuiz() {
 }
 
 // --- SEND RESULTS VIA EMAIL ---
+function updateStudentIdField() {
+    const isStudent = document.getElementById("result-sender-role").value === "Student";
+    const studentIdField = document.getElementById("result-student-id-field");
+    const studentIdInput = document.getElementById("result-student-id");
+
+    studentIdField.hidden = !isStudent;
+    studentIdInput.required = isStudent;
+    if (!isStudent) studentIdInput.value = "";
+}
+
 function sendResultsEmail() {
+    const nameInput = document.getElementById("result-sender-name");
+    const roleInput = document.getElementById("result-sender-role");
+    const studentIdInput = document.getElementById("result-student-id");
+    const senderName = nameInput.value.trim();
+    const senderRole = roleInput.value;
+    const studentId = studentIdInput.value.trim();
+
+    nameInput.setCustomValidity(senderName ? "" : "Please enter your name.");
+    if (!nameInput.reportValidity()) return;
+    roleInput.setCustomValidity(senderRole ? "" : "Please choose Visitor, Student, or Teacher.");
+    if (!roleInput.reportValidity()) return;
+    studentIdInput.setCustomValidity(senderRole === "Student" && !studentId ? "Please enter your student ID." : "");
+    if (senderRole === "Student" && !studentIdInput.reportValidity()) return;
+
     let score = 0;
     userAnswers.forEach((ans, idx) => {
         if (ans === activeQuestions[idx].correct) score++;
@@ -10458,6 +10532,9 @@ function sendResultsEmail() {
     const percent = Math.round((score / activeQuestions.length) * 100);
     const emailSubject = encodeURIComponent(`${activeAssessmentTitle} Quiz Result`);
     const emailBody = encodeURIComponent(
+        `Name: ${senderName}\n` +
+        `Role: ${senderRole}\n` +
+        (senderRole === "Student" ? `Student ID: ${studentId}\n` : "") +
         `Assessment: ${activeAssessmentTitle}\n` +
         `Final Score: ${score} / ${activeQuestions.length} (${percent}%)`
     );
