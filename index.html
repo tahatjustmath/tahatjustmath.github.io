@@ -4101,7 +4101,6 @@
                             <span>Window leaves: <b id="mx-leaves">0</b></span>
                             <span>
                                 <button class="mx-btn mx-alt" id="mx-fs" type="button">Full screen</button>
-                                <a class="mx-btn mx-alt" id="mx-newtab" target="_blank" rel="noopener noreferrer" href="#">Open in new tab</a>
                             </span>
                         </div>
                         <div class="mx-frame-wrap">
@@ -10225,7 +10224,6 @@ function initializeMockExam() {
     let timer = null, endAt = 0, leaveCount = 0, running = false;
 
     $('mx-time').textContent = `${EXAM_MINUTES} minutes`;
-    $('mx-newtab').href = EXAM_URL;
     agree.addEventListener('change', () => { startBtn.disabled = !agree.checked; });
 
     const tick = () => {
