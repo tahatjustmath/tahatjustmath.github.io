@@ -431,6 +431,21 @@
             font-size: 0.88rem;
         }
 
+        .mock-exam-banner {
+            display: grid;
+            gap: 4px;
+            margin-top: 18px;
+            padding: 18px 20px;
+            border: 1px solid #147d78;
+            border-left-width: 6px;
+            border-radius: 14px;
+            background: #f1f7f7;
+            color: #203344;
+            text-decoration: none;
+        }
+        .mock-exam-banner strong { font-size: 1.15rem; color: #18324b; }
+        .mock-exam-banner:hover, .mock-exam-banner:focus-visible { background: #e4f1f0; }
+
         .subject-chapter-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3471,6 +3486,11 @@
                 <p id="subject-catalog-description">Choose an available chapter to open its interactive lessons, tools, and question bank.</p>
             </div>
             <div class="subject-chapter-grid" id="subject-chapter-grid"></div>
+            <a class="mock-exam-banner" href="mock-exam.html">
+                <span class="section-eyebrow">Exam practice</span>
+                <strong>Mock Exam: timed and proctored</strong>
+                <span>Test yourself under real exam conditions with a timer and anti-cheating monitoring. Open the mock exam</span>
+            </a>
             <p class="subject-coming-soon" id="subject-coming-soon" hidden></p>
         </section>
     </main>
@@ -4175,6 +4195,7 @@
                 <ul>
                     <li><a href="index.html">Subjects directory</a></li>
                     <li><a href="#site-header">Back to top</a></li>
+                    <li><a href="mock-exam.html">Mock exam</a></li>
                     <li><a href="privacy.html">Privacy policy</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="https://github.com/tahatjustmath/tahatjustmath.github.io">GitHub project</a></li>
