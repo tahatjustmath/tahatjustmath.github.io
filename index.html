@@ -1835,6 +1835,240 @@
             padding-left: 1.3rem;
         }
 
+        .fx82 {
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 16px;
+            border-radius: 20px;
+            background: linear-gradient(160deg, #0f1f30, #08121d);
+            border: 1px solid #27415a;
+            box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.6);
+            color: #e8eef4;
+        }
+
+        .fx82-lcd {
+            background: #cfe0cc;
+            color: #14231a;
+            border-radius: 10px;
+            padding: 8px 12px;
+            min-height: 128px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.35);
+            font-family: "Courier New", monospace;
+        }
+
+        .fx82-indicators {
+            display: flex;
+            gap: 8px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            min-height: 14px;
+        }
+
+        .fx82-indicators span {
+            background: rgba(20, 35, 26, 0.12);
+            border-radius: 3px;
+            padding: 0 4px;
+        }
+
+        .fx82-expr {
+            font-size: 1.1rem;
+            min-height: 44px;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+
+        .fx82-caret {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: #14231a;
+            vertical-align: text-bottom;
+            animation: fx82-blink 1s steps(1) infinite;
+        }
+
+        @keyframes fx82-blink { 50% { opacity: 0; } }
+
+        .fx82-result {
+            text-align: right;
+            font-size: 1.7rem;
+            font-weight: 700;
+            min-height: 36px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .fx82-result.is-error { font-size: 1.2rem; color: #8b1d18; }
+
+        .fx82-note {
+            min-height: 20px;
+            margin: 6px 2px 0;
+            font-size: 0.78rem;
+            color: #9fb4c6;
+        }
+
+        .fx82-frac {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+            margin: 0 3px;
+            line-height: 1.15;
+            font-size: 0.92em;
+        }
+
+        .fx82-frac-num {
+            border-bottom: 2px solid currentColor;
+            padding: 0 4px 1px;
+            min-width: 1ch;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .fx82-frac-den {
+            padding: 1px 4px 0;
+            min-width: 1ch;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .fx82-whole { margin-right: 4px; }
+
+        .fx82-sqrt {
+            display: inline-flex;
+            align-items: stretch;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+
+        .fx82-sqrt-sign {
+            font-size: 1.25em;
+            line-height: 1;
+            align-self: flex-end;
+            margin-right: -1px;
+        }
+
+        .fx82-sqrt-index {
+            font-size: 0.6em;
+            align-self: flex-start;
+            margin-right: -4px;
+        }
+
+        .fx82-sqrt-body {
+            border-top: 2px solid currentColor;
+            padding: 1px 3px 0;
+            min-width: 1ch;
+            white-space: nowrap;
+        }
+
+        .fx82-box {
+            display: inline-block;
+            min-width: 0.9ch;
+            opacity: 0.45;
+        }
+
+        .fx82-result .fx82-frac { font-size: 0.85em; }
+
+        .fx82-menu,
+        .fx82-stat {
+            background: #0c1a28;
+            border: 1px solid #27415a;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 0.82rem;
+        }
+
+        .fx82-menu[hidden], .fx82-stat[hidden] { display: none; }
+
+        .fx82-menu-row,
+        .fx82-stat-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+            align-items: center;
+        }
+
+        .fx82-menu-row > span { width: 62px; color: #9fb4c6; }
+
+        .fx82-menu button,
+        .fx82-stat button {
+            background: #17314a;
+            color: #e8eef4;
+            border: 1px solid #2c4b69;
+            border-radius: 8px;
+            padding: 5px 9px;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .fx82-menu button.is-active,
+        .fx82-stat button.is-active { background: #147d78; border-color: #1fb3ab; }
+
+        .fx82-stat-data {
+            margin-top: 6px;
+            color: #b9cad8;
+            word-break: break-word;
+            max-height: 64px;
+            overflow-y: auto;
+        }
+
+        .fx82-keys {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px 8px;
+            margin-top: 10px;
+        }
+
+        .fx82-keywrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: end;
+            min-height: 52px;
+        }
+
+        .fx82-shift-label,
+        .fx82-alpha-label {
+            font-size: 0.64rem;
+            font-weight: 700;
+            line-height: 1.2;
+            padding: 0 2px 2px;
+        }
+
+        .fx82-shift-label { color: #f2c14e; }
+        .fx82-alpha-label { color: #ff7b72; text-align: right; }
+
+        .fx82-key {
+            grid-column: 1 / -1;
+            min-height: 34px;
+            border: 0;
+            border-radius: 8px;
+            font: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: #f2f6fa;
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.45);
+        }
+
+        .fx82-key:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45); }
+        .fx82-key:focus-visible { outline: 3px solid #c99d4e; outline-offset: 2px; }
+        .fx82 .fx82-key-fn { background: #2b3f54; color: #f2f6fa; }
+        .fx82 .fx82-key-num { background: #4a5f75; color: #f2f6fa; }
+        .fx82 .fx82-key-op { background: #1f6fb5; color: #f2f6fa; }
+        .fx82 .fx82-key-nav { background: #2b3f54; color: #f2f6fa; }
+        .fx82 .fx82-key-del { background: #b0742a; color: #f2f6fa; }
+        .fx82 .fx82-key-ac { background: #bd3b36; color: #f2f6fa; }
+        .fx82 .fx82-key-eq { background: #147d78; color: #f2f6fa; }
+        .fx82 .fx82-key-shift { background: #d9a627; color: #1b1b1b; }
+        .fx82 .fx82-key-alpha { background: #d95c55; color: #f2f6fa; }
+        .fx82 .fx82-key.is-on { outline: 3px solid #fff; }
+
         .solve-flow {
             list-style: none;
             margin: 14px 0 0;
@@ -3702,6 +3936,14 @@
               </div>
             </div>
             <div class="chapter13-tab-panel" id="chapter13-view-calculator" role="tabpanel" aria-labelledby="chapter13-tab-calculator" hidden>
+              <div class="chapter13-panel-card">
+                <div class="chapter13-panel-heading">
+                    <span class="section-eyebrow">Scientific calculator</span>
+                    <h3>Practice calculator (fx-82 style)</h3>
+                    <p>Press SHIFT or ALPHA first to reach the gold or red labels above the keys. Use MODE for DEG/RAD/GRA, rounding and statistics. This is an original practice calculator, not a Casio product.</p>
+                </div>
+                <div id="fx82-root"></div>
+              </div>
               <div class="chapter13-panel-card">
                 <div class="chapter13-panel-heading">
                     <span class="section-eyebrow">Check your work</span>
@@ -10692,5 +10934,6 @@ function sendResultsEmail() {
     window.location.href = `mailto:contact@tahatjustmath.com?subject=${emailSubject}&body=${emailBody}`;
 }
 </script>
+<script src="calc82.js"></script>
 </body>
 </html>
