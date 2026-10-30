@@ -72,20 +72,31 @@
             <h1 id="exam-title">Mock Exam</h1>
             <p>Practise under real exam conditions. The mock exam is timed and monitored by the TestPortal proctoring platform, so it feels like a real test: no pausing, no going back to notes, and your behaviour during the test is recorded for your instructor.</p>
             <div class="grid">
-                <div class="stat"><span>Time allowed</span><strong id="stat-time">60 minutes</strong></div>
-                <div class="stat"><span>Format</span><strong>Online, proctored</strong></div>
-                <div class="stat"><span>Attempts</span><strong>As set by your instructor</strong></div>
+                <div class="stat"><span>Time allowed</span><strong id="stat-time">40 minutes</strong></div>
+                <div class="stat"><span>Questions</span><strong>20 (random each attempt)</strong></div>
+                <div class="stat"><span>Attempts</span><strong>Up to 10</strong></div>
             </div>
 
-            <h2>Before you start</h2>
+            <h2>Important test instructions</h2>
             <ul class="rules">
-                <li>Use a laptop or desktop with a stable internet connection. A phone is not recommended.</li>
-                <li>Close all other tabs, chat apps and programs. Switching tabs or windows may be recorded as a violation.</li>
-                <li>Allow full screen, and the camera or microphone if the test asks for them.</li>
-                <li>Have only what your instructor allows: pen, paper and a scientific calculator.</li>
-                <li>Do not copy, paste, take screenshots or search for answers during the test.</li>
-                <li>Do not refresh the page once the test begins. Your time keeps running.</li>
-                <li>Enter your real name and student ID when the test asks, so your result can be matched to you.</li>
+                <li><strong>Number of questions:</strong> the test has 20 questions.</li>
+                <li><strong>Question randomization:</strong> questions are selected randomly for each new attempt.</li>
+                <li><strong>Time limit:</strong> 2 minutes (02:00) per question, 40 minutes in total. When the 2 minutes expire, the system automatically moves to the next question and the score for the unsubmitted question is forfeited.</li>
+                <li><strong>Allowed attempts:</strong> you may take the test up to 10 times.</li>
+                <li><strong>Calculators:</strong>
+                    <ul>
+                        <li><strong>Allowed:</strong> a personal handheld scientific calculator (for example, a Casio model).</li>
+                        <li><strong>Strictly prohibited:</strong> any on-screen, device or in-browser calculator, and opening external apps. Doing so takes focus away from the test and triggers an automatic block.</li>
+                    </ul>
+                </li>
+                <li><strong>Security and monitoring:</strong>
+                    <ul>
+                        <li>Do not leave the test page, switch tabs, minimize the window, or open other applications or windows.</li>
+                        <li>Leaving or unfocusing the test page more than 3 times, for any reason, results in an automatic block and cancellation of your test session.</li>
+                    </ul>
+                </li>
+                <li>Use a laptop or desktop with a stable internet connection, and allow full screen and the camera or microphone if the test asks.</li>
+                <li>Do not copy, paste, take screenshots or refresh the page. Enter your real name and student ID when asked.</li>
             </ul>
             <div class="warn"><strong>Academic integrity:</strong> Cheating, impersonation and leaving the exam window can lead to a zero or other penalties set by your instructor.</div>
 
@@ -102,7 +113,7 @@
 
         <section id="exam-stage" hidden aria-label="Exam window">
             <div class="bar" id="bar" role="status" aria-live="off">
-                <span>Reference timer: <b id="clock">60:00</b></span>
+                <span>Reference timer: <b id="clock">40:00</b></span>
                 <span>Window leaves: <b id="leaves">0</b></span>
                 <span>
                     <button class="btn alt" id="fs-btn" type="button">Full screen</button>
@@ -126,7 +137,7 @@
 (function () {
     // Change these two values to update the exam.
     var EXAM_URL = 'https://mtahat.testportal.com/test.html?t=WXY9TCUUWSB7';
-    var EXAM_MINUTES = 60;
+    var EXAM_MINUTES = 40;
 
     var $ = function (id) { return document.getElementById(id); };
     var agree = $('agree'), startBtn = $('start-btn'), rules = $('rules-stage'), stage = $('exam-stage');
