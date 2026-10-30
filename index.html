@@ -1835,6 +1835,86 @@
             padding-left: 1.3rem;
         }
 
+        .solve-flow {
+            list-style: none;
+            margin: 14px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 0;
+        }
+
+        .solve-step {
+            position: relative;
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 12px;
+            padding-bottom: 16px;
+        }
+
+        .solve-step:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            left: 16px;
+            top: 34px;
+            bottom: 2px;
+            width: 2px;
+            background: #cbd5e1;
+        }
+
+        .solve-step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #112233;
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solve-step-body {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
+        .solve-step-body > strong {
+            display: block;
+            color: #112233;
+        }
+
+        .solve-step-body p {
+            margin: 4px 0 0;
+        }
+
+        .solve-formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .solve-formula-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid var(--card-accent, #64748b);
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+
+        .solve-formula-card h4 {
+            margin: 0 0 4px;
+            font-size: 0.85rem;
+            color: var(--card-accent, #334155);
+        }
+
+        .solve-formula-card div {
+            padding: 3px 0;
+            overflow-x: auto;
+        }
+
         .triangle-side-key {
             display: flex;
             flex-wrap: wrap;
@@ -8792,7 +8872,64 @@ const chapter13Lessons = [
         id: "solving",
         title: "Solving right triangles",
         exampleObjectiveId: "find-sides",
-        concept: "Label opposite, adjacent, and hypotenuse relative to the given angle A or B. Choose SOH–CAH–TOA to connect the known and missing sides. In the formulas below, replace A with B when angle B is given. If the missing side is a numerator, multiply: \\(\\text{opposite}=\\text{hypotenuse}\\cdot\\sin(A)\\), \\(\\text{adjacent}=\\text{hypotenuse}\\cdot\\cos(A)\\), or \\(\\text{opposite}=\\text{adjacent}\\cdot\\tan(A)\\). If it is a denominator, divide: \\(\\text{hypotenuse}=\\frac{\\text{opposite}}{\\sin(A)}\\), \\(\\text{hypotenuse}=\\frac{\\text{adjacent}}{\\cos(A)}\\), or \\(\\text{adjacent}=\\frac{\\text{opposite}}{\\tan(A)}\\). When two sides are known, use \\(c=\\sqrt{a^2+b^2}\\) for the hypotenuse or \\(a=\\sqrt{c^2-b^2}\\), \\(b=\\sqrt{c^2-a^2}\\) for a leg. Use an inverse ratio for a missing angle; the two acute angles add to \\(90^\\circ\\)."
+        concept: "Label opposite, adjacent, and hypotenuse relative to the given angle A or B. Choose SOH–CAH–TOA to connect the known and missing sides. In the formulas below, replace A with B when angle B is given.",
+        flow: [
+            {
+                title: "Label the triangle",
+                text: "Mark the right angle and the given angle \\(A\\) (or \\(B\\)). Name the hypotenuse, opposite, and adjacent sides relative to that angle."
+            },
+            {
+                title: "List what is known and what is missing",
+                text: "Write the given sides and angles, then decide whether the unknown is a side or an angle."
+            },
+            {
+                title: "Choose the tool",
+                text: "Two sides known, one side missing: Pythagorean theorem. An angle and a side known, a side missing: sine, cosine, or tangent. Two sides known, an angle missing: an inverse ratio. One acute angle known, the other missing: subtract from \\(90^\\circ\\).",
+                cards: [
+                    {
+                        accent: "#7c3aed",
+                        heading: "Pythagorean theorem",
+                        items: ["c=\\sqrt{a^2+b^2}", "a=\\sqrt{c^2-b^2}", "b=\\sqrt{c^2-a^2}"]
+                    },
+                    {
+                        accent: "#4f46e5",
+                        heading: "Missing side in the numerator: multiply",
+                        items: [
+                            "\\text{opposite}=\\text{hypotenuse}\\cdot\\sin(A)",
+                            "\\text{adjacent}=\\text{hypotenuse}\\cdot\\cos(A)",
+                            "\\text{opposite}=\\text{adjacent}\\cdot\\tan(A)"
+                        ]
+                    },
+                    {
+                        accent: "#d97706",
+                        heading: "Missing side in the denominator: divide",
+                        items: [
+                            "\\text{hypotenuse}=\\frac{\\text{opposite}}{\\sin(A)}",
+                            "\\text{hypotenuse}=\\frac{\\text{adjacent}}{\\cos(A)}",
+                            "\\text{adjacent}=\\frac{\\text{opposite}}{\\tan(A)}"
+                        ]
+                    },
+                    {
+                        accent: "#059669",
+                        heading: "Missing angle",
+                        items: [
+                            "A=\\sin^{-1}\\left(\\frac{\\text{opposite}}{\\text{hypotenuse}}\\right)",
+                            "A=\\cos^{-1}\\left(\\frac{\\text{adjacent}}{\\text{hypotenuse}}\\right)",
+                            "A=\\tan^{-1}\\left(\\frac{\\text{opposite}}{\\text{adjacent}}\\right)",
+                            "A+B=90^\\circ"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Calculate",
+                text: "Substitute the values, keep the calculator in degree mode, and round only at the end."
+            },
+            {
+                title: "Check that the answer is reasonable",
+                text: "The hypotenuse must be the longest side, each leg must be shorter than the hypotenuse, and the three angles must add to \\(180^\\circ\\)."
+            }
+        ]
     },
     {
         id: "applications",
@@ -9148,6 +9285,19 @@ function renderChapter13Guide() {
                 </div>
                 <div class="lesson-panel" id="lesson-${lesson.id}-concept-panel" role="tabpanel" aria-labelledby="lesson-${lesson.id}-concept-tab">
                     <p>${formatTriangleRoleText(lesson.concept, true)}</p>
+                    ${lesson.flow ? `<ol class="solve-flow">${lesson.flow.map((step, stepIndex) => `
+                        <li class="solve-step">
+                            <span class="solve-step-num" aria-hidden="true">${stepIndex + 1}</span>
+                            <div class="solve-step-body">
+                                <strong>Step ${stepIndex + 1}: ${step.title}</strong>
+                                <p>${formatTriangleRoleText(step.text, true)}</p>
+                                ${step.cards ? `<div class="solve-formula-grid">${step.cards.map(card => `
+                                    <div class="solve-formula-card" style="--card-accent:${card.accent}">
+                                        <h4>${card.heading}</h4>
+                                        ${card.items.map(item => `<div>${formatTriangleRoleText(`\\(${item}\\)`, true)}</div>`).join('')}
+                                    </div>`).join('')}</div>` : ''}
+                            </div>
+                        </li>`).join('')}</ol>` : ''}
                     <div class="triangle-side-key" aria-label="Triangle side colors: blue hypotenuse; green opposite side relative to the marked angle; orange adjacent side relative to the marked angle.">
                         <span class="triangle-side-label triangle-role-hypotenuse">Hypotenuse</span>
                         <span class="triangle-side-label triangle-role-opposite">Opposite</span>
