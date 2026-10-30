@@ -9773,7 +9773,8 @@ function renderChapter13Guide() {
     lessonTopics.innerHTML = '';
     setReferenceAngle('A');
 
-    chapter13Lessons.forEach((lesson, index) => {
+    chapter13Lessons.forEach((baseLesson, index) => {
+        const lesson = window.I18N ? I18N.lesson(baseLesson) : baseLesson;
         const example = getSelectedChapterQuestions().find(question =>
             question.objectiveId === lesson.exampleObjectiveId &&
             question.correct &&
@@ -10990,7 +10991,7 @@ function handleSubmitNext() {
     if (!submittedStates[currentQIndex]) {
         const selectedOpt = userAnswers[currentQIndex];
         if (!selectedOpt) {
-            alert("Please select an answer choice before submitting.");
+            alert(window.I18N ? I18N.t("Please select an answer choice before submitting.") : "Please select an answer choice before submitting.");
             return;
         }
 
@@ -11155,7 +11156,7 @@ function getStudentHint(q) {
         "Solve Triangle (Angle and Side)": "Find the other acute angle with 90° minus the given angle. Then label the sides relative to the given angle and use sine, cosine, or tangent with the known side: multiply when the missing side is a numerator, divide when it is a denominator.",
         "Inverse Trig": "Set the calculator to degree mode. Match the given ratio to sine, cosine, or tangent, then use its inverse to find the acute angle."
     };
-    const hint = hints[q.category];
+    const hint = (window.I18N && I18N.hint(q.category)) || hints[q.category];
     if (!hint) throw new Error(`No Chapter 13 hint is defined for category: ${q.category}`);
     return hint;
 }
@@ -11312,5 +11313,6 @@ function sendResultsEmail() {
 }
 </script>
 <script src="calc82.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
