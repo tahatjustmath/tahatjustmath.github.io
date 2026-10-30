@@ -4116,19 +4116,30 @@
                     </div>
                     <div id="mx-rules">
                         <div class="mx-stats">
-                            <div class="mx-stat"><span>Time allowed</span><strong id="mx-time">60 minutes</strong></div>
-                            <div class="mx-stat"><span>Format</span><strong>Online, proctored</strong></div>
-                            <div class="mx-stat"><span>Attempts</span><strong>As set by your instructor</strong></div>
+                            <div class="mx-stat"><span>Time allowed</span><strong id="mx-time">40 minutes</strong></div>
+                            <div class="mx-stat"><span>Questions</span><strong>20 (random each attempt)</strong></div>
+                            <div class="mx-stat"><span>Attempts</span><strong>Up to 10</strong></div>
                         </div>
-                        <h4>Before you start</h4>
+                        <h4>Important test instructions</h4>
                         <ul class="mx-rules">
-                            <li>Use a laptop or desktop with a stable internet connection.</li>
-                            <li>Close all other tabs, chat apps and programs. Switching tabs or windows may be recorded as a violation.</li>
-                            <li>Allow full screen, and the camera or microphone if the test asks for them.</li>
-                            <li>Have only what your instructor allows: pen, paper and a scientific calculator.</li>
-                            <li>Do not copy, paste, take screenshots or search for answers.</li>
-                            <li>Do not refresh the page once the test begins. Your time keeps running.</li>
-                            <li>Enter your real name and student ID when the test asks, so your result can be matched to you.</li>
+                            <li><strong>Number of questions:</strong> the test has 20 questions.</li>
+                            <li><strong>Question randomization:</strong> questions are selected randomly for each new attempt.</li>
+                            <li><strong>Time limit:</strong> 2 minutes (02:00) per question, 40 minutes in total. When the 2 minutes expire, the system automatically moves to the next question and the score for the unsubmitted question is forfeited.</li>
+                            <li><strong>Allowed attempts:</strong> you may take the test up to 10 times.</li>
+                            <li><strong>Calculators:</strong>
+                                <ul>
+                                    <li><strong>Allowed:</strong> a personal handheld scientific calculator (for example, a Casio model).</li>
+                                    <li><strong>Strictly prohibited:</strong> any on-screen, device or in-browser calculator, and opening external apps. Doing so takes focus away from the test and triggers an automatic block.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Security and monitoring:</strong>
+                                <ul>
+                                    <li>Do not leave the test page, switch tabs, minimize the window, or open other applications or windows.</li>
+                                    <li>Leaving or unfocusing the test page more than 3 times, for any reason, results in an automatic block and cancellation of your test session.</li>
+                                </ul>
+                            </li>
+                            <li>Use a laptop or desktop with a stable internet connection, and allow full screen and the camera or microphone if the test asks.</li>
+                            <li>Do not copy, paste, take screenshots or refresh the page. Enter your real name and student ID when asked.</li>
                         </ul>
                         <p class="mx-warn"><strong>Academic integrity:</strong> cheating, impersonation and leaving the exam window can lead to a zero or other penalties set by your instructor.</p>
                         <label class="mx-agree" for="mx-agree">
@@ -4140,8 +4151,8 @@
                     </div>
                     <div id="mx-stage" hidden>
                         <div class="mx-bar" id="mx-bar">
-                            <span>Reference timer: <b id="mx-clock">60:00</b></span>
-                            <span>Window leaves: <b id="mx-leaves">0</b></span>
+                            <span>Reference timer: <b id="mx-clock">40:00</b></span>
+                            <span>Window leaves: <b id="mx-leaves">0</b> / 3 allowed</span>
                             <span>
                                 <button class="mx-btn mx-alt" id="mx-fs" type="button">Full screen</button>
                             </span>
@@ -10276,7 +10287,7 @@ function setPracticeMode(mode) {
 function initializeMockExam() {
     // Change these two values to update the mock exam.
     const EXAM_URL = 'https://mtahat.testportal.com/test.html?t=WXY9TCUUWSB7';
-    const EXAM_MINUTES = 60;
+    const EXAM_MINUTES = 40;
     const $ = id => document.getElementById(id);
     const agree = $('mx-agree'), startBtn = $('mx-start'), rules = $('mx-rules'), stage = $('mx-stage');
     const clock = $('mx-clock'), leaves = $('mx-leaves'), bar = $('mx-bar'), frame = $('mx-frame');
