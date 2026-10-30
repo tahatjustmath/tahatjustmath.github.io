@@ -3361,7 +3361,7 @@
                                             ( S<span class="objective4-middle-letter">O</span>H, C<span class="objective4-middle-letter">A</span>H, T<span class="objective4-middle-letter">O</span>A )
                                         </span>
                                     </h4>
-                                    <p>If the missing side is the middle letter in the rule, multiply the known side by the trig ratio.</p>
+                                    <p>If the missing side is the middle letter in the rule i.e., (Missing in numerator), multiply the known side by the trig ratio. i.e., \(\text{missing side}=\text{known side}\times\text{trig}\).</p>
                                     <p class="guide-formula">\(\text{opposite}=\text{hypotenuse}\cdot\sin(A)\)</p>
                                     <p class="guide-formula">\(\text{adjacent}=\text{hypotenuse}\cdot\cos(A)\)</p>
                                     <p class="guide-formula">\(\text{opposite}=\text{adjacent}\cdot\tan(A)\)</p>
@@ -3373,7 +3373,7 @@
                                             ( SO<span class="objective4-last-letter">H</span>, CA<span class="objective4-last-letter">H</span>, TO<span class="objective4-last-letter">A</span> )
                                         </span>
                                     </h4>
-                                    <p>If the missing side is the last letter in the rule, divide the known side by the trig ratio.</p>
+                                    <p>If the missing side is the last letter in the rule i.e., (Missing in denominator), divide the known side by the trig ratio. i.e., \(\text{missing side}=\frac{\text{known side}}{\text{trig}}\).</p>
                                     <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{opposite}}{\sin(A)}\)</p>
                                     <p class="guide-formula">\(\text{hypotenuse}=\frac{\text{adjacent}}{\cos(A)}\)</p>
                                     <p class="guide-formula">\(\text{adjacent}=\frac{\text{opposite}}{\tan(A)}\)</p>
@@ -8893,10 +8893,8 @@ const chapter13Lessons = [
                     },
                     {
                         accent: "#4f46e5",
-                        heading: "Missing middle letter: multiply (SOH, CAH, TOA)",
-                        note: "If the missing side is the middle letter in the rule, i.e. missing in the numerator, multiply the known side by the trig ratio.",
+                        heading: "Missing side in the numerator: multiply",
                         items: [
-                            "\\text{missing side}=\\text{known side}\\times\\text{trig}",
                             "\\text{opposite}=\\text{hypotenuse}\\cdot\\sin(A)",
                             "\\text{adjacent}=\\text{hypotenuse}\\cdot\\cos(A)",
                             "\\text{opposite}=\\text{adjacent}\\cdot\\tan(A)"
@@ -8904,10 +8902,8 @@ const chapter13Lessons = [
                     },
                     {
                         accent: "#d97706",
-                        heading: "Missing last letter: divide (SOH, CAH, TOA)",
-                        note: "If the missing side is the last letter in the rule, i.e. missing in the denominator, divide the known side by the trig ratio.",
+                        heading: "Missing side in the denominator: divide",
                         items: [
-                            "\\text{missing side}=\\frac{\\text{known side}}{\\text{trig}}",
                             "\\text{hypotenuse}=\\frac{\\text{opposite}}{\\sin(A)}",
                             "\\text{hypotenuse}=\\frac{\\text{adjacent}}{\\cos(A)}",
                             "\\text{adjacent}=\\frac{\\text{opposite}}{\\tan(A)}"
@@ -9298,7 +9294,6 @@ function renderChapter13Guide() {
                                 ${step.cards ? `<div class="solve-formula-grid">${step.cards.map(card => `
                                     <div class="solve-formula-card" style="--card-accent:${card.accent}">
                                         <h4>${card.heading}</h4>
-                                        ${card.note ? `<p>${card.note}</p>` : ''}
                                         ${card.items.map(item => `<div>${formatTriangleRoleText(`\\(${item}\\)`, true)}</div>`).join('')}
                                     </div>`).join('')}</div>` : ''}
                             </div>
