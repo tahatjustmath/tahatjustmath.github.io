@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahat Just Math | Online Math Question Bank</title>
-    <meta name="description" content="Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments from Tahat Just Math.">
+    <title>Tahat Just Math — Practice, Quizzes &amp; Mock Exams</title>
+    <meta name="description" content="Free technical mathematics practice: right-triangle trigonometry, accuracy and measurement, graphs and statistics. Practice by objective, get step-by-step hints and solutions, use a built-in scientific calculator, and take a timed mock exam.">
+    <meta name="keywords" content="technical mathematics, right triangle trigonometry, sine cosine tangent practice, Pythagorean theorem practice, solve right triangles, significant digits, accuracy and precision, math practice questions, math mock exam, online math quiz">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="google-site-verification" content="lw781E9QTUBRsU_14wa_9yrsm2xP0fC1pOxVEPE6Lg0">
     <link rel="canonical" href="https://tahatjustmath.com/">
     <meta name="theme-color" content="#18324b">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tahat Just Math">
-    <meta property="og:title" content="Tahat Just Math | Online Math Question Bank">
-    <meta property="og:description" content="Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments.">
+    <meta property="og:title" content="Tahat Just Math — Practice, Quizzes &amp; Mock Exams">
+    <meta property="og:description" content="Free technical mathematics practice with step-by-step solutions, a built-in scientific calculator, and timed mock exams.">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Tahat Just Math","url":"https://tahatjustmath.com/","description":"Free technical mathematics practice with step-by-step solutions, a built-in scientific calculator, and timed mock exams.","inLanguage":"en"}</script>
     <meta property="og:url" content="https://tahatjustmath.com/">
     <link rel="icon" href="assets/tahatjustmath-logo.png" type="image/png">
     <style>
@@ -9679,18 +9683,23 @@ function configureChapterBank() {
     document.getElementById('hero-objective-count').textContent = learningObjectives.filter(objective =>
         chapterQuestions.some(question => question.objectiveId === objective.id)
     ).length;
+    const seoTitle = isChapter4
+        ? "Accuracy & Measurement Practice (Chapter 4)"
+        : isChapter15
+            ? "Graphs & Statistics Practice (Chapter 15)"
+            : "Right Triangle Trigonometry Practice (Chapter 13)";
     document.title = showSubjectPortal
-        ? 'Subject Catalog · Tahat Just Math'
-        : `${title} · Tahat Just Math`;
+        ? 'Tahat Just Math — Practice, Quizzes & Mock Exams'
+        : `${seoTitle} · Tahat Just Math`;
     const canonicalUrl = showSubjectPortal
         ? 'https://tahatjustmath.com/'
         : new URL(`index.html?chapter=${selectedChapter}`, 'https://tahatjustmath.com/').href;
     document.querySelector('link[rel="canonical"]').href = canonicalUrl;
     document.querySelector('meta[property="og:url"]').content = canonicalUrl;
     document.querySelector('meta[name="description"]').content = showSubjectPortal
-        ? 'Practice mathematics with interactive chapter question banks, worked solutions, and self-paced assessments from Tahat Just Math.'
+        ? 'Free technical mathematics practice: right-triangle trigonometry, accuracy and measurement, graphs and statistics. Practice by objective, get step-by-step hints and solutions, use a built-in scientific calculator, and take a timed mock exam.'
         : isChapter13
-            ? 'Practice right-triangle trigonometry with 427 questions, guided examples, interactive triangle tools, and step-by-step solutions.'
+            ? `Practice right-triangle trigonometry with ${chapterQuestions.length} questions: sine, cosine, tangent, Pythagorean theorem, missing sides and angles, and word problems, with step-by-step solutions, a scientific calculator, and a timed mock exam.`
             : isChapter4
                 ? 'Practice accuracy and measurement with 126 interactive questions on significant digits, precision, measurement error, and measuring tools.'
                 : 'Practice graphs, statistics, and measurement with 248 interactive questions and worked solutions.';
