@@ -3548,7 +3548,7 @@
                     <h1 id="bank-title">Tahat Just Math</h1>
                     <p>
                         <span id="current-chapter-title">Chapter 13: Trigonometry &amp; Right Triangles</span>
-                        <span id="header-meta">Question Bank · <span id="header-question-count">427</span> questions</span>
+                        <span id="header-meta">Practice · <span id="header-question-count">427</span> questions</span>
                     </p>
                 </div>
             </div>
@@ -3584,7 +3584,7 @@
             <div class="subject-catalog-heading">
                 <span class="section-eyebrow" id="subject-catalog-eyebrow">Technical Mathematics</span>
                 <h2 id="subject-catalog-title">Course Curriculum Directory</h2>
-                <p id="subject-catalog-description">Choose an available chapter to open its interactive lessons, tools, and question bank.</p>
+                <p id="subject-catalog-description">Choose an available chapter to open its interactive lessons, study tools, and practice questions.</p>
             </div>
             <div class="subject-chapter-grid" id="subject-chapter-grid"></div>
             <a class="mock-exam-banner" href="index.html?chapter=13&amp;tab=quiz">
@@ -4176,7 +4176,7 @@
             <div class="chapter13-quiz-card" id="practice-random-panel" hidden>
                 <span class="section-eyebrow">Random practice</span>
                 <h3>Mixed practice across every objective</h3>
-                <p>The Chapter 13 bank contains <span id="chapter13-quiz-question-count">427</span> questions across <span id="chapter13-objective-count">8</span> learning objectives. A random set always includes at least one question from every objective, so a 10-question set covers the whole chapter.</p>
+                <p>Chapter 13 contains <span id="chapter13-quiz-question-count">427</span> questions across <span id="chapter13-objective-count">8</span> learning objectives. A random set always includes at least one question from every objective, so a 10-question set covers the whole chapter.</p>
                 <form class="chapter13-random-quiz" id="chapter13-random-quiz-form" novalidate>
                     <label for="chapter13-random-quiz-count">Number of Questions (Min 10):
                         <input id="chapter13-random-quiz-count" name="questionCount" type="number" min="10" max="427" step="1" value="10" inputmode="numeric" required>
@@ -4271,7 +4271,7 @@
                 ← Previous
             </button>
             <button class="btn btn-secondary" type="button" onclick="returnToBank()">
-                Question Bank
+                Chapter Overview
             </button>
             <button class="btn btn-primary" id="btn-submit" onclick="handleSubmitNext()">
                 Submit Answer
@@ -4335,7 +4335,7 @@
                 Email My Result
             </button>
             <button class="btn btn-secondary" type="button" onclick="returnToBank()">
-                Return to Question Bank
+                Return to Chapter
             </button>
         </div>
         <p class="email-result-note">Emailing your result opens a draft addressed to contact@tahatjustmath.com with your name, role, quiz, and score. If you select Student, your student ID is included. Review the draft and send it yourself only if you want to share these details.</p>
@@ -4348,7 +4348,7 @@
         <div class="site-footer-grid">
             <section class="site-footer-brand" aria-label="About Tahat Just Math">
                 <strong>Tahat Just Math</strong>
-                <p>Self-paced mathematics practice with guided lessons, interactive study tools, and chapter question banks.</p>
+                <p>Self-paced mathematics practice with guided lessons, interactive study tools, and chapter practice questions.</p>
             </section>
             <nav class="site-footer-section" aria-label="Quick links">
                 <h2>Quick links</h2>
@@ -4361,8 +4361,8 @@
                     <li><a href="https://github.com/tahatjustmath/tahatjustmath.github.io">GitHub project</a></li>
                 </ul>
             </nav>
-            <nav class="site-footer-section" aria-label="Available question banks">
-                <h2>Question banks</h2>
+            <nav class="site-footer-section" aria-label="Available chapters">
+                <h2>Chapters</h2>
                 <ul>
                     <li><a href="index.html?chapter=13">Chapter 13 · Trigonometry</a></li>
                     <li><a href="index.html?chapter=4">Chapter 4 · Accuracy &amp; Measurement</a></li>
@@ -9504,7 +9504,7 @@ let timerSeconds = 0;
 let timerInterval = null;
 
 const subjectTracks = [
-    { id: "tech_math", title: "Technical Mathematics", glyph: "π", count: "3 banks ready" },
+    { id: "tech_math", title: "Technical Mathematics", glyph: "π", count: "3 chapters ready" },
     { id: "algebra", title: "College Algebra", glyph: "x²", count: "Coming soon" },
     { id: "business", title: "Business Mathematics", glyph: "$", count: "Coming soon" },
     { id: "stats", title: "Statistics", glyph: "Σ", count: "Coming soon" },
@@ -9596,14 +9596,14 @@ function renderSubjectPortal() {
         selectedTrack.id === 'tech_math' ? 'Technical Mathematics · Course Library' : `${selectedTrack.title} · Course Library`;
     document.getElementById('subject-catalog-description').textContent =
         selectedTrack.id === 'tech_math'
-            ? 'Choose an available bank to open its interactive lessons, study tools, and question assessments.'
-            : 'This subject track is planned for the course library. Technical Mathematics is currently the first track with interactive question banks.';
+            ? 'Choose a chapter to open its interactive lessons, study tools, and practice questions.'
+            : 'This subject track is planned for the course library. Technical Mathematics is currently the first track with interactive chapters.';
 
     chapterGrid.replaceChildren();
     const isTechnicalMath = selectedTrack.id === 'tech_math';
     comingSoon.hidden = isTechnicalMath;
     if (!isTechnicalMath) {
-        comingSoon.textContent = `${selectedTrack.title} materials are being prepared. Select Technical Mathematics to open the available question banks.`;
+        comingSoon.textContent = `${selectedTrack.title} materials are being prepared. Select Technical Mathematics to open the available chapters.`;
         return;
     }
 
@@ -9628,7 +9628,7 @@ function renderSubjectPortal() {
         const questionCount = document.createElement('strong');
         questionCount.textContent = `${getQuestionsForChapter(bank.id).length} questions`;
         const action = document.createElement('span');
-        action.textContent = 'Open bank →';
+        action.textContent = 'Open chapter →';
         footer.append(questionCount, action);
         card.append(copy, footer);
         chapterGrid.appendChild(card);
