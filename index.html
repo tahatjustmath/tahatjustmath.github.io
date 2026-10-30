@@ -9218,62 +9218,62 @@ const learningObjectives = [
     },
     {
         id: "identify-sides",
-        title: "1. Identify sides of a right triangle",
-        description: "Recognize the hypotenuse and identify opposite and adjacent sides.",
+        title: "1. Identifying the Hypotenuse, Opposite, and Adjacent Sides of a Right Triangle",
+        description: "Locate the hypotenuse, then name the sides opposite and adjacent to a given acute angle.",
         categories: ["Side Identification"]
     },
     {
         id: "ratios-from-sides",
-        title: "2. Finding sine, cosine, tangent (given triangle sides)",
-        description: "Write sin, cos, and tan as ratios of the sides of a right triangle.",
+        title: "2. Evaluating Sine, Cosine, and Tangent from the Side Lengths of a Right Triangle",
+        description: "Express sin, cos, and tan of an acute angle as ratios of the triangle's sides.",
         categories: []
     },
     {
         id: "ratios-from-angle",
-        title: "3. Finding sine, cosine, tangent (given an angle)",
-        description: "Use a calculator in degree mode to evaluate sin, cos, and tan of an angle.",
+        title: "3. Evaluating Sine, Cosine, and Tangent of a Given Angle",
+        description: "Evaluate sin, cos, and tan of a given angle using a calculator in degree mode.",
         categories: []
     },
     {
         id: "pythagorean",
-        title: "4. Finding a missing side by the Pythagorean theorem",
-        description: "Use the relationship between the legs and hypotenuse to find a missing side.",
+        title: "4. Finding a Missing Side Using the Pythagorean Theorem",
+        description: "Apply a² + b² = c² to determine an unknown leg or hypotenuse.",
         categories: ["Pythagorean Theorem"]
     },
     {
         id: "find-sides",
-        title: "5. Finding a missing side by trigonometric ratios (given one side and one angle)",
-        description: "Select a trigonometric ratio to calculate an unknown side length.",
+        title: "5. Finding a Missing Side Using Trigonometric Ratios (One Side and One Acute Angle Given)",
+        description: "Select the appropriate trigonometric ratio and solve for an unknown side length.",
         categories: ["Trig Missing Sides"]
     },
     {
         id: "angle-from-ratio",
-        title: "6. Finding a missing angle (given a trig ratio)",
-        description: "Use inverse sine, cosine, or tangent on a given ratio to find an acute angle.",
+        title: "6. Finding an Acute Angle from a Given Trigonometric Ratio",
+        description: "Apply an inverse trigonometric function to a given ratio to find the measure of an acute angle.",
         categories: []
     },
     {
         id: "angle-complement",
-        title: "7. Finding a missing angle: acute angles sum to 90° (given one acute angle)",
-        description: "The two acute angles of a right triangle add to 90°, so subtract the known angle from 90°.",
+        title: "7. Finding the Missing Acute Angle Using the Angle-Sum Property (One Acute Angle Given)",
+        description: "Use the fact that the acute angles of a right triangle sum to 90° to find the missing angle.",
         categories: ["Complementary Angles"]
     },
     {
         id: "find-angles",
-        title: "8. Finding a missing angle by trigonometric ratios (given two sides)",
-        description: "Form a ratio from two known sides and use the matching inverse function.",
+        title: "8. Finding an Acute Angle Using Inverse Trigonometric Ratios (Two Sides Given)",
+        description: "Form the ratio of two known sides and apply the matching inverse trigonometric function.",
         categories: ["Trig Missing Angles"]
     },
     {
         id: "solve-triangle",
-        title: "9. Solve a right triangle (given two sides, or an angle and a side)",
-        description: "Find all missing side lengths and both acute angles.",
+        title: "9. Solving a Right Triangle (Two Sides, or One Side and One Acute Angle, Given)",
+        description: "Determine all unknown side lengths and both acute angles.",
         categories: ["Solve Right Triangle", "Solve Triangle (Angle and Side)"]
     },
     {
         id: "word-problems",
-        title: "10. Application problems (finding a side or an angle)",
-        description: "Model practical situations with diagrams and trigonometric ratios.",
+        title: "10. Solving Application Problems Involving Right Triangles",
+        description: "Model real-world situations with a right triangle and find an unknown side or angle.",
         categories: ["Word Problem"]
     }
 ];
@@ -9687,34 +9687,6 @@ function renderQuestionBank() {
         button.addEventListener('click', () => startObjectivePractice(objective.id));
         parent.appendChild(button);
     };
-
-    if (selectedChapter === "13") {
-        chapter13TopicGroups.forEach((group, index) => {
-            const objectives = learningObjectives.filter(objective => group.objectiveIds.includes(objective.id));
-            const questionCount = objectives.reduce((total, objective) =>
-                total + chapterQuestions.filter(question => question.objectiveId === objective.id).length, 0);
-            if (questionCount === 0) return;
-
-            const accordion = document.createElement('details');
-            accordion.className = 'topic-accordion';
-            accordion.open = index === 0;
-
-            const summary = document.createElement('summary');
-            const title = document.createElement('span');
-            title.textContent = group.title;
-            const count = document.createElement('span');
-            count.className = 'topic-accordion-count';
-            count.textContent = `${questionCount} questions`;
-            summary.append(title, count);
-
-            const cards = document.createElement('div');
-            cards.className = 'topic-objective-list';
-            objectives.forEach(objective => appendObjectiveCard(objective, cards));
-            accordion.append(summary, cards);
-            objectiveList.appendChild(accordion);
-        });
-        return;
-    }
 
     learningObjectives.forEach(objective => {
         appendObjectiveCard(objective, objectiveList);
