@@ -8893,8 +8893,10 @@ const chapter13Lessons = [
                     },
                     {
                         accent: "#4f46e5",
-                        heading: "Missing side in the numerator: multiply",
+                        heading: "Missing middle letter: multiply (SOH, CAH, TOA)",
+                        note: "If the missing side is the middle letter in the rule, i.e. missing in the numerator, multiply the known side by the trig ratio.",
                         items: [
+                            "\\text{missing side}=\\text{known side}\\times\\text{trig}",
                             "\\text{opposite}=\\text{hypotenuse}\\cdot\\sin(A)",
                             "\\text{adjacent}=\\text{hypotenuse}\\cdot\\cos(A)",
                             "\\text{opposite}=\\text{adjacent}\\cdot\\tan(A)"
@@ -8902,8 +8904,10 @@ const chapter13Lessons = [
                     },
                     {
                         accent: "#d97706",
-                        heading: "Missing side in the denominator: divide",
+                        heading: "Missing last letter: divide (SOH, CAH, TOA)",
+                        note: "If the missing side is the last letter in the rule, i.e. missing in the denominator, divide the known side by the trig ratio.",
                         items: [
+                            "\\text{missing side}=\\frac{\\text{known side}}{\\text{trig}}",
                             "\\text{hypotenuse}=\\frac{\\text{opposite}}{\\sin(A)}",
                             "\\text{hypotenuse}=\\frac{\\text{adjacent}}{\\cos(A)}",
                             "\\text{adjacent}=\\frac{\\text{opposite}}{\\tan(A)}"
@@ -9294,6 +9298,7 @@ function renderChapter13Guide() {
                                 ${step.cards ? `<div class="solve-formula-grid">${step.cards.map(card => `
                                     <div class="solve-formula-card" style="--card-accent:${card.accent}">
                                         <h4>${card.heading}</h4>
+                                        ${card.note ? `<p>${card.note}</p>` : ''}
                                         ${card.items.map(item => `<div>${formatTriangleRoleText(`\\(${item}\\)`, true)}</div>`).join('')}
                                     </div>`).join('')}</div>` : ''}
                             </div>
