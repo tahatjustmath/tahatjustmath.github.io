@@ -3295,6 +3295,50 @@
             cursor: pointer;
         }
 
+        .quiz-calc-toggle { margin-left: 8px; }
+
+        .quiz-calc-panel {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 900;
+            width: min(380px, calc(100vw - 24px));
+            max-height: calc(100vh - 32px);
+            overflow: auto;
+            background: #fff;
+            border: 1px solid #9ab8bd;
+            border-radius: 12px;
+            box-shadow: 0 12px 36px rgba(15, 35, 50, 0.35);
+        }
+
+        .quiz-calc-panel[hidden] { display: none; }
+
+        .quiz-calc-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #17324a;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 11px 11px 0 0;
+        }
+
+        .quiz-calc-panel .quiz-calc-close {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .quiz-calc-body { padding: 8px; }
+
         .hint-toggle:hover {
             background: #e5f1ef;
         }
@@ -4176,7 +4220,17 @@
             <button class="hint-toggle" id="hint-toggle" type="button" aria-expanded="false" aria-controls="hint-panel" onclick="toggleQuestionHint()">
                 Show hint
             </button>
+            <button class="hint-toggle quiz-calc-toggle" id="quiz-calc-toggle" type="button" aria-expanded="false" aria-controls="quiz-calc-panel" onclick="toggleQuizCalculator()">
+                Open calculator
+            </button>
             <div class="hint-panel" id="hint-panel" hidden></div>
+        </div>
+        <div class="quiz-calc-panel" id="quiz-calc-panel" role="dialog" aria-label="Scientific calculator" hidden>
+            <div class="quiz-calc-bar">
+                <span>Calculator</span>
+                <button class="quiz-calc-close" type="button" aria-label="Close calculator" onclick="toggleQuizCalculator(false)">×</button>
+            </div>
+            <div class="quiz-calc-body" id="quiz-calc-body"></div>
         </div>
         <div class="math-render-warning" id="math-render-warning" role="status" hidden>
             Math notation could not be rendered. The original notation is still available in the question text.
@@ -9825,6 +9879,7 @@ function renderChapter13Guide() {
 }
 
 function switchChapter13Tab(tabName, focusTab = false) {
+    toggleQuizCalculator(false);
     const tab = document.getElementById(`chapter13-tab-${tabName}`);
     const panel = document.getElementById(`chapter13-view-${tabName}`);
     if (!tab || !panel) throw new Error(`Unknown Chapter 13 tab: ${tabName}`);
@@ -10304,7 +10359,28 @@ function beginAssessment(questionSet, title) {
     startTimer();
 }
 
+// Moves the single fx-82 calculator between its tab and the floating practice panel so its state is kept.
+let quizCalcHome = null;
+function toggleQuizCalculator(forceOpen) {
+    const panel = document.getElementById('quiz-calc-panel');
+    const toggle = document.getElementById('quiz-calc-toggle');
+    const root = document.getElementById('fx82-root');
+    if (!panel || !toggle || !root) return;
+    const open = typeof forceOpen === 'boolean' ? forceOpen : panel.hidden;
+    if (open) {
+        if (!quizCalcHome) quizCalcHome = { parent: root.parentNode, next: root.nextSibling };
+        document.getElementById('quiz-calc-body').appendChild(root);
+    } else if (quizCalcHome) {
+        quizCalcHome.parent.insertBefore(root, quizCalcHome.next && quizCalcHome.next.parentNode === quizCalcHome.parent ? quizCalcHome.next : null);
+        quizCalcHome = null;
+    }
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? 'Close calculator' : 'Open calculator';
+}
+
 function returnToBank() {
+    toggleQuizCalculator(false);
     clearInterval(timerInterval);
     document.body.classList.remove('assessment-active');
     document.getElementById('assessment-ui').hidden = true;
@@ -11149,6 +11225,7 @@ function finishQuiz() {
     const percent = Math.round((score / activeQuestions.length) * 100);
     const gradeText = percent >= 90 ? 'Excellent' : percent >= 80 ? 'Very Good' : percent >= 70 ? 'Good' : percent >= 60 ? 'Fair' : 'Needs Improvement';
 
+    toggleQuizCalculator(false);
     document.getElementById('quiz-card').style.display = 'none';
     document.getElementById('results-card').style.display = 'block';
     document.getElementById('final-score-num').textContent = score;
