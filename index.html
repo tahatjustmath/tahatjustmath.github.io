@@ -8785,6 +8785,86 @@ function varyRoundingInstructions() {
 }
 varyRoundingInstructions();
 
+function createAngleObjectiveQuestions() {
+    const questions = [];
+    let nextId = 2001;
+    const fmt = value => value.toFixed(1);
+
+    [23, 37, 48.5, 62, 15.4, 71, 54.6, 29, 66.3, 41, 18.2, 77].forEach((angle, index) => {
+        const target = index % 2 === 0 ? "B" : "A";
+        const given = target === "B" ? "A" : "B";
+        const answer = 90 - angle;
+        const choices = makePracticeOptions(`${fmt(answer)}°`, [
+            `${fmt(angle)}°`,
+            `${fmt(180 - angle)}°`,
+            `${fmt(angle + 90)}°`,
+            `${fmt(answer + 10)}°`
+        ], index % 4);
+        questions.push({
+            id: nextId++,
+            category: "Complementary Angles",
+            targetAngle: target,
+            stem: `In right triangle ABC with the right angle at C, ∠${given} = ${fmt(angle)}°. Find ∠${target}.`,
+            expression: `∠${given} = ${fmt(angle)}°, ∠C = 90°`,
+            diagramType: "trig-expression",
+            hintText: "The two acute angles of a right triangle add to 90°.",
+            options: choices.options,
+            correct: choices.correct,
+            explainEn: `The angles of a triangle add to 180°, and the right angle is 90°, so ∠A + ∠B = 90°. ∠${target} = 90° - ${fmt(angle)}° = ${fmt(answer)}°.`
+        });
+    });
+
+    const cases = [
+        { angle: 35, known: "c", value: 12 },
+        { angle: 52, known: "a", value: 8.5 },
+        { angle: 28, known: "b", value: 15 },
+        { angle: 63, known: "c", value: 20 },
+        { angle: 41, known: "b", value: 9.6 },
+        { angle: 19, known: "a", value: 6.4 },
+        { angle: 70, known: "c", value: 14.5 },
+        { angle: 47, known: "b", value: 11 },
+        { angle: 33, known: "a", value: 7.2 },
+        { angle: 58, known: "c", value: 25 }
+    ];
+    const rad = degrees => degrees * Math.PI / 180;
+    cases.forEach((item, index) => {
+        const { angle, known, value } = item;
+        let a, b, c;
+        if (known === "c") { c = value; a = c * Math.sin(rad(angle)); b = c * Math.cos(rad(angle)); }
+        else if (known === "a") { a = value; c = a / Math.sin(rad(angle)); b = a / Math.tan(rad(angle)); }
+        else { b = value; c = b / Math.cos(rad(angle)); a = b * Math.tan(rad(angle)); }
+        const other = 90 - angle;
+        const values = { a, b, c };
+        const unknownSides = ["a", "b", "c"].filter(side => side !== known);
+        const text = (u, other1, other2, ang) =>
+            `${unknownSides[0]} = ${u[unknownSides[0]].toFixed(2)} cm, ${unknownSides[1]} = ${u[unknownSides[1]].toFixed(2)} cm; ∠B = ${ang.toFixed(1)}°`;
+        const swapped = { a: b, b: a, c };
+        const scaled = { a: a * 1.1, b: b * 1.1, c: c * 1.1 };
+        const shifted = { a: a + 1.5, b: b - 1.2, c: c + 0.8 };
+        const choices = makePracticeOptions(
+            text(values, 0, 0, other),
+            [text(swapped, 0, 0, other), text(values, 0, 0, angle), text(scaled, 0, 0, other), text(shifted, 0, 0, other + 5)],
+            index % 4
+        );
+        const knownName = known === "c" ? "the hypotenuse c" : known === "a" ? "side a (opposite ∠A)" : "side b (adjacent to ∠A)";
+        questions.push({
+            id: nextId++,
+            category: "Solve Triangle (Angle and Side)",
+            targetAngle: "A",
+            stem: "Solve the right triangle (right angle at C). Find the two missing sides and ∠B. (Round sides to the nearest hundredth and angles to the nearest tenth.)",
+            expression: `∠A = ${angle}°, ${known} = ${value} cm, ∠C = 90°`,
+            diagramType: "trig-expression",
+            hintText: "Find ∠B from 90° - ∠A, then use SOH-CAH-TOA with the given side for each missing side.",
+            options: choices.options,
+            correct: choices.correct,
+            explainEn: `∠B = 90° - ${angle}° = ${other}°. Using ${knownName} = ${value} cm: a = ${a.toFixed(2)} cm, b = ${b.toFixed(2)} cm, c = ${c.toFixed(2)} cm.`
+        });
+    });
+
+    return questions;
+}
+questionsData.push(...createAngleObjectiveQuestions());
+
 function assignChapter4FigureAssets() {
     const chapter4FigureByNumber = new Map([
         [31, "assets/chapter4/figure-002.png"],
@@ -9138,55 +9218,74 @@ const learningObjectives = [
     },
     {
         id: "identify-sides",
-        title: "Identify sides of a right triangle",
+        title: "1. Identify sides of a right triangle",
         description: "Recognize the hypotenuse and identify opposite and adjacent sides.",
         categories: ["Side Identification"]
     },
     {
+        id: "ratios-from-sides",
+        title: "2. Finding sine, cosine, tangent (given triangle sides)",
+        description: "Write sin, cos, and tan as ratios of the sides of a right triangle.",
+        categories: []
+    },
+    {
+        id: "ratios-from-angle",
+        title: "3. Finding sine, cosine, tangent (given an angle)",
+        description: "Use a calculator in degree mode to evaluate sin, cos, and tan of an angle.",
+        categories: []
+    },
+    {
         id: "pythagorean",
-        title: "Apply the Pythagorean theorem",
+        title: "4. Finding a missing side by the Pythagorean theorem",
         description: "Use the relationship between the legs and hypotenuse to find a missing side.",
         categories: ["Pythagorean Theorem"]
     },
     {
-        id: "evaluate-ratios",
-        title: "Evaluate sine, cosine, and tangent",
-        description: "Choose and evaluate trigonometric ratios using sides or an angle.",
-        categories: ["Trig Ratios"]
-    },
-    {
         id: "find-sides",
-        title: "Find missing sides using trigonometry",
+        title: "5. Finding a missing side by trigonometric ratios (given one side and one angle)",
         description: "Select a trigonometric ratio to calculate an unknown side length.",
         categories: ["Trig Missing Sides"]
     },
     {
+        id: "angle-from-ratio",
+        title: "6. Finding a missing angle (given a trig ratio)",
+        description: "Use inverse sine, cosine, or tangent on a given ratio to find an acute angle.",
+        categories: []
+    },
+    {
+        id: "angle-complement",
+        title: "7. Finding a missing angle: acute angles sum to 90° (given one acute angle)",
+        description: "The two acute angles of a right triangle add to 90°, so subtract the known angle from 90°.",
+        categories: ["Complementary Angles"]
+    },
+    {
         id: "find-angles",
-        title: "Find angles using inverse trigonometry",
-        description: "Use inverse sine, cosine, or tangent to find an acute angle.",
+        title: "8. Finding a missing angle by trigonometric ratios (given two sides)",
+        description: "Form a ratio from two known sides and use the matching inverse function.",
         categories: ["Trig Missing Angles"]
     },
     {
         id: "solve-triangle",
-        title: "Solve a complete right triangle",
-        description: "Find all missing side lengths and both acute angles from two sides.",
-        categories: ["Solve Right Triangle"]
+        title: "9. Solve a right triangle (given two sides, or an angle and a side)",
+        description: "Find all missing side lengths and both acute angles.",
+        categories: ["Solve Right Triangle", "Solve Triangle (Angle and Side)"]
     },
     {
         id: "word-problems",
-        title: "Apply trigonometry to real-world problems",
+        title: "10. Application problems (finding a side or an angle)",
         description: "Model practical situations with diagrams and trigonometric ratios.",
         categories: ["Word Problem"]
-    },
-    {
-        id: "calculator-trig",
-        title: "Calculator Trig",
-        description: "Use a calculator to evaluate trigonometric ratios and inverse trigonometric functions.",
-        categories: ["Evaluate Trig Ratios", "Inverse Trig"]
     }
-
 ];
 
+function classifyChapter13Objective(question) {
+    const category = question.category;
+    const expression = question.expression || "";
+    if (category === "Trig Ratios") return expression.includes("°") ? "ratios-from-angle" : "ratios-from-sides";
+    if (category === "Evaluate Trig Ratios") return "ratios-from-angle";
+    if (category === "Inverse Trig") return /side lengths/i.test(question.stem) ? "find-angles" : "angle-from-ratio";
+    return null;
+}
 const chapter4ObjectiveDefinitions = [
     ["4.1", "4.1 Accuracy", "Determine significant digits in measurements."],
     ["4.2", "4.2 Precision", "Identify the place value of the last recorded digit."],
@@ -9216,9 +9315,10 @@ learningObjectives.push({
 
 const chapter13TopicGroups = [
     { title: "Right-triangle foundations", objectiveIds: ["identify-sides", "pythagorean"] },
-    { title: "Trigonometric ratios", objectiveIds: ["evaluate-ratios"] },
-    { title: "Solving right triangles", objectiveIds: ["find-sides", "find-angles", "solve-triangle"] },
-    { title: "Applications and calculator practice", objectiveIds: ["word-problems", "calculator-trig"] }
+    { title: "Trigonometric ratios", objectiveIds: ["ratios-from-sides", "ratios-from-angle"] },
+    { title: "Finding missing sides", objectiveIds: ["find-sides"] },
+    { title: "Finding missing angles", objectiveIds: ["angle-from-ratio", "angle-complement", "find-angles"] },
+    { title: "Solving right triangles and applications", objectiveIds: ["solve-triangle", "word-problems"] }
 ];
 
 const chapter13Lessons = [
@@ -9231,7 +9331,7 @@ const chapter13Lessons = [
     {
         id: "ratios",
         title: "Trigonometric ratios",
-        exampleObjectiveId: "evaluate-ratios",
+        exampleObjectiveId: "ratios-from-sides",
         concept: "Name the sides relative to the reference angle, then use SOH–CAH–TOA: \\(\\sin(\\theta)=\\frac{\\text{opposite}}{\\text{hypotenuse}}\\), \\(\\cos(\\theta)=\\frac{\\text{adjacent}}{\\text{hypotenuse}}\\), and \\(\\tan(\\theta)=\\frac{\\text{opposite}}{\\text{adjacent}}\\)."
     },
     {
@@ -9320,7 +9420,8 @@ function getChapter4Objective(question) {
 questionsData.forEach(question => {
     const objective = question.category === "Chapter 4"
         ? getChapter4Objective(question)
-        : learningObjectives.find(item => item.categories.includes(question.category));
+        : learningObjectives.find(item => item.id === classifyChapter13Objective(question)) ||
+            learningObjectives.find(item => item.categories.includes(question.category));
     if (!objective) throw new Error(`Question ${question.id} has no learning objective.`);
     question.objectiveId = objective.id;
     question.objective = objective.title;
@@ -10989,6 +11090,8 @@ function getStudentHint(q) {
         "Solve Right Triangle": "Find the missing side first: add the leg squares for c, or subtract the known leg square from c² to find a leg. Then use a matching inverse ratio for one acute angle and subtract it from 90° to find the other.",
         "Word Problem": "Sketch a right triangle from the situation. Mark the known distance, height, or line of sight, then identify the sides relative to the angle before choosing a ratio.",
         "Evaluate Trig Ratios": "Set the calculator to degree mode. Enter the indicated sine, cosine, or tangent and round only as the question requests.",
+        "Complementary Angles": "The three angles of a triangle add to 180° and the right angle is 90°, so the two acute angles add to 90°. Subtract the known acute angle from 90°.",
+        "Solve Triangle (Angle and Side)": "Find the other acute angle with 90° minus the given angle. Then label the sides relative to the given angle and use sine, cosine, or tangent with the known side: multiply when the missing side is a numerator, divide when it is a denominator.",
         "Inverse Trig": "Set the calculator to degree mode. Match the given ratio to sine, cosine, or tangent, then use its inverse to find the acute angle."
     };
     const hint = hints[q.category];
